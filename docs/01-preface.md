@@ -5,7 +5,7 @@ output:
 ---
 \mainmatter
 
-# Preface {#chapter1}
+# Introduction to R and RStudio {#chapter1}
 
 
 

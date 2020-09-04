@@ -1,14 +1,5 @@
-bookdown::pdf_book:
-  includes:
-    in_header: preamble.tex
-    before_body: frontmatterCode.tex
-    after_body: appendix.tex
-  latex_engine: pdflatex
-  citation_package: natbib
-  keep_tex: yes
-bookdown::epub_book: default
 bookdown::gitbook:
-  css: [style.css, toc.css, font-awesome.min.css]
+  css: [css/oistyle.css, css/toc.css, css/font-awesome.min.css]
   config:
     toc:
       before: |
@@ -20,4 +11,12 @@ bookdown::gitbook:
         position: fixed
     download: ["pdf"]
     sharing: no
-      
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+    before_body: frontmatterCode.tex
+    after_body: appendix.tex
+  latex_engine: pdflatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: default

@@ -253,14 +253,13 @@ more sophisticated things with R, allowing us to compare quantitative responses
 from two groups, make some graphical displays, do hypothesis testing \index{hypothesis testing} and create
 confidence intervals in a couple of different ways. 
 
-\indent You will have two^[There is a cloud version of R Studio available at https://rstudio.cloud/ if you want to avoid these steps. We still recommend following the steps to be able to work locally but try this option if you have issues with the installation process.] downloading activities to complete before you can do anything
-more than read this book^[I recorded a video that walks through getting R and RStudio installed on a PC available [**in a recorded video**](https://montana.techsmithrelay.com/ojg6). If you want to see them installed on a mac, you can try [**this video on youtube**](https://www.youtube.com/watch?v=GFImMj1lMRI). Or for either version, try searching YouTube for "How to install R and RStudio".
-]. First, you need to download R. It is the engine that will do all the computing
+\indent You will have two^[There is a cloud version of R Studio available at https://rstudio.cloud/ that is free for limited usage. We recommend following the steps to be able to work locally but try this option if you have issues with the installation process and need to complete an assignment or two until you get the installation sorted out.] downloading activities to complete before you can do anything
+more than read this book^[I created this interactive website (https://greenwood-stat.shinyapps.io/InstallDemo/) that contains discussions and activities related to installing and using R and RStudio.]. First, you need to download R. It is the engine that will do all the computing
 for us, but you will only interact with it once. Go to http://cran.rstudio.com
 and click on the "**Download R for...**" button that
 corresponds to your operating system. On the next page, click on "**base**" and then it will take you 
 to a screen to download the most current version of R that is compiled for your
-operating system, something like "**Download R 3.6.2 for Windows**". Click on that link and then open 
+operating system, something like "**Download R 4.0.2 for Windows**". Click on that link and then open 
 the file you downloaded. You will need to select your preferred language (choose English so your  instructor can help you), then hit "**Next**"
 until it starts to unpack and install the program (all the base settings will be fine). After you hit "**Finish**" you will not do anything further with R directly. 
 
@@ -273,8 +272,8 @@ are updated frequently (up to four times a year) and if you downloaded either
 more than a few months previously, you should download the up-to-date versions, 
 especially if something you are trying to do is not working. Sometimes code
 will not work in older versions of R and sometimes old code won't work in new
-versions of R.^[The need to keep the code up-to-date as R continues to evolve is one reason that this book is locally published and that this is the 6^th^ time it has been revised in
-six years...]
+versions of R.^[The need to keep the code up-to-date as R continues to evolve is one reason that this book is locally published and that this is the 7^th^ time it has been revised in
+seven years...]
  
 (ref:fig1-2) Initial RStudio layout.
 
@@ -289,7 +288,7 @@ interface. When you open RStudio, you will see a screen like Figure
 added annotation in this and the following screen-grabs is there to help you
 get initially oriented to the software interface. R is command-line software --
 meaning that in some way or another you have to create code and get it evaluated, either by entering and execute
-it at a command prompt or by using the Rstudio interface to run the code that is stored in a file. RStudio makes the management and
+it at a command prompt or by using the RStudio interface to run the code that is stored in a file. RStudio makes the management and
 execution of that code more efficient than the basic version of R. In RStudio, 
 the lower left panel is called the "console" window and is where you can type R
 code directly into R or where you will see the code you run and (most
@@ -450,20 +449,19 @@ starts and ends with the following information (only results for Subjects 1, 2,
 30, and 31 shown here):
 
 ----------------------------------------------------------------------------
-Sub-   Tread- 	 TreadMill- 	RunTime	 RunPulse	 Rest    BodyWeight	   Age
+Sub-   Tread-    TreadMill-   RunTime  RunPulse  Rest    BodyWeight   Age
 ject   MillOx    MaxPulse                        Pulse
------  --------  -----------  -------  --------  ------  -----------   ----
-1	     60.05	   186	        8.63	   170	     48	     81.87	       38
+-----  --------  -----------  -------  --------  ------  -----------  ----
+1      60.05     186          8.63     170       48      81.87        38
 
-2	     59.57	   172	        8.17	   166	     40	     68.15	       42
+2      59.57     172          8.17     166       40      68.15        42
 
-…      …	       …	          …	       …	       …	     …	           …
+…      …         …            …        …         …       …            …
 
-30	   39.2	     172	        12.88	   168	     44	     91.63	       54
+30     39.2      172          12.88    168       44      91.63        54
 
-31	   37.39	   192	        14.03	   186	     56	     87.66	       45
+31     37.39     192          14.03    186       56      87.66        45
 ----------------------------------------------------------------------------
-
 
 \indent The variables contain information on the subject number (*Subject*), subjects' 
 maximum treadmill oxygen consumption (*TreadMillOx*, in ml per kg per minute, also called maximum VO2) and 
@@ -719,7 +717,7 @@ into each bar. Specifically, we can turn the ``labels`` option "on" by making it
 </div>
 
 
-\indent Based on this histogram, it does not appear that there any outliers in the responses
+\indent Based on this histogram (Figure \@ref(fig:Figure1-8)), it does not appear that there any outliers in the responses
 since there are no bars that are separated from the other observations. However, 
 the distribution does not look symmetric and there might be a skew to the
 distribution. Specifically, it appears to be ***skewed right*** (the right tail is longer than the left). But histograms can sometimes mask features of
@@ -846,7 +844,7 @@ encouraging researchers to work in this way and may someday require it. The term
 it will
 ask you to save your workspace. ***DO NOT DO THIS!*** It will just create a cluttered 
 workspace and could even cause you to get incorrect results.  In fact, you should go into the Tools -> Global Options and then make sure that "Save workspace to .RData on exit" option on the first screen you will see is set to ***Never***. If you
-save your R code either as a .R or (better) an R-markdown file, you can re-create any results by simply
+save your R code either as a .R or (better) an R Markdown (.Rmd) file, you can re-create any results by simply
 re-running that code or re-knitting the file. If you find that you have lots of "stuff" in your
 workspace because you accidentally saved your workspace, just run ``rm(list = ls())``. 
 It will delete all the data sets from your workspace. 

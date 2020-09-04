@@ -2,24 +2,21 @@ book_filename: "Greenwood_Book"
 language:
   ui:
     chapter_name: "Chapter "
-rmd_files: ["index.Rmd","01-preface.rmd","02-reintroductionToStatistics.rmd",
-            "03-oneWayAnova.rmd","04-twoWayAnova.Rmd","05-chiSquaredTests.Rmd",
-            "06-correlationAndSimpleLinearRegression.Rmd",
-            "07-simpleLinearRegressionInference.Rmd",
-            "08-multipleLinearRegression.Rmd","09-caseStudies.Rmd",
-            "10-references.rmd"]
-output:
-  bookdown::pdf_book:
-    includes:
-      in_header: preamble.tex
-    papersize: letter
-    colorlinks: true
-    fig_width: 5
-    fig_height: 3.5
-    
-  bookdown::gitbook:
-    css: [style.css, toc.css, font-awesome.min.css]
-    split_by: section+number
+rmd_files: [
+  "index.Rmd",
+  "01-preface.rmd",
+  #"02-reintroductionToStatistics.rmd", 
+  #"03-oneWayAnova.rmd", 
+  #"04-twoWayAnova.rmd", 
+  #"06-correlationAndSimpleLinearRegression.rmd", 
+  #"07-simpleLinearRegressionInference.rmd", 
+  #"08-multipleLinearRegression.rmd", 
+  #"09-caseStudies.rmd", 
+  "10-references.rmd"
+  ]
+output: bookdown::gitbook
 site: bookdown::bookdown_site
 tables: true
 new_session: true
+delete_merged_file: true
+before_chpater_script: "_common.R"

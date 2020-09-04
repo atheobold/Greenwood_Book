@@ -5,23 +5,23 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Intermediate Statistics with R</title>
-  <meta name="description" content="Intermediate Statistics with R" />
+  <meta name="description" content="Open resource textbook for Intermediate Statistics at Montana State University, revised to use tidyverse tools" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
   
   
-  
-  <meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+  <meta property="og:description" content="Open resource textbook for Intermediate Statistics at Montana State University, revised to use tidyverse tools" />
+  <meta name="github-repo" content="atheobold/intermediate-statistics-tidyverse" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Intermediate Statistics with R" />
   
-  
+  <meta name="twitter:description" content="Open resource textbook for Intermediate Statistics at Montana State University, revised to use tidyverse tools" />
   
 
-<meta name="author" content="Mark C Greenwood" />
+<meta name="author" content="Mark C Greenwood, with revisions by Allison Theobold" />
 
 
 
@@ -31,8 +31,7 @@
   
   
 
-<link rel="next" href="acknowledgments.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<link rel="next" href="chapter1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,20 +49,22 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -83,7 +84,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -116,9 +117,9 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
-<link rel="stylesheet" href="toc.css" type="text/css" />
-<link rel="stylesheet" href="font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="css/oistyle.css" type="text/css" />
+<link rel="stylesheet" href="css/toc.css" type="text/css" />
+<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
 </head>
 
 <body>
@@ -134,133 +135,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Intermediate Statistics with R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Cover</a></li>
-<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
-<li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> Preface</a>
-<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#textbook-overview"><i class="fa fa-check"></i>Textbook overview</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#statistical-computing"><i class="fa fa-check"></i>Statistical computing</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#getting-rstudio"><i class="fa fa-check"></i>Getting RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
 <li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#section1-1"><i class="fa fa-check"></i><b>1.1</b> Overview of methods</a></li>
 <li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section1-2"><i class="fa fa-check"></i><b>1.2</b> Getting started in R</a></li>
 <li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section1-3"><i class="fa fa-check"></i><b>1.3</b> Basic summary statistics, histograms, and boxplots using R</a></li>
 <li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#section1-4"><i class="fa fa-check"></i><b>1.4</b> Chapter summary</a></li>
 <li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#section1-5"><i class="fa fa-check"></i><b>1.5</b> Summary of important R code</a></li>
 <li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#section1-6"><i class="fa fa-check"></i><b>1.6</b> Practice problems</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="chapter2.html"><a href="chapter2.html"><i class="fa fa-check"></i><b>2</b> (R)e-Introduction to statistics</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="chapter2.html"><a href="chapter2.html#section2-1"><i class="fa fa-check"></i><b>2.1</b> Histograms, boxplots, and density curves</a></li>
-<li class="chapter" data-level="2.2" data-path="chapter2.html"><a href="chapter2.html#section2-2"><i class="fa fa-check"></i><b>2.2</b> Pirate-plots</a></li>
-<li class="chapter" data-level="2.3" data-path="chapter2.html"><a href="chapter2.html#section2-3"><i class="fa fa-check"></i><b>2.3</b> Models, hypotheses, and permutations for the two sample mean situation</a></li>
-<li class="chapter" data-level="2.4" data-path="chapter2.html"><a href="chapter2.html#section2-4"><i class="fa fa-check"></i><b>2.4</b> Permutation testing for the two sample mean situation</a></li>
-<li class="chapter" data-level="2.5" data-path="chapter2.html"><a href="chapter2.html#section2-5"><i class="fa fa-check"></i><b>2.5</b> Hypothesis testing (general)</a></li>
-<li class="chapter" data-level="2.6" data-path="chapter2.html"><a href="chapter2.html#section2-6"><i class="fa fa-check"></i><b>2.6</b> Connecting randomization (nonparametric) and parametric tests</a></li>
-<li class="chapter" data-level="2.7" data-path="chapter2.html"><a href="chapter2.html#section2-7"><i class="fa fa-check"></i><b>2.7</b> Second example of permutation tests</a></li>
-<li class="chapter" data-level="2.8" data-path="chapter2.html"><a href="chapter2.html#section2-8"><i class="fa fa-check"></i><b>2.8</b> Reproducibility Crisis: Moving beyond p &lt; 0.05, publication bias, and multiple testing issues</a></li>
-<li class="chapter" data-level="2.9" data-path="chapter2.html"><a href="chapter2.html#section2-9"><i class="fa fa-check"></i><b>2.9</b> Confidence intervals and bootstrapping</a></li>
-<li class="chapter" data-level="2.10" data-path="chapter2.html"><a href="chapter2.html#section2-10"><i class="fa fa-check"></i><b>2.10</b> Bootstrap confidence intervals for difference in GPAs</a></li>
-<li class="chapter" data-level="2.11" data-path="chapter2.html"><a href="chapter2.html#section2-11"><i class="fa fa-check"></i><b>2.11</b> Chapter summary</a></li>
-<li class="chapter" data-level="2.12" data-path="chapter2.html"><a href="chapter2.html#section2-12"><i class="fa fa-check"></i><b>2.12</b> Summary of important R code</a></li>
-<li class="chapter" data-level="2.13" data-path="chapter2.html"><a href="chapter2.html#section2-13"><i class="fa fa-check"></i><b>2.13</b> Practice problems</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="chapter3.html"><a href="chapter3.html"><i class="fa fa-check"></i><b>3</b> One-Way ANOVA</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="chapter3.html"><a href="chapter3.html#section3-1"><i class="fa fa-check"></i><b>3.1</b> Situation</a></li>
-<li class="chapter" data-level="3.2" data-path="chapter3.html"><a href="chapter3.html#section3-2"><i class="fa fa-check"></i><b>3.2</b> Linear model for One-Way ANOVA (cell means and reference-coding)</a></li>
-<li class="chapter" data-level="3.3" data-path="chapter3.html"><a href="chapter3.html#section3-3"><i class="fa fa-check"></i><b>3.3</b> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
-<li class="chapter" data-level="3.4" data-path="chapter3.html"><a href="chapter3.html#section3-4"><i class="fa fa-check"></i><b>3.4</b> ANOVA model diagnostics including QQ-plots</a></li>
-<li class="chapter" data-level="3.5" data-path="chapter3.html"><a href="chapter3.html#section3-5"><i class="fa fa-check"></i><b>3.5</b> Guinea pig tooth growth One-Way ANOVA example</a></li>
-<li class="chapter" data-level="3.6" data-path="chapter3.html"><a href="chapter3.html#section3-6"><i class="fa fa-check"></i><b>3.6</b> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
-<li class="chapter" data-level="3.7" data-path="chapter3.html"><a href="chapter3.html#section3-7"><i class="fa fa-check"></i><b>3.7</b> Pair-wise comparisons for the Overtake data</a></li>
-<li class="chapter" data-level="3.8" data-path="chapter3.html"><a href="chapter3.html#section3-8"><i class="fa fa-check"></i><b>3.8</b> Chapter summary</a></li>
-<li class="chapter" data-level="3.9" data-path="chapter3.html"><a href="chapter3.html#section3-9"><i class="fa fa-check"></i><b>3.9</b> Summary of important R code</a></li>
-<li class="chapter" data-level="3.10" data-path="chapter3.html"><a href="chapter3.html#section3-10"><i class="fa fa-check"></i><b>3.10</b> Practice problems</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="chapter4.html"><a href="chapter4.html"><i class="fa fa-check"></i><b>4</b> Two-Way ANOVA</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="chapter4.html"><a href="chapter4.html#section4-1"><i class="fa fa-check"></i><b>4.1</b> Situation</a></li>
-<li class="chapter" data-level="4.2" data-path="chapter4.html"><a href="chapter4.html#section4-2"><i class="fa fa-check"></i><b>4.2</b> Designing a two-way experiment and visualizing results</a></li>
-<li class="chapter" data-level="4.3" data-path="chapter4.html"><a href="chapter4.html#section4-3"><i class="fa fa-check"></i><b>4.3</b> Two-Way ANOVA models and hypothesis tests</a></li>
-<li class="chapter" data-level="4.4" data-path="chapter4.html"><a href="chapter4.html#section4-4"><i class="fa fa-check"></i><b>4.4</b> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
-<li class="chapter" data-level="4.5" data-path="chapter4.html"><a href="chapter4.html#section4-5"><i class="fa fa-check"></i><b>4.5</b> Observational study example: The Psychology of Debt</a></li>
-<li class="chapter" data-level="4.6" data-path="chapter4.html"><a href="chapter4.html#section4-6"><i class="fa fa-check"></i><b>4.6</b> Pushing Two-Way ANOVA to the limit: Un-replicated designs and Estimability</a></li>
-<li class="chapter" data-level="4.7" data-path="chapter4.html"><a href="chapter4.html#section4-7"><i class="fa fa-check"></i><b>4.7</b> Chapter summary</a></li>
-<li class="chapter" data-level="4.8" data-path="chapter4.html"><a href="chapter4.html#section4-8"><i class="fa fa-check"></i><b>4.8</b> Summary of important R code</a></li>
-<li class="chapter" data-level="4.9" data-path="chapter4.html"><a href="chapter4.html#section4-9"><i class="fa fa-check"></i><b>4.9</b> Practice problems</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="chapter5.html"><a href="chapter5.html"><i class="fa fa-check"></i><b>5</b> Chi-square tests</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="chapter5.html"><a href="chapter5.html#section5-1"><i class="fa fa-check"></i><b>5.1</b> Situation, contingency tables, and tableplots</a></li>
-<li class="chapter" data-level="5.2" data-path="chapter5.html"><a href="chapter5.html#section5-2"><i class="fa fa-check"></i><b>5.2</b> Homogeneity test hypotheses</a></li>
-<li class="chapter" data-level="5.3" data-path="chapter5.html"><a href="chapter5.html#section5-3"><i class="fa fa-check"></i><b>5.3</b> Independence test hypotheses</a></li>
-<li class="chapter" data-level="5.4" data-path="chapter5.html"><a href="chapter5.html#section5-4"><i class="fa fa-check"></i><b>5.4</b> Models for R by C tables</a></li>
-<li class="chapter" data-level="5.5" data-path="chapter5.html"><a href="chapter5.html#section5-5"><i class="fa fa-check"></i><b>5.5</b> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
-<li class="chapter" data-level="5.6" data-path="chapter5.html"><a href="chapter5.html#section5-6"><i class="fa fa-check"></i><b>5.6</b> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
-<li class="chapter" data-level="5.7" data-path="chapter5.html"><a href="chapter5.html#section5-7"><i class="fa fa-check"></i><b>5.7</b> Examining residuals for the source of differences</a></li>
-<li class="chapter" data-level="5.8" data-path="chapter5.html"><a href="chapter5.html#section5-8"><i class="fa fa-check"></i><b>5.8</b> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
-<li class="chapter" data-level="5.9" data-path="chapter5.html"><a href="chapter5.html#section5-9"><i class="fa fa-check"></i><b>5.9</b> Political party and voting results: Complete analysis</a></li>
-<li class="chapter" data-level="5.10" data-path="chapter5.html"><a href="chapter5.html#section5-10"><i class="fa fa-check"></i><b>5.10</b> Is cheating and lying related in students?</a></li>
-<li class="chapter" data-level="5.11" data-path="chapter5.html"><a href="chapter5.html#section5-11"><i class="fa fa-check"></i><b>5.11</b> Analyzing a stratified random sample of California schools</a></li>
-<li class="chapter" data-level="5.12" data-path="chapter5.html"><a href="chapter5.html#section5-12"><i class="fa fa-check"></i><b>5.12</b> Chapter summary</a></li>
-<li class="chapter" data-level="5.13" data-path="chapter5.html"><a href="chapter5.html#section5-13"><i class="fa fa-check"></i><b>5.13</b> Summary of important R commands</a></li>
-<li class="chapter" data-level="5.14" data-path="chapter5.html"><a href="chapter5.html#section5-14"><i class="fa fa-check"></i><b>5.14</b> Practice problems</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="chapter6.html"><a href="chapter6.html"><i class="fa fa-check"></i><b>6</b> Correlation and Simple Linear Regression</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="chapter6.html"><a href="chapter6.html#section6-1"><i class="fa fa-check"></i><b>6.1</b> Relationships between two quantitative variables</a></li>
-<li class="chapter" data-level="6.2" data-path="chapter6.html"><a href="chapter6.html#section6-2"><i class="fa fa-check"></i><b>6.2</b> Estimating the correlation coefficient</a></li>
-<li class="chapter" data-level="6.3" data-path="chapter6.html"><a href="chapter6.html#section6-3"><i class="fa fa-check"></i><b>6.3</b> Relationships between variables by groups</a></li>
-<li class="chapter" data-level="6.4" data-path="chapter6.html"><a href="chapter6.html#section6-4"><i class="fa fa-check"></i><b>6.4</b> Inference for the correlation coefficient</a></li>
-<li class="chapter" data-level="6.5" data-path="chapter6.html"><a href="chapter6.html#section6-5"><i class="fa fa-check"></i><b>6.5</b> Are tree diameters related to tree heights?</a></li>
-<li class="chapter" data-level="6.6" data-path="chapter6.html"><a href="chapter6.html#section6-6"><i class="fa fa-check"></i><b>6.6</b> Describing relationships with a regression model</a></li>
-<li class="chapter" data-level="6.7" data-path="chapter6.html"><a href="chapter6.html#section6-7"><i class="fa fa-check"></i><b>6.7</b> Least Squares Estimation</a></li>
-<li class="chapter" data-level="6.8" data-path="chapter6.html"><a href="chapter6.html#section6-8"><i class="fa fa-check"></i><b>6.8</b> Measuring the strength of regressions: R<sup>2</sup></a></li>
-<li class="chapter" data-level="6.9" data-path="chapter6.html"><a href="chapter6.html#section6-9"><i class="fa fa-check"></i><b>6.9</b> Outliers: leverage and influence</a></li>
-<li class="chapter" data-level="6.10" data-path="chapter6.html"><a href="chapter6.html#section6-10"><i class="fa fa-check"></i><b>6.10</b> Residual diagnostics – setting the stage for inference</a></li>
-<li class="chapter" data-level="6.11" data-path="chapter6.html"><a href="chapter6.html#section6-11"><i class="fa fa-check"></i><b>6.11</b> Old Faithful discharge and waiting times</a></li>
-<li class="chapter" data-level="6.12" data-path="chapter6.html"><a href="chapter6.html#section6-12"><i class="fa fa-check"></i><b>6.12</b> Chapter summary</a></li>
-<li class="chapter" data-level="6.13" data-path="chapter6.html"><a href="chapter6.html#section6-13"><i class="fa fa-check"></i><b>6.13</b> Summary of important R code</a></li>
-<li class="chapter" data-level="6.14" data-path="chapter6.html"><a href="chapter6.html#section6-14"><i class="fa fa-check"></i><b>6.14</b> Practice problems</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="chapter7.html"><a href="chapter7.html"><i class="fa fa-check"></i><b>7</b> Simple linear regression inference</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="chapter7.html"><a href="chapter7.html#section7-1"><i class="fa fa-check"></i><b>7.1</b> Model</a></li>
-<li class="chapter" data-level="7.2" data-path="chapter7.html"><a href="chapter7.html#section7-2"><i class="fa fa-check"></i><b>7.2</b> Confidence interval and hypothesis tests for the slope and intercept</a></li>
-<li class="chapter" data-level="7.3" data-path="chapter7.html"><a href="chapter7.html#section7-3"><i class="fa fa-check"></i><b>7.3</b> Bozeman temperature trend</a></li>
-<li class="chapter" data-level="7.4" data-path="chapter7.html"><a href="chapter7.html#section7-4"><i class="fa fa-check"></i><b>7.4</b> Randomization-based inferences for the slope coefficient</a></li>
-<li class="chapter" data-level="7.5" data-path="chapter7.html"><a href="chapter7.html#section7-5"><i class="fa fa-check"></i><b>7.5</b> Transformations part I: Linearizing relationships</a></li>
-<li class="chapter" data-level="7.6" data-path="chapter7.html"><a href="chapter7.html#section7-6"><i class="fa fa-check"></i><b>7.6</b> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
-<li class="chapter" data-level="7.7" data-path="chapter7.html"><a href="chapter7.html#section7-7"><i class="fa fa-check"></i><b>7.7</b> Confidence interval for the mean and prediction intervals for a new observation</a></li>
-<li class="chapter" data-level="7.8" data-path="chapter7.html"><a href="chapter7.html#section7-8"><i class="fa fa-check"></i><b>7.8</b> Chapter summary</a></li>
-<li class="chapter" data-level="7.9" data-path="chapter7.html"><a href="chapter7.html#section7-9"><i class="fa fa-check"></i><b>7.9</b> Summary of important R code</a></li>
-<li class="chapter" data-level="7.10" data-path="chapter7.html"><a href="chapter7.html#section7-10"><i class="fa fa-check"></i><b>7.10</b> Practice problems</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="chapter8.html"><a href="chapter8.html"><i class="fa fa-check"></i><b>8</b> Multiple linear regression</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="chapter8.html"><a href="chapter8.html#section8-1"><i class="fa fa-check"></i><b>8.1</b> Going from SLR to MLR</a></li>
-<li class="chapter" data-level="8.2" data-path="chapter8.html"><a href="chapter8.html#section8-2"><i class="fa fa-check"></i><b>8.2</b> Validity conditions in MLR</a></li>
-<li class="chapter" data-level="8.3" data-path="chapter8.html"><a href="chapter8.html#section8-3"><i class="fa fa-check"></i><b>8.3</b> Interpretation of MLR terms</a></li>
-<li class="chapter" data-level="8.4" data-path="chapter8.html"><a href="chapter8.html#section8-4"><i class="fa fa-check"></i><b>8.4</b> Comparing multiple regression models</a></li>
-<li class="chapter" data-level="8.5" data-path="chapter8.html"><a href="chapter8.html#section8-5"><i class="fa fa-check"></i><b>8.5</b> General recommendations for MLR interpretations and VIFs</a></li>
-<li class="chapter" data-level="8.6" data-path="chapter8.html"><a href="chapter8.html#section8-6"><i class="fa fa-check"></i><b>8.6</b> MLR inference: Parameter inferences using the t-distribution</a></li>
-<li class="chapter" data-level="8.7" data-path="chapter8.html"><a href="chapter8.html#section8-7"><i class="fa fa-check"></i><b>8.7</b> Overall F-test in multiple linear regression</a></li>
-<li class="chapter" data-level="8.8" data-path="chapter8.html"><a href="chapter8.html#section8-8"><i class="fa fa-check"></i><b>8.8</b> Case study: First year college GPA and SATs</a></li>
-<li class="chapter" data-level="8.9" data-path="chapter8.html"><a href="chapter8.html#section8-9"><i class="fa fa-check"></i><b>8.9</b> Different intercepts for different groups: MLR with indicator variables</a></li>
-<li class="chapter" data-level="8.10" data-path="chapter8.html"><a href="chapter8.html#section8-10"><i class="fa fa-check"></i><b>8.10</b> Additive MLR with more than two groups: Headache example</a></li>
-<li class="chapter" data-level="8.11" data-path="chapter8.html"><a href="chapter8.html#section8-11"><i class="fa fa-check"></i><b>8.11</b> Different slopes and different intercepts</a></li>
-<li class="chapter" data-level="8.12" data-path="chapter8.html"><a href="chapter8.html#section8-12"><i class="fa fa-check"></i><b>8.12</b> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
-<li class="chapter" data-level="8.13" data-path="chapter8.html"><a href="chapter8.html#section8-13"><i class="fa fa-check"></i><b>8.13</b> AICs for model selection</a></li>
-<li class="chapter" data-level="8.14" data-path="chapter8.html"><a href="chapter8.html#section8-14"><i class="fa fa-check"></i><b>8.14</b> Case study: Forced expiratory volume model selection using AICs</a></li>
-<li class="chapter" data-level="8.15" data-path="chapter8.html"><a href="chapter8.html#section8-15"><i class="fa fa-check"></i><b>8.15</b> Chapter summary</a></li>
-<li class="chapter" data-level="8.16" data-path="chapter8.html"><a href="chapter8.html#section8-16"><i class="fa fa-check"></i><b>8.16</b> Summary of important R code</a></li>
-<li class="chapter" data-level="8.17" data-path="chapter8.html"><a href="chapter8.html#section8-17"><i class="fa fa-check"></i><b>8.17</b> Practice problems</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="chapter9.html"><a href="chapter9.html"><i class="fa fa-check"></i><b>9</b> Case studies</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="chapter9.html"><a href="chapter9.html#section9-1"><i class="fa fa-check"></i><b>9.1</b> Overview of material covered</a></li>
-<li class="chapter" data-level="9.2" data-path="chapter9.html"><a href="chapter9.html#section9-2"><i class="fa fa-check"></i><b>9.2</b> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
-<li class="chapter" data-level="9.3" data-path="chapter9.html"><a href="chapter9.html#section9-3"><i class="fa fa-check"></i><b>9.3</b> Ants learn to rely on more informative attributes during decision-making</a></li>
-<li class="chapter" data-level="9.4" data-path="chapter9.html"><a href="chapter9.html#section9-4"><i class="fa fa-check"></i><b>9.4</b> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
-<li class="chapter" data-level="9.5" data-path="chapter9.html"><a href="chapter9.html#section9-5"><i class="fa fa-check"></i><b>9.5</b> What do didgeridoos really do about sleepiness?</a></li>
-<li class="chapter" data-level="9.6" data-path="chapter9.html"><a href="chapter9.html#section9-6"><i class="fa fa-check"></i><b>9.6</b> General summary</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -286,12 +174,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Intermediate Statistics with R</h1>
 <h2 class="subtitle"><em>Version 2.2 – Published Fall 2020</em></h2>
-<p class="author"><em>Mark C Greenwood</em></p>
+<p class="author"><em>Mark C Greenwood, with revisions by Allison Theobold</em></p>
 </div>
-<div id="cover" class="section level1 unnumbered">
-<h1>Cover</h1>
-<p><img src="frontMatter/titlepage_summer_2020.png" width="1169" /></p>
-<!-- \frontmatter -->
+<div id="welcome" class="section level1 unnumbered">
+<h1>Welcome</h1>
+<p>We hope readers will take away three ideas from this book in addition to forming a foundation of statistical thinking and methods.</p>
+<ol style="list-style-type: decimal">
+<li>Statistics is an applied field with a wide range of practical applications.</li>
+<li>You don’t have to be a math guru to learn from interesting, real data.</li>
+<li>Data are messy, and statistical tools are imperfect. However, when you understand the strengths and weaknesses of these tools, you can use them to learn interesting things about the world.</li>
+</ol>
+<div id="textbook-overview" class="section level2 unnumbered">
+<h2>Textbook overview</h2>
+<p>This textbook accompanies the curriculum for STAT 216: Introduction to Statistics at Montana State University. The syllabus and other course information can be found
+on the <a href="https://math.montana.edu/courses/s216/index.html">course webpage</a>. Detailed learning outcomes for the course can be found <a href="https://github.com/MTstateIntroStats/IntroStatTextbook/blob/master/learning_outcomes.md">here</a>.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Introduction to data.</strong> Data structures, variables, and basic data collection techniques.</li>
+<li><strong>Exploratory data analysis.</strong> Data visualization and summarization for one and two variables, with a taste of probability.</li>
+<li><strong>Correlation and regression.</strong> Visualizing, describing, and quantifying relationships between two quantitative variables.</li>
+<li><strong>Multiple regression.</strong> Descriptive summaries for quantifying the relationship between many variables.</li>
+<li><strong>Foundations for inference.</strong> Case studies are used to introduce the ideas of statistical inference with randomization and simulations.</li>
+<li><strong>Inference for categorical data.</strong> Inference for one or two proportions using simulation and randomization techniques as well as the normal distribution.</li>
+<li><strong>Inference for numerical data.</strong> Inference for one or two means using simulation and randomization techniques as well as the <span class="math inline">\(t\)</span>-distribution.</li>
+<li><strong>Inference for regression.</strong> Inference for a regression slope or correlation using simulation and randomization techniques as well as the <span class="math inline">\(t\)</span>-distribution.</li>
+<li><strong>Case studies.</strong> A series of case studies assigned weekly in this course.</li>
+</ol>
+</div>
+<div id="statistical-computing" class="section level2 unnumbered">
+<h2>Statistical computing</h2>
+<p>STAT 216 and this textbook use <a href="https://www.r-project.org/"><code>R</code></a> and <a href="https://rstudio.com/products/rstudio/">RStudio</a> for statistical computing. In particular, we use
+the <a href="https://www.tidyverse.org/"><code>tidyverse</code></a> collection of packages designed for doing data science.
+STAT 216 also has its own <code>R</code> package called <a href="https://github.com/greenwood-stat/catstats"><code>catstats</code></a>, which contains all of the functions
+for running simulation-based inference in this course.</p>
+<div id="getting-rstudio" class="section level3 unnumbered">
+<h3>Getting RStudio</h3>
+<p>Students have four options for accessing this free software:</p>
+<ol style="list-style-type: decimal">
+<li>Download to your own laptop. (Note R and RStudio will not run on iPad, notebooks, or Chromebooks. If you have one of these devices, see the cloud-based option below.)</li>
+</ol>
+<ul>
+<li>Download and install <a href="https://cloud.r-project.org/">R</a>.</li>
+<li>Download and install <a href="https://rstudio.com/products/rstudio/">RStudio Desktop</a>.</li>
+<li>Install the <code>catstats</code> package.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Use RStudio through the <a href="https://login.rstudio.cloud/register?redirect=https%3A%2F%2Fclient.login.rstudio.cloud%2Foauth%2Flogin%3Fshow_auth%3D0%26show_login%3D1%26show_setup%3D1">RStudio Cloud</a>. This resource allows you to use RStudio through a web browser. It is free for use, but it does limit you to a certain number of project hours per month.</p></li>
+<li><p>Use RStudio through an MSU <a href="https://studentlabs.montana.edu/remotelabs/howto.html">virtual machine</a>.</p></li>
+<li><p>Use RStudio in an MSU on-campus computer lab.</p></li>
+</ol>
+<p>View this <a href="https://greenwood-stat.shinyapps.io/InstallDemo/">tutorial video on installing R and RStudio</a> if you would
+like additional installation instructions.</p>
+</div>
+</div>
+<div id="acknowledgements" class="section level2 unnumbered">
+<h2>Acknowledgements</h2>
+<p>This resource is largely a derivative of the Intermediate Statistics with R
+textbook, without which this effort would not have been possible. The “original”
+textbook can be found here:
+<a href="https://scholarworks.montana.edu/xmlui/bitstream/handle/1/2999/Greenwood-Book-v2.2.pdf?sequence=3&amp;isAllowed=y"><em>Introductory Statistics with Randomization and Simulation</em></a></p>
+
+
+</div>
 </div>
             </section>
 
@@ -299,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-<a href="acknowledgments.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

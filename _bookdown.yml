@@ -4,8 +4,10 @@ language:
     chapter_name: "Chapter "
 rmd_files: [
   "index.Rmd",
+  "00a-authors.rmd", 
+  "00b-copyright.rmd",
   "01-preface.rmd",
-  #"02-reintroductionToStatistics.rmd", 
+  "02-reintroductionToStatistics.rmd", 
   #"03-oneWayAnova.rmd", 
   #"04-twoWayAnova.rmd", 
   #"06-correlationAndSimpleLinearRegression.rmd", 

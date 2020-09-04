@@ -12,43 +12,10 @@ tablenos-plus-name: Tab.
 
 # (R)e-Introduction to statistics {#chapter2}
 
-```{r echo=F,warning=F,message=F}
-set.seed(3234)
-library(pander)
-library(mosaic)
-library(knitr)
-library(readr)
-library(yarrr)
-knitr::opts_chunk$set(cache = F,fig.width = 5, fig.height = 3.5,fig.pos='ht!',
-                      message=F,warning=F)
-options(show.signif.stars = FALSE)
-```
 
 
-```{r echo=F}
-knitr::opts_chunk$set(cache=F,fig.width = 5, fig.height = 3.5,
-                      fig.pos = "ht!", message=F,warning=F)
-options(show.signif.stars = FALSE)
-#Color Format
-colFmt = function(x, color){
-  outputFormat = opts_knit$get("rmarkdown.pandoc.to")
-  if(outputFormat == 'latex')
-    paste("\\textcolor{",color,"}{",x,"}",sep="")
-  else if(outputFormat == 'html')
-    paste("<font color='",color,"'>",x,"</font>",sep="")
-  else
-    x
-}
-colFmtBold = function(x, color){
-  outputFormat = opts_knit$get("rmarkdown.pandoc.to")
-  if(outputFormat == 'latex')
-    paste("\\textcolor{",color,"}{\\textbf{",x,"}}",sep="")
-  else if(outputFormat == 'html')
-    paste("<b><font color='",color,"'>",x,"</font></b>",sep="")
-  else
-    x
-}
-```
+
+
 
 The previous material served to get us started in R and to get a quick review of same basic graphical and 
 descriptive statistics. Now we will begin to engage some new material and
@@ -121,41 +88,104 @@ They collected data (distance to the vehicle in cm for each car "overtake") on b
 
 \indent The data are posted on my website^[Thanks to Ian Walker for allowing me to use and post these data.]  at http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv if you want to download the file to a local directory and then import the data into R using "Import Dataset". Or you can use the code in the following code chunk to directly read the data set into R using the URL.
 
-```{r fig.height=8, fig.width=6,eval=F}
+
+```r
 suppressMessages(library(readr))
 dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")
 ```
 
-```{r fig.height=8, fig.width=6,echo=F, messages = FALSE}
-library(readr)
-dd <- read_csv("02/data/Walker2014_mod.csv")
-```
+
 
 It is always good to review the data you have read by running the code and printing the tibble \index{R packages!\textbf{tibble}} by typing the tibble name (here `> dd`) at the command prompt in the console, using the `View` function, (here `View(dd)`), to open a spreadsheet-like view, or using the `head` and `tail` functions have been show the first and last ten observations:
 
 \newpage
 
-```{r}
+
+```r
 head(dd)
+```
+
+```
+## # A tibble: 6 x 8
+##   Condition Distance Shirt Helmet Pants Gloves ReflectClips Backpack
+##   <chr>        <dbl> <chr> <chr>  <chr> <chr>  <chr>        <chr>   
+## 1 casual         132 Rugby hat    plain plain  no           yes     
+## 2 casual         137 Rugby hat    plain plain  no           yes     
+## 3 casual         174 Rugby hat    plain plain  no           yes     
+## 4 casual          82 Rugby hat    plain plain  no           yes     
+## 5 casual         106 Rugby hat    plain plain  no           yes     
+## 6 casual          48 Rugby hat    plain plain  no           yes
+```
+
+```r
 tail(dd)
+```
+
+```
+## # A tibble: 6 x 8
+##   Condition Distance Shirt      Helmet Pants Gloves ReflectClips Backpack
+##   <chr>        <dbl> <chr>      <chr>  <chr> <chr>  <chr>        <chr>   
+## 1 racer          122 TourJersey race   lycra bike   yes          no      
+## 2 racer          204 TourJersey race   lycra bike   yes          no      
+## 3 racer          116 TourJersey race   lycra bike   yes          no      
+## 4 racer          132 TourJersey race   lycra bike   yes          no      
+## 5 racer          224 TourJersey race   lycra bike   yes          no      
+## 6 racer           72 TourJersey race   lycra bike   yes          no
 ```
 
 Another option is to directly access specific rows and/or columns of the tibble, especially for larger data sets.  In objects containing data, we can select certain rows and columns using the ***brackets***, `[..., ...]`, to specify the row (first element) and column (second element). For example, we can extract the datum in the fourth row and second column using `dd[4,2]`:
 
-```{r}
+
+```r
 dd[4,2]
+```
+
+```
+## # A tibble: 1 x 1
+##   Distance
+##      <dbl>
+## 1       82
 ```
 
 This provides the distance (in cm) of a pass at 82 cm. To get all of either the rows or columns,  a space is used instead of specifying a particular number. For example, the information in all the columns on the fourth observation can be obtained using `dd[4, ]`:
 
-```{r}
+
+```r
 dd[4,]
+```
+
+```
+## # A tibble: 1 x 8
+##   Condition Distance Shirt Helmet Pants Gloves ReflectClips Backpack
+##   <chr>        <dbl> <chr> <chr>  <chr> <chr>  <chr>        <chr>   
+## 1 casual          82 Rugby hat    plain plain  no           yes
 ```
 
 So this was an observation from the `casual` condition that had a passing distance of 82 cm. The other columns describe some other specific aspects of the condition. To get a more complete sense of the data set, we can extract a suite of observations from each condition using their row numbers concatenated, `c()`, together, extracting all columns for two observations from each of the conditions based on their rows.
 
-```{r}
+
+```r
 dd[c(1, 2, 780, 781, 1637, 1638, 2374, 2375, 3181, 3182, 3971, 3972, 4839, 4840),]
+```
+
+```
+## # A tibble: 14 x 8
+##    Condition Distance Shirt       Helmet   Pants Gloves ReflectClips Backpack
+##    <chr>        <dbl> <chr>       <chr>    <chr> <chr>  <chr>        <chr>   
+##  1 casual         132 Rugby       hat      plain plain  no           yes     
+##  2 casual         137 Rugby       hat      plain plain  no           yes     
+##  3 commute         70 PlainJersey commuter plain bike   yes          no      
+##  4 commute        151 PlainJersey commuter plain bike   yes          no      
+##  5 hiviz           94 Jacket      commuter plain bike   yes          no      
+##  6 hiviz          145 Jacket      commuter plain bike   yes          no      
+##  7 novice          12 Vest_Novice commuter plain bike   yes          no      
+##  8 novice         122 Vest_Novice commuter plain bike   yes          no      
+##  9 police         113 Vest_Police commuter plain bike   yes          no      
+## 10 police         174 Vest_Police commuter plain bike   yes          no      
+## 11 polite         156 Vest_Polite commuter plain bike   yes          no      
+## 12 polite          14 Vest_Polite commuter plain bike   yes          no      
+## 13 racer          104 TourJersey  race     lycra bike   yes          no      
+## 14 racer          141 TourJersey  race     lycra bike   yes          no
 ```
 
 Now we can see the `Condition` variable seems to have seven different levels, the `Distance` variable contains the overtake distance, and then a suite of columns that describe aspects of each outfit, such as the type of shirt or whether reflective cycling clips were used or not. We will only use the "Distance" and "Condition" variables to start with.  
@@ -200,7 +230,8 @@ If you open a .Rmd file that contains code that incorporates packages and they a
 function around the package name (no quotes now!) to load the package, something that
 you need to do any time you want to use features of a package. 
 
-```{r message=F,warning=F}
+
+```r
 library(mosaic)
 ```
 
@@ -211,7 +242,8 @@ and then repeat trying to load the package you wanted. These are called package 
 
 \indent With tibbles, you have to declare categorical variables as "factors" to have R correctly handle the variables using the `factor` function. This can be a bit time repetitive but provides some utility for data wrangling in more complex situations to read in the data and then declare their type. For quantitative variables, this is not required and they are stored as numeric variables. The following code declares the categorical variables in the data set as factors and saves them back into the variables of the same names:
 
-```{r}
+
+```r
 dd$Condition <- factor(dd$Condition)
 dd$Shirt <- factor(dd$Shirt) 
 dd$Helmet <- factor(dd$Helmet)
@@ -228,18 +260,25 @@ quantitative and notes if any values were missing. \index{\texttt{summary()}}
 
 \footnotesize
 
-```{r echo=F}
-oldWidth <- options()$width
-options(width=120)
-```
 
-```{r}
+
+
+```r
 summary(dd)
 ```
 
-```{r echo=F}
-options(width=oldWidth)
 ```
+##    Condition      Distance             Shirt          Helmet       Pants        Gloves     ReflectClips Backpack  
+##  casual :779   Min.   :  2.0   Jacket     :737   commuter:4059   lycra: 852   bike :4911   no : 779     no :4911  
+##  commute:857   1st Qu.: 99.0   PlainJersey:857   hat     : 779   plain:4838   plain: 779   yes:4911     yes: 779  
+##  hiviz  :737   Median :117.0   Rugby      :779   race    : 852                                                    
+##  novice :807   Mean   :117.1   TourJersey :852                                                                    
+##  police :790   3rd Qu.:134.0   Vest_Novice:807                                                                    
+##  polite :868   Max.   :274.0   Vest_Police:790                                                                    
+##  racer  :852                   Vest_Polite:868
+```
+
+
 
 \normalsize
 
@@ -261,13 +300,13 @@ enhanced slightly to add better labels using `xlab`, `ylab`, and `main`.
 
 (ref:fig2-1) Histogram and boxplot of passing distances in cm.
 
-```{r Figure2-1, fig.cap="(ref:fig2-1)",echo=F,fig.height=4,fig.width=6,cache=T}
-par(mfrow=c(1,2))
-hist(dd$Distance, xlab="Distance (cm)", labels=T, main="Histogram of Distances", ylim=c(0,1900))
-boxplot(dd$Distance, ylab="Distance (cm)", main="Boxplot of Distances")
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-1-1.png" alt="(ref:fig2-1)" width="576" />
+<p class="caption">(\#fig:Figure2-1)(ref:fig2-1)</p>
+</div>
 
-```{r eval=F}
+
+```r
 hist(dd$Distance, xlab="Distance (cm)", labels=T, main="Histogram of Distances")
 boxplot(dd$Distance, ylab="Distance (cm)", main="Boxplot of Distances")
 ```
@@ -317,11 +356,17 @@ either display and will rarely make both together.
 (ref:fig2-2) Histogram and density curve of Distance responses.
 
 
-```{r Figure2-2, fig.cap="(ref:fig2-2)",cache=T}
+
+```r
 hist(dd$Distance, freq=F, xlab="Distance (cm)", labels=T, main="Histogram of Distances", 
      ylim=c(0,0.02))
 lines(density(dd$Distance), lwd=3,col="purple")
 ```
+
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-2-1.png" alt="(ref:fig2-2)" width="480" />
+<p class="caption">(\#fig:Figure2-2)(ref:fig2-2)</p>
+</div>
 
 
 \indent Histograms can be sensitive to the choice of the number of bars and 
@@ -351,13 +396,19 @@ not possible here. When we make density curves below, we will cut off the curves
 
 (ref:fig2-3) Histogram with density curve and rug plot of the jittered distance responses. 
 
-```{r Figure2-3, fig.cap="(ref:fig2-3)",cache=T, fig.width=6.75, fig.height=4.25}
+
+```r
 hist(dd$Distance, freq=F, xlab="Distance (cm)", labels=T, 
      main="Histogram of Distances with density curve and rug", ylim=c(0,0.017))
 lines(density(dd$Distance), lwd=3,col="purple")
 set.seed(900)
 rug(jitter(dd$Distance), col="red", lwd=1)
 ```
+
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-3-1.png" alt="(ref:fig2-3)" width="648" />
+<p class="caption">(\#fig:Figure2-3)(ref:fig2-3)</p>
+</div>
  
 \indent The graphical tools we've just discussed are going to help us move to comparing the
 distribution of responses across more than one group. We will have two displays
@@ -376,12 +427,13 @@ boxplots showing similar distributions for all the groups, with a slightly highe
 
 (ref:fig2-4) Side-by-side boxplot of distances based on outfits. 
 
-```{r Figure2-4, fig.cap="(ref:fig2-4)",echo=F}
-old.par <- par(mai=c(0.5,0.5,0.5,0.5))
-boxplot(Distance~Condition,data=dd)
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-4-1.png" alt="(ref:fig2-4)" width="480" />
+<p class="caption">(\#fig:Figure2-4)(ref:fig2-4)</p>
+</div>
 
-```{r eval=F}
+
+```r
 boxplot(Distance ~ Condition, data=dd)
 ```
 
@@ -427,13 +479,13 @@ for the type of confidence interval needs to be specified with `inf.method="ci"`
 
 (ref:fig2-5) Pirate-plot of distances by outfit group. Bold horizontal lines correspond to sample mean of each group, boxes around lines (here they are very tight to the lines for the means) are the 95% confidence intervals.
 
-```{r Figure2-5, fig.cap="(ref:fig2-5)",echo=F, fig.width=6, fig.height=4}
-library(yarrr)
-set.seed(12345)
-pirateplot(Distance~Condition, data=dd, inf.method="ci", point.o=0.25, inf.disp="line")
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-5-1.png" alt="(ref:fig2-5)" width="576" />
+<p class="caption">(\#fig:Figure2-5)(ref:fig2-5)</p>
+</div>
 
-```{r eval=F}
+
+```r
 library(yarrr)
 pirateplot(Distance~Condition, data=dd, inf.method="ci", inf.disp="line")
 ```
@@ -455,16 +507,42 @@ and ``sd`` functions, if the ``mosaic`` package is loaded.
 
 <!-- <!-- \newpage -->
 
-```{r}
+
+```r
 library(mosaic)
 mean(Distance~Condition, data=dd)
+```
+
+```
+##   casual  commute    hiviz   novice   police   polite    racer 
+## 117.6110 114.6079 118.4383 116.9405 122.1215 114.0518 116.7559
+```
+
+```r
 sd(Distance~Condition, data=dd)
+```
+
+```
+##   casual  commute    hiviz   novice   police   polite    racer 
+## 29.86954 29.63166 29.03384 29.03812 29.73662 31.23684 30.60059
 ```
 
 We can also use the ``favstats`` function to get those summaries and others by groups.
 
-```{r}
+
+```r
 favstats(Distance~Condition, data=dd)
+```
+
+```
+##   Condition min    Q1 median  Q3 max     mean       sd   n missing
+## 1    casual  17 100.0    117 134 245 117.6110 29.86954 779       0
+## 2   commute   8  98.0    116 132 222 114.6079 29.63166 857       0
+## 3     hiviz  12 101.0    117 134 237 118.4383 29.03384 737       0
+## 4    novice   2 100.5    118 133 274 116.9405 29.03812 807       0
+## 5    police  34 104.0    119 138 253 122.1215 29.73662 790       0
+## 6    polite   2  95.0    114 133 225 114.0518 31.23684 868       0
+## 7     racer  28  98.0    117 135 231 116.7559 30.60059 852       0
 ```
 
 \indent Based on these results, we can see that there is an estimated difference of over 8 cm between the smallest mean (*polite* at 114.05 cm) and the largest mean (*police* at 122.12 cm). The differences among some of the other groups are much smaller, such as between *casual* and *commute* with sample means of 117.611 and 114.608 cm, respectively. Because there are seven groups being compared in this study, we will have to 
@@ -517,13 +595,15 @@ subset(dd, Condition %in% c("casual", "commute"))
 
 We would actually want to save that new subsetted data set into a new tibble for future work, so we can use the following to save the reduced data set into `ddsub`:
 
-```{r}
+
+```r
 ddsub <- subset(dd, Condition %in% c("casual", "commute"))
 ```
 
 There is also a "select" option that we could also use to just focus on certain columns in the data set and we can use that just to focus on the `Condition` and `Distance` variables using:
 
-```{r}
+
+```r
 ddsub <- subset(dd, Condition %in% c("casual", "commute"), 
                 select=c("Distance", "Condition"))
 ```
@@ -533,8 +613,14 @@ either using ``View(ddsub)`` or by doing a quick summary of the
 ``Condition`` variable in the new tibble. 
 
 
-```{r}
+
+```r
 summary(ddsub$Condition)
+```
+
+```
+##  casual commute   hiviz  novice  police  polite   racer 
+##     779     857       0       0       0       0       0
 ```
 
 It ends up that R remembers the other categories even though there are
@@ -546,9 +632,15 @@ function
 creates categorical variables based on the levels of the variables that are 
 observed and is useful to run here to clean up ``Condition`` to just reflect the categories that are now present. 
 
-```{r}
+
+```r
 ddsub$Condition <- factor(ddsub$Condition)
 summary(ddsub$Condition)
+```
+
+```
+##  casual commute 
+##     779     857
 ```
 
 
@@ -557,14 +649,13 @@ the two groups of interest here as seen in Figure \@ref(fig:Figure2-6). Note tha
 
 (ref:fig2-6) Boxplot and pirate-plot of the *Distance* responses on the reduced ``ddsub`` data set. 
 
-```{r Figure2-6, fig.cap="(ref:fig2-6)",echo=F,fig.width=5.75,fig.height=3.75}
-par(mfrow=c(1,2))
-#old.par <- par(mai=c(0.5,0.5,0.5,0.5))
-boxplot(Distance~Condition,data=ddsub) 
-pirateplot(Distance~Condition, data=ddsub, inf.method="ci", point.o=0.25, inf.disp="line")
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-6-1.png" alt="(ref:fig2-6)" width="552" />
+<p class="caption">(\#fig:Figure2-6)(ref:fig2-6)</p>
+</div>
 
-```{r eval=F}
+
+```r
 boxplot(Distance~Condition,data=ddsub) 
 pirateplot(Distance~Condition, data=ddsub, inf.method="ci", inf.disp="line")
 ```
@@ -584,12 +675,24 @@ name *alphabetically* and subtract the mean from the first alphabetical group
 name. It is always good to check the direction of this calculation as 
 having a difference of $-3.003$ cm versus $3.003$ cm could be important. 
 
-```{r}
+
+```r
 mean(Distance~Condition,data=ddsub)
 ```
 
-```{r}
+```
+##   casual  commute 
+## 117.6110 114.6079
+```
+
+
+```r
 diffmean(Distance~Condition,data=ddsub)
+```
+
+```
+##  diffmean 
+## -3.003105
 ```
 
 \sectionmark{Models, hypotheses, and permutations for 2 sample means}
@@ -677,9 +780,10 @@ model where the groups "look the same" to be able to conclude that they differ.
 
 (ref:fig2-7) Illustration of the assumed situations under the null (left) and a single possibility that could occur if the alternative were true (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis.
 
-```{r Figure2-7, echo=FALSE, fig.cap ="(ref:fig2-7)",out.width="100%",fig.align="center"}
-knitr::include_graphics('chapter2_files/image015.png')
-```
+<div class="figure" style="text-align: center">
+<img src="chapter2_files/image015.png" alt="(ref:fig2-7)" width="100%" />
+<p class="caption">(\#fig:Figure2-7)(ref:fig2-7)</p>
+</div>
 
 
 \indent In statistical inference, null hypotheses (and their 
@@ -707,12 +811,18 @@ what this means here.
 
 \indent The data set we are working with is a little on the large size, especially to explore individual observations. So for the moment we are going to work with a random sample of 30 of the $n=1,636$ observations in `ddsub`, fifteen from each group, that are generated using the ``sample`` function. To do this^[While not required, we often set our random number seed using the ``set.seed`` function so that when we re-run code with randomization in it we get the same results. \index{\texttt{set.seed}}], we will use the ``sample`` function \index{\texttt{sample}} twice - once to sample from the subsetted *commute* observations (creating the `s1` data set) and once to sample from the *casual* ones (creating `s2`). A new function for us, called ``rbind``, \index{\texttt{rbind}} is used to bind the rows together --- much like pasting a chunk of rows below another chunk in a spreadsheet program. This operation only works if the columns all have the same names and meanings both for ``rbind`` and in a spreadsheet. Together this code creates the `dsample` data set that we will analyze below and compare to results from the full data set. The sample means are now 135.8 and 109.87 cm for *casual* and *commute* groups, respectively, and so the difference in the sample means has increased in magnitude to -25.93 cm (commute - casual). This difference would vary based on the different random samples from the larger data set, but for the moment, pretend this was the entire data set that the researchers had collected and that we want to try to assess how unusual our sample difference was from what we might expect, if the null hypothesis that the true means are the same in these two groups was true.
 
-```{r echo=T}
+
+```r
 set.seed(9432)
 s1 <- sample(subset(ddsub, Condition %in% "commute"), size=15)
 s2 <- sample(subset(ddsub, Condition %in% "casual"), size=15)
 dsample <- rbind(s1, s2)
 mean(Distance~Condition, data=dsample)
+```
+
+```
+##   casual  commute 
+## 135.8000 109.8667
 ```
 
 \indent In order to assess evidence against the null hypothesis of no difference, we want to permute the group labels versus the observations. In the ``mosaic`` package, the ``shuffle`` function allows us to easily perform
@@ -724,10 +834,45 @@ that the ``Distances`` are held in the same place while the group labels are shu
 
 <!-- \newpage -->
 
-```{r}
+
+```r
 Perm1 <- with(dsample, tibble(Distance, Condition, PermutedCondition=shuffle(Condition)))
 #To force the tibble to print out all rows in data set - not used often
 data.frame(Perm1) 
+```
+
+```
+##    Distance Condition PermutedCondition
+## 1       168   commute           commute
+## 2       137   commute           commute
+## 3        80   commute            casual
+## 4       107   commute           commute
+## 5       104   commute            casual
+## 6        60   commute            casual
+## 7        88   commute           commute
+## 8       126   commute           commute
+## 9       115   commute            casual
+## 10      120   commute            casual
+## 11      146   commute           commute
+## 12      113   commute            casual
+## 13       89   commute           commute
+## 14       77   commute           commute
+## 15      118   commute            casual
+## 16      148    casual            casual
+## 17      114    casual            casual
+## 18      124    casual           commute
+## 19      115    casual            casual
+## 20      102    casual            casual
+## 21       77    casual            casual
+## 22       72    casual           commute
+## 23      193    casual           commute
+## 24      111    casual           commute
+## 25      161    casual            casual
+## 26      208    casual           commute
+## 27      179    casual            casual
+## 28      143    casual           commute
+## 29      144    casual           commute
+## 30      146    casual            casual
 ```
 
 If you count up the number of subjects in each group by counting the number 
@@ -771,44 +916,85 @@ direction (the *commute* group had a higher mean than *casual* in the permuted d
 \newpage
 
 
-```{r}
+
+```r
 mean(Distance~PermutedCondition, data=Perm1)
 ```
 
+```
+##   casual  commute 
+## 116.8000 128.8667
+```
 
-```{r}
+
+
+```r
 diffmean(Distance~PermutedCondition, data=Perm1)
+```
+
+```
+## diffmean 
+## 12.06667
 ```
 
 (ref:fig2-8) Pirate-plots of Distance responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals for each of the means are more clearly visible than with the original large data set.
 
-```{r Figure2-8, fig.cap="(ref:fig2-8)",echo=F, fig.width=7, fig.pos="t"}
-par(mfrow=c(1,2))
-pirateplot(Distance~Condition, data=Perm1,  point.o=0.5,
-         main="Original data", inf.method="ci", inf.disp="line")
-pirateplot(Distance~PermutedCondition, data=Perm1,  point.o=0.5,
-         main="Permuted group labels", inf.method="ci", inf.disp="line")
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-8-1.png" alt="(ref:fig2-8)" width="672" />
+<p class="caption">(\#fig:Figure2-8)(ref:fig2-8)</p>
+</div>
 
 
 The ``diffmean`` function is a simple way to get the differences in the means, but we can also start to learn about using the ``lm`` \index{\texttt{lm}} function -- that will be used for every chapter except for Chapter \@ref(chapter5). The ``lm`` stands for ***linear model*** \index{linear model} and, as we will see moving forward, encompasses a wide array of different models and scenarios. The ability to estimate the difference in the mean of two groups is among its simplest uses.^[This is a bit like getting a new convertible sports car and driving it to the grocery store -- there might be better ways to get groceries, but we probably would want to drive our new car as soon as we got it.] Notationally, it is very similar to other functions we have considered, `lm(y ~ x, data=...)` where `y` is the response variable and `x` is the explanatory variable. Here that is  ``lm(Distance~Condition, data=dsample)`` with ``Condition`` defined as a factor variable. With linear models, we will need to interrogate them to obtain a variety of useful information and our first "interrogation" function is usually the ``summary`` function. To use it, it is best to have stored the model into an object, something like ``lm1``, and then we can apply the ``summary()`` \index{\texttt{summary}} function to the stored model object to get a suite of output:
 
-```{r}
+
+```r
 lm1 <- lm(Distance~Condition, data=dsample)
 summary(lm1)
 ```
 
+```
+## 
+## Call:
+## lm(formula = Distance ~ Condition, data = dsample)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -63.800 -21.850   4.133  15.150  72.200 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(>|t|)
+## (Intercept)       135.800      8.863  15.322 3.83e-15
+## Conditioncommute  -25.933     12.534  -2.069   0.0479
+## 
+## Residual standard error: 34.33 on 28 degrees of freedom
+## Multiple R-squared:  0.1326,	Adjusted R-squared:  0.1016 
+## F-statistic: 4.281 on 1 and 28 DF,  p-value: 0.04789
+```
+
 This output is explored more in Chapter \@ref(chapter3), but for the moment, focus on the row labeled as ``Conditioncommute`` in the middle of the output. In the first (`Estimate`) column, there is -25.933. This is a number we saw before -- it is the difference in the sample means between *commute* and *casual* (*commute* - *casual*). When ``lm`` denotes a category in the row of the output (here ``commute``), it is trying to indicate that the information to follow relates to the difference between this category and a baseline or reference category (here ``casual``). The first (`(Intercept)`) row also contains a number we have seen before: - 135.8 is the sample mean for the *casual* group. So the ``lm`` is generating a coefficient for the mean of one of the groups and another as the difference in the two groups^[This will be formalized and explained more in the next chapter when we encounter more than two groups in these same models. For now, it is recommended to start with the sample means from ``favstats`` for the two groups and then use that to sort out which direction the differencing was done in the ``lm`` output.]. In developing a test to assess evidence against the null hypothesis, we will focus on the difference in the sample means. So we want to be able to extract that number from this large suite of information. It ends up that we can apply the ``coef`` \index{\texttt{coef}} function to ``lm`` models and then access that second coefficient using the bracket notation. Specifically:
 
-```{r}
+
+```r
 coef(lm1)[2]
+```
+
+```
+## Conditioncommute 
+##        -25.93333
 ```
 
 This is the same result as using the ``diffmean`` function, so either could be used here. The estimated difference in the sample means in the permuted data set of 12.07 cm is available with:
 
-```{r}
+
+```r
 lmP <- lm(Distance~PermutedCondition, data=Perm1)
 coef(lmP)[2]
+```
+
+```
+## PermutedConditioncommute 
+##                 12.06667
 ```
 
 
@@ -916,16 +1102,23 @@ responses and the ``coef(lmP)[2]`` extracts the estimated difference in the two 
 data set. For a single permutation, the combination of shuffling ``Condition`` and 
 finding the difference in the means, storing it in a variable called ``Ts`` is:
 
-```{r}
+
+```r
 lmP <- lm(Distance~shuffle(Condition), data=dsample)
 Ts <- coef(lmP)[2]
 Ts
 ```
 
+```
+## shuffle(Condition)commute 
+##               -0.06666667
+```
+
 And putting this inside the ``print`` function allows us to find the test 
 statistic under 5 different permutations easily:
 
-```{r}
+
+```r
 B <- 5
 for (b in (1:B)){
   lmP <- lm(Distance~shuffle(Condition), data=dsample)
@@ -934,20 +1127,44 @@ for (b in (1:B)){
 }
 ```
 
+```
+## shuffle(Condition)commute 
+##                      -1.4 
+## shuffle(Condition)commute 
+##                  1.133333 
+## shuffle(Condition)commute 
+##                  20.86667 
+## shuffle(Condition)commute 
+##                  3.133333 
+## shuffle(Condition)commute 
+##                 -2.333333
+```
+
 Finally, we would like to store the values of the test statistic instead of 
 just printing them out on each pass through the loop. To do this, we need to 
 create a variable to store the results, let's call it ``Tstar``. We know that 
 we need to store ``B`` results so will create a vector^[In statistics, vectors are one dimensional lists of numeric elements -- basically a column from a matrix of our tibble.] of length *B*, which 
 contains *B* elements, full of missing values (NA) using the ``matrix`` \index{texttt{matrix}} function with the ``nrow`` option specifying the number of elements:
 
-```{r}
+
+```r
 Tstar <- matrix(NA, nrow=B)
 Tstar
 ```
 
+```
+##      [,1]
+## [1,]   NA
+## [2,]   NA
+## [3,]   NA
+## [4,]   NA
+## [5,]   NA
+```
+
 Now we can run our loop *B* times and store the results in ``Tstar``. 
 
-```{r}
+
+```r
 for (b in (1:B)){
   lmP <- lm(Distance~shuffle(Condition), data=dsample)
   Tstar[b] <- coef(lmP)[2]
@@ -957,8 +1174,18 @@ for (b in (1:B)){
 
 <!-- \newpage -->
 
-```{r}
+
+```r
 Tstar
+```
+
+```
+##           [,1]
+## [1,] -5.400000
+## [2,] -3.266667
+## [3,] -7.933333
+## [4,] 13.133333
+## [5,] -6.466667
 ```
 
 \indent Five permutations are still not enough to assess whether our $T_{obs}$
@@ -980,20 +1207,13 @@ statistics of the results:
 
 (ref:fig2-9) Histogram (left, with counts in bars) and density curve (right) of values of test statistic for *B* = 1,000 permutations. 
 
-```{r Figure2-9, fig.cap="(ref:fig2-9)",echo=F,fig.width=10,fig.height=5,cache=F}
-par(mfrow=c(1,2))
-B <- 1000
-set.seed(1234)
-Tstar <- matrix(NA, nrow=B)
-for (b in (1:B)){
-  lmP <- lm(Distance~shuffle(Condition), data=dsample)
-  Tstar[b] <- coef(lmP)[2]
-}
-hist(Tstar, label=T, ylim=c(0, 300))
-plot(density(Tstar), main="Density curve of Tstar")
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-9-1.png" alt="(ref:fig2-9)" width="960" />
+<p class="caption">(\#fig:Figure2-9)(ref:fig2-9)</p>
+</div>
 
-```{r eval=F}
+
+```r
 B <- 1000
 Tstar <- matrix(NA, nrow=B)
 for (b in (1:B)){
@@ -1004,14 +1224,20 @@ hist(Tstar, label=T,ylim=c(0,300))
 plot(density(Tstar), main="Density curve of Tstar")
 ```
 
-```{r}
+
+```r
 favstats(Tstar)
+```
+
+```
+##        min        Q1     median  Q3      max       mean       sd    n missing
+##  -41.26667 -10.06667 -0.3333333 8.6 37.26667 -0.5054667 13.17156 1000       0
 ```
 
 Figure \@ref(fig:Figure2-9) contains visualizations of $T^*$ and the ``favstats``
 summary provides the related numerical summaries. Our observed $T_{obs}$
 of -25.933 seems somewhat unusual relative to these results with only 
-`r pdata(Tstar,-30,lower.tail=T)*1000` $T^*$ values smaller than -30 based on the 
+9 $T^*$ values smaller than -30 based on the 
 histogram. We need to make more specific comparisons of the permuted results 
 versus our observed result to be able to clearly decide whether our observed 
 result is really unusual. 
@@ -1023,16 +1249,13 @@ line at our $T_{obs}$ value specified in the ``v`` (for vertical) option.
 
 (ref:fig2-10) Histogram (left) and density curve (right) of values of test statistic for 1,000 permutations with bold vertical line for value of observed test statistic. 
 
-```{r Figure2-10, fig.cap="(ref:fig2-10)",echo=F,fig.width=10,fig.height=5,cache=F}
-par(mfrow=c(1,2))
-Tobs <- -25.933
-hist(Tstar, labels=T,ylim=c(0,300))
-abline(v=Tobs, lwd=2, col="red")
-plot(density(Tstar),main="Density curve of Tstar")
-abline(v=Tobs, lwd=2, col="red")
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-10-1.png" alt="(ref:fig2-10)" width="960" />
+<p class="caption">(\#fig:Figure2-10)(ref:fig2-10)</p>
+</div>
 
-```{r eval=F}
+
+```r
 Tobs <- -25.933
 hist(Tstar, labels=T)
 abline(v=Tobs, lwd=2, col="red")
@@ -1053,16 +1276,19 @@ proportion that are below (left of) or above (right of) the cut-off
 of interest). 
 
 
-```{r}
+
+```r
 pdata(Tstar, Tobs, lower.tail=T)[[1]]
 ```
 
-```{r echo=F}
-pval_1 <- pdata(Tstar, Tobs, lower.tail=T)[[1]]
+```
+## [1] 0.027
 ```
 
-The proportion of `r pval_1` tells us that `r pval_1*1000` of the 1,000 permuted results 
-(`r pval_1*100`%) were as small or smaller than what we observed. This type of 
+
+
+The proportion of 0.027 tells us that 27 of the 1,000 permuted results 
+(2.7%) were as small or smaller than what we observed. This type of 
 work is how we can
 generate ***p-values*** using permutation distributions.
 \index{p-value!permutation distribution}
@@ -1072,7 +1298,7 @@ P-values,
 as you should
 remember, are the probability of getting a result as extreme as or more extreme 
 than what we observed, $\underline{\text{given that the null is true}}$. Finding 
-only `r pval_1*1000`
+only 27
 permutations of 1,000 that were as small or smaller than our observed result suggests that it 
 is hard to find a result like what we observed if there really were no difference,
 although it is not impossible. 
@@ -1102,29 +1328,30 @@ to add to our previous proportion. Using ``pdata`` with ``-Tobs`` as the cut-off
 and ``lower.tail =F`` provides this result:
 \index{\texttt{pdata()}}
 
-```{r}
+
+```r
 pdata(Tstar, -Tobs, lower.tail=F)[[1]]
 ```
 
-```{r echo=F}
-pval_2 <- pdata(Tstar, -Tobs, lower.tail=F)[[1]]
+```
+## [1] 0.017
 ```
 
+
+
 So the p-value to test our null hypothesis of no difference in the true means 
-between the groups is `r pval_1` + `r pval_2`, providing a p-value of `r pval_1+pval_2`.
+between the groups is 0.027 + 0.017, providing a p-value of 0.044.
 Figure \@ref(fig:Figure2-11) shows both cut-offs on the histogram and density curve. 
 
 (ref:fig2-11) Histogram and density curve of values of test statistic for 1,000 permutations with bold lines for value of observed test statistic (-25.933) and its opposite value (25.933) required for performing the two-sided test.
 
-```{r Figure2-11, fig.cap="(ref:fig2-11)",echo=F,fig.width=10,fig.height=5,cache=F}
-par(mfrow=c(1,2))
-hist(Tstar, labels=T,ylim=c(0,300))
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
-plot(density(Tstar),main="Density curve of Tstar")
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-11-1.png" alt="(ref:fig2-11)" width="960" />
+<p class="caption">(\#fig:Figure2-11)(ref:fig2-11)</p>
+</div>
 
-```{r eval=F}
+
+```r
 hist(Tstar, labels=T)
 abline(v=c(-1,1)*Tobs, lwd=2, col="red")
 plot(density(Tstar), main="Density curve of Tstar")
@@ -1152,8 +1379,13 @@ observed statistic is positive or negative. In R, the ``abs`` function \index{\t
 of code: 
 \index{\texttt{pdata()}}
 
-```{r}
+
+```r
 pdata(abs(Tstar), abs(Tobs), lower.tail=F)[[1]]
+```
+
+```
+## [1] 0.044
 ```
 
 We will encourage you to think through what might constitute strong evidence 
@@ -1168,7 +1400,7 @@ evidence (1). We will discuss the use of a fixed ***significance level***
 below as it is still commonly used in many fields and is necessary to discuss to think 
 about the theory of hypothesis testing, but, for the moment,
 we can say that there is moderate evidence against the null hypothesis 
-presented by having a p-value of `r pval_1+pval_2` because our observed result is somewhat 
+presented by having a p-value of 0.044 because our observed result is somewhat 
 rare relative to what we would expect if the null hypothesis was true. And so 
 we might conclude (in the direction 
 of the alternative) that there is a difference in the population means in the 
@@ -1236,9 +1468,10 @@ estimated results (with a measure of precision of the estimated difference). We 
 
 (ref:fig2-12) Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values. P-values range from 0 to 1, with only a p-value of 1.0 providing no evidence against the null hypothesis.
 
-```{r Figure2-12, fig.cap="(ref:fig2-12)",echo=F,out.width="100%",fig.align="center"}
-knitr:::include_graphics("chapter2_files/pvalueStrengths.png")
-```
+<div class="figure" style="text-align: center">
+<img src="chapter2_files/pvalueStrengths.png" alt="(ref:fig2-12)" width="100%" />
+<p class="caption">(\#fig:Figure2-12)(ref:fig2-12)</p>
+</div>
 
 ## Hypothesis testing (general) {#section2-5}
 
@@ -1339,21 +1572,41 @@ limited to the sampled subjects.
 
 (ref:tab2-1) Scope of inference summary.
 
-```{r Table2-1, echo=F,results="asis"}
-columnHeaders <- c("**Random\\\n Sampling/Random\\\n Assignment**",
-                   "**Random Assignment (RA)\\\n -- Yes (controlled experiment)**",
-                   "**Random Assignment (RA)\\\n -- No (observational study)**")
-cell21 <- '**Random Sampling (RS)\\\n -- Yes (or some method\\\n that results in a\\\n representative sample of\\\n population of\\\n interest)**'
-cell22 <- 'Because we have RS, we can\\\n generalize inferences to the\\\n population the RS was taken\\\n from. Because we have\\\n RA we can assume the groups\\\n were equivalent on all aspects\\\n except for the treatment\\\n and can establish causal inference.\\\n'
-cell23 <- 'Can generalize inference to\\\n population the RS was taken\\\n from but cannot establish\\\n causal inference (no RA\\\n -- cannot isolate treatment\\\n variable as only difference\\\n among groups, could be\\\n confounding variables).'
-cell31 <- '**Random Sampling (RS)\\\n -- No (usually a\\\n convenience sample)**'
-cell32 <- 'Cannot generalize inference to\\\n the population of interest\\\n because the sample was\\\n not random and could be\\\n biased -- may not be\\\n "representative" of the\\\n population of interest.\\\n Can establish causal\\\n inference due to RA $\\rightarrow$\\\n the inference from this type of\\\n study applies only to the sample.'
-cell33 <- 'Cannot generalize inference to\\\n the population of interest\\\n because the sample was\\\n not random and could be\\\n biased -- may not be\\\n "representative" of the\\\n population of interest.\\\n Cannot establish causal\\\n inference due to lack of RA of\\\n the treatment.'
-x <- data.frame(c(cell21,cell31),c(cell22,cell32),c(cell23,cell33))
-colnames(x) <- columnHeaders
-pandoc.table(x, keep.line.breaks = TRUE,caption="(\\#tab:Table2-1) (ref:tab2-1)", split.table = Inf,
-             justify="left")
-```
+
+-------------------------------------------------------------------------------------------
+**Random\                   **Random Assignment (RA)\       **Random Assignment (RA)\      
+Sampling/Random\            -- Yes (controlled              -- No (observational study)**  
+Assignment**                experiment)**                                                  
+--------------------------- ------------------------------- -------------------------------
+**Random Sampling (RS)\     Because we have RS, we can\     Can generalize inference to\   
+-- Yes (or some method\     generalize inferences to the\   population the RS was taken\   
+that results in a\          population the RS was taken\    from but cannot establish\     
+representative sample of\   from. Because we have\          causal inference (no RA\       
+population of\              RA we can assume the groups\    -- cannot isolate treatment\   
+interest)**                 were equivalent on all          variable as only difference\   
+                            aspects\                        among groups, could be\        
+                            except for the treatment\       confounding variables).        
+                            and can establish causal                                       
+                            inference.\                                                    
+
+**Random Sampling (RS)\     Cannot generalize inference     Cannot generalize inference    
+-- No (usually a\           to\                             to\                            
+convenience sample)**       the population of interest\     the population of interest\    
+                            because the sample was\         because the sample was\        
+                            not random and could be\        not random and could be\       
+                            biased -- may not be\           biased -- may not be\          
+                            "representative" of the\        "representative" of the\       
+                            population of interest.\        population of interest.\       
+                            Can establish causal\           Cannot establish causal\       
+                            inference due to RA             inference due to lack of RA    
+                            $\rightarrow$\                  of\                            
+                            the inference from this type    the treatment.                 
+                            of\                                                            
+                            study applies only to the                                      
+                            sample.                                                        
+-------------------------------------------------------------------------------------------
+
+Table: (\#tab:Table2-1) (ref:tab2-1)
 
 \normalsize
 
@@ -1477,20 +1730,16 @@ to help you remember all the possibilities.
 
 (ref:tab2-2) Table of decisions and truth scenarios in a hypothesis testing situation. But we never know the truth in a real situation. 
 
-```{r Table2-2, echo=F,results="asis"}
-columnHeaders <- c("","$\\mathbf{H_0}$ **True**","$\\mathbf{H_0}$ **False**")
-cell21 <- "**FTR** $\\mathbf{H_0}$"
-cell22 <- 'Correct decision'
-cell23 <- 'Type II error'
-cell31 <- "**Reject** $\\mathbf{H_0}$"
-cell32 <- 'Type I error'
-cell33 <- 'Correct decision'
 
-x <- data.frame(c(cell21,cell31),c(cell22,cell32),c(cell23,cell33))
-colnames(x) <- columnHeaders
-pandoc.table(x, keep.line.breaks = TRUE,caption="(\\#tab:Table2-2) (ref:tab2-2)", split.table = Inf,
-             justify="left")
-```
+--------------------------------------------------------------------------------
+&nbsp;                      $\mathbf{H_0}$ **True**   $\mathbf{H_0}$ **False**  
+--------------------------- ------------------------- --------------------------
+**FTR** $\mathbf{H_0}$      Correct decision          Type II error             
+
+**Reject** $\mathbf{H_0}$   Type I error              Correct decision          
+--------------------------------------------------------------------------------
+
+Table: (\#tab:Table2-2) (ref:tab2-2)
 
 \indent In comparing different procedures or in planning studies, there is an 
 interest in studying the rate or
@@ -1612,8 +1861,15 @@ difference in the means had an impact on our permutation test
 results. It ends up that, while not too obvious, the ``summary`` of the ``lm`` we fit earlier contains this test statistic^[The ``t.test`` function with the ``var.equal=T`` option is the more direct route to calculating this statistic (here that would be ``t.test(Distance~Condition, data=dsamp, var.equal=T)``), but since we can get the result of interest by fitting a linear model, we will use that approach.]. Instead 
 of using the second model coefficient that estimates the difference in the means of the groups, we will extract the test statistic from the table of summary output that is in the ``coef`` object in the summary -- using ``$`` to reference the ``coef`` information only. In the `coef` object in the summary, results related to the ``ConditionCommute`` are again useful for the comparison of two groups. 
 
-```{r}
+
+```r
 summary(lm1)$coef
+```
+
+```
+##                   Estimate Std. Error   t value     Pr(>|t|)
+## (Intercept)      135.80000   8.862996 15.322133 3.832161e-15
+## Conditioncommute -25.93333  12.534169 -2.069011 4.788928e-02
 ```
 
 The first column of numbers contains the estimated difference in the sample means (-25.933 here) that was used before. The next column is the ``Std. Error`` column that contains the standard error (SE) of the estimated difference in the means, which is $s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$ and also the denominator used to form the $t$-test statistic (12.53 here). It will be a common theme in this material to take the ratio of the estimate (-25.933) to its SE (12.53) to generate test statistics, which provides -2.07 -- this is the "standardized" estimate of the difference in the means. It is also a test statistic ($T$) that we can use in a permutation test. This value is in the second row and third column of ``summary(lm1)$coef`` and to extract it the bracket notation is again employed. Specifically we want to extract ``summary(lm1)$coef[2,3]`` and using it and its permuted data equivalents to calculate a p-value. Since we are doing a two-sided 
@@ -1621,12 +1877,18 @@ test, the code resembles the permutation test code in Section \@ref(section2-4)
 with the new $t$-statistic replacing the difference in the sample means that we 
 used before. 
 
-```{r cache=T}
+
+```r
 Tobs <- summary(lm1)$coef[2,3]
 Tobs
 ```
 
-```{r cache=T}
+```
+## [1] -2.069011
+```
+
+
+```r
 B <- 1000
 set.seed(406)
 Tstar <- matrix(NA, nrow=B)
@@ -1635,6 +1897,10 @@ for (b in (1:B)){
   Tstar[b] <- summary(lmP)$coef[2,3]
 }
 pdata(abs(Tstar), abs(Tobs), lower.tail=F)
+```
+
+```
+## [1] 0.041
 ```
 
 
@@ -1654,16 +1920,14 @@ be surprised if your results vary if you use different random number seeds.
 
 (ref:fig2-13) Permutation distribution of the $t$-statistic.
 
-```{r Figure2-13, fig.cap="(ref:fig2-13)",echo=F,fig.width=10,fig.height=5}
-par(mfrow=c(1,2))
-hist(Tstar, labels=T,ylim=c(0,250))
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-13-1.png" alt="(ref:fig2-13)" width="960" />
+<p class="caption">(\#fig:Figure2-13)(ref:fig2-13)</p>
+</div>
 
 
-```{r eval=F}
+
+```r
 hist(Tstar, labels=T)
 abline(v=c(-1,1)*Tobs, lwd=2, col="red")
 plot(density(Tstar), main="Density curve of Tstar")
@@ -1695,15 +1959,10 @@ will be our focus for the two group problem and is what we get when using the ``
 
 (ref:fig2-14) Plots of $t$-distributions with 2, 10, and 20 degrees of freedom and a normal distribution (dashed line). Note how the $t$-distributions get closer to the normal distribution as the degrees of freedom increase and at 20 degrees of freedom, the $t$-distribution *almost* matches a standard normal curve.
 
-```{r Figure2-14, echo=FALSE, fig.cap ="(ref:fig2-14)",fig.width=7,fig.height=4}
-xa <- seq(from=-7,to=7,length.out=300)
-par(mfrow=c(1,1))
-plot(xa,dt(xa,df=2),type="l",xlab="t-values",ylab="Density",lwd=4,ylim=c(0,0.39),main="Plot of three different t-distributions and the normal curve", cex.main=1)
-lines(xa,dt(xa,df=10),lwd=3,col="grey")
-lines(xa,dt(xa,df=20),lwd=2)
-lines(xa,dnorm(xa),lty=2,lwd=2,col="blue")
-legend("left",legend=c("t(2)","t(10)","t(20)","Normal"),col=c("black","grey","black","blue"),lty=c(1,1,1,2),lwd=c(4,3,2,2),cex=0.75)
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-14-1.png" alt="(ref:fig2-14)" width="672" />
+<p class="caption">(\#fig:Figure2-14)(ref:fig2-14)</p>
+</div>
 
 \indent If the assumptions for the equal variance $t$-test and the null 
 hypothesis are true, then the sampling distribution of the test statistic should 
@@ -1727,8 +1986,28 @@ care of this. In the ``ConditionCommute`` row of the summary and the ``Pr(>|t|)`
 
 
 
-```{r}
+
+```r
 summary(lm1)
+```
+
+```
+## 
+## Call:
+## lm(formula = Distance ~ Condition, data = dsample)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -63.800 -21.850   4.133  15.150  72.200 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(>|t|)
+## (Intercept)       135.800      8.863  15.322 3.83e-15
+## Conditioncommute  -25.933     12.534  -2.069   0.0479
+## 
+## Residual standard error: 34.33 on 28 degrees of freedom
+## Multiple R-squared:  0.1326,	Adjusted R-squared:  0.1016 
+## F-statistic: 4.281 on 1 and 28 DF,  p-value: 0.04789
 ```
 
 So the parametric $t$-test gives a p-value of 0.0479 from a test statistic of 
@@ -1739,14 +2018,10 @@ happened to be here, where the only difference in shape is near the peak of the 
 
 (ref:fig2-15) Plot of permutation and $t$-distribution with $df=28$. Note the close match in the two distributions, especially in the tails of the distributions where we are obtaining the p-values.
 
-```{r Figure2-15, fig.cap ="(ref:fig2-15)", echo=F,fig.height=4,fig.width=6}
-plot(density(Tstar), main="Permutation and t(28) distributions",
-     xlab="T=t-statistic", lwd=2,ylim=c(0,0.45))
-x <- seq(from=-4,to=4,length.out=100)
-lines(x,dt(x,df=28),col="red",lty=2,lwd=2)
-legend("topleft",legend=c("Permutation","t(28)"),col=c("black","red"),lty=c(1,2),
-       lwd=c(2,2),cex=0.75)
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-15-1.png" alt="(ref:fig2-15)" width="576" />
+<p class="caption">(\#fig:Figure2-15)(ref:fig2-15)</p>
+</div>
 
 \indent In your previous statistics course, you might have used an applet or 
 a table to find p-values such as what was provided in the previous R output. 
@@ -1764,24 +2039,39 @@ We need to provide the ``df=...`` and specify
 the tail of the distribution of interest using the ``lower.tail`` option along 
 with the cutoff of interest. If we want the area to the left of -2.07:
 
-```{r}
+
+```r
 pt(-2.069, df=28, lower.tail=T)
+```
+
+```
+## [1] 0.02394519
 ```
 
 And we can double it to get the p-value that was in the output, because 
 the $t$-distribution is symmetric:
 \index{@$t$-distribution}
 
-```{r}
+
+```r
 2*pt(-2.069, df=28, lower.tail=T)
+```
+
+```
+## [1] 0.04789038
 ```
 
 More generally, we could always make the test statistic positive using the 
 absolute value (``abs``), find the area to the right of it (``lower.tail=F``), and then double that for a 
 two-sided test p-value:
 
-```{r}
+
+```r
 2*pt(abs(-2.069), df=28, lower.tail=F)
+```
+
+```
+## [1] 0.04789038
 ```
 
 \indent Permutation distributions \index{permutation!distribution} do not need to match the named 
@@ -1849,21 +2139,47 @@ similar inferences, but both are subject to concerns related to violations of th
 \indent For comparison, we can also explore the original data set of all $n=1,636$ observations for the two outfits. The estimated difference in the means is -3.003 cm (*commute* minus *casual*), the standard error is 1.472, the $t$-statistic is -2.039 and using a $t$-distribution with 1634 $df$, the p-value is 0.0416. The estimated difference in the means is much smaller but the p-value is similar to the results for the sub-sample we analyzed. The SE is much smaller with the large sample size which corresponds to having higher power to detect smaller differences.  
 
 
-```{r}
+
+```r
 lm_all <- lm(Distance~Condition, data=ddsub)
 summary(lm_all)
+```
+
+```
+## 
+## Call:
+## lm(formula = Distance ~ Condition, data = ddsub)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -106.608  -17.608    0.389   16.392  127.389 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(>|t|)
+## (Intercept)       117.611      1.066 110.357   <2e-16
+## Conditioncommute   -3.003      1.472  -2.039   0.0416
+## 
+## Residual standard error: 29.75 on 1634 degrees of freedom
+## Multiple R-squared:  0.002539,	Adjusted R-squared:  0.001929 
+## F-statistic:  4.16 on 1 and 1634 DF,  p-value: 0.04156
 ```
 
 The permutations take a little more computing power with almost two thousand observations to shuffle, but this is manageable on a modern laptop as it only has to be completed once to fill in the distribution of the test statistic under 1,000 shuffles. And the p-value obtained is a close match to the parametric result at 0.045 for the permutation version and 0.042 for the parametric approach. So we would get similar inferences for strength of evidence against the null with either the smaller data set or the full data set but the estimated size of the differences is quite a bit different. It is important to note that other random samples from the larger data set would give different p-values and this one happened to match the larger set more closely than one might expect in general.
 
 
 
-```{r cache=T}
+
+```r
 Tobs <- summary(lm_all)$coef[2,3]
 Tobs
 ```
 
-```{r cache=T}
+```
+## [1] -2.039491
+```
+
+
+```r
 B <- 1000
 set.seed(406)
 Tstar <- matrix(NA, nrow=B)
@@ -1874,16 +2190,17 @@ for (b in (1:B)){
 pdata(abs(Tstar), abs(Tobs), lower.tail=F)
 ```
 
+```
+## [1] 0.045
+```
+
 
 (ref:fig2-16) Permutation distribution of the $t$-statistic for $n=1,636$ overtake data set.
 
-```{r Figure2-16, fig.cap="(ref:fig2-16)",echo=F,fig.width=10,fig.height=5}
-par(mfrow=c(1,2))
-hist(Tstar, labels=T,ylim=c(0,250))
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-16-1.png" alt="(ref:fig2-16)" width="960" />
+<p class="caption">(\#fig:Figure2-16)(ref:fig2-16)</p>
+</div>
 
 \newpage
 
@@ -1898,35 +2215,46 @@ interested in whether Males and Females had different average GPAs. First,
 we can take a look at the difference in the responses by groups based on the
 output and as displayed in Figure \@ref(fig:Figure2-17). 
 
-```{r eval=F}
+
+```r
 s217 <- read_csv("http://www.math.montana.edu/courses/s217/documents/s217.csv")
 library(mosaic)
 library(yarrr)
 ```
 
-```{r echo=F}
-s217 <- read_csv("02/data/s217.csv")
-library(mosaic)
-library(yarrr)
-```
+
 
 <!-- \newpage -->
 
-```{r}
+
+```r
 mean(GPA~Sex, data=s217)
+```
+
+```
+##        F        M 
+## 3.338378 3.088571
+```
+
+```r
 favstats(GPA~Sex, data=s217)
+```
+
+```
+##   Sex  min  Q1 median   Q3 max     mean        sd  n missing
+## 1   F 2.50 3.1  3.400 3.70   4 3.338378 0.4074549 37       0
+## 2   M 1.96 2.8  3.175 3.46   4 3.088571 0.4151789 42       0
 ```
 
 (ref:fig2-17) Side-by-side boxplot and pirate-plot of GPAs of Intermediate Statistics students by gender.
 
-```{r Figure2-17, fig.cap="(ref:fig2-17)", echo=F,cache=T}
-par(mfrow=c(1,2))
-#old.par <- par(mai=c(0.5,0.5,0.5,0.5))
-boxplot(GPA~Sex, data=s217)
-pirateplot(GPA~Sex, data=s217, inf.method="ci", inf.disp="line")
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-17-1.png" alt="(ref:fig2-17)" width="480" />
+<p class="caption">(\#fig:Figure2-17)(ref:fig2-17)</p>
+</div>
 
-```{r eval=F}
+
+```r
 boxplot(GPA~Sex, data=s217)
 pirateplot(GPA~Sex, data=s217, inf.method="ci", inf.disp="line")
 ```
@@ -1938,22 +2266,32 @@ assess these differences.
 
 \indent First, we can try the parametric approach:
 
-```{r}
+
+```r
 lm_GPA <- lm(GPA~Sex, data=s217)
 summary(lm_GPA)
 ```
 
-```{r echo=F,include=F}
-set.seed(201706)
-B=1000
-Tobs <- summary(lm_GPA)$coef[2,3]
-Tstar <- matrix(NA, nrow=B)
-for (b in (1:B)){
-  lmP <- lm(GPA~shuffle(Sex), data=s217)
-  Tstar[b] <- summary(lmP)$coef[2,3]
-}
-perm_pval <- pdata(abs(Tstar),abs(Tobs),lower.tail=F)[[1]]
 ```
+## 
+## Call:
+## lm(formula = GPA ~ Sex, data = s217)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.12857 -0.28857  0.06162  0.36162  0.91143 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)
+## (Intercept)  3.33838    0.06766  49.337  < 2e-16
+## SexM        -0.24981    0.09280  -2.692  0.00871
+## 
+## Residual standard error: 0.4116 on 77 degrees of freedom
+## Multiple R-squared:  0.08601,	Adjusted R-squared:  0.07414 
+## F-statistic: 7.246 on 1 and 77 DF,  p-value: 0.008713
+```
+
+
 
 \indent So the test statistic was observed to be $t=2.69$ and it hopefully 
 follows a $t(77)$ distribution under the null hypothesis. This provides a 
@@ -1961,11 +2299,12 @@ p-value of 0.008713 that we can trust if the conditions to use this
 procedure are at least not clearly violated.
 Compare these results to the permutation approach, which relaxes that normality
 assumption, with the results that follow. In the permutation test, $T=-2.692$ and 
-the p-value is `r perm_pval` which is a little larger than the result provided 
+the p-value is 0.011 which is a little larger than the result provided 
 by the parametric approach. The general agreement of the two approaches, again, provides 
 some re-assurance about the use of either approach when there are not dramatic violations of validity conditions. \index{permutation!test}
 
-```{r eval=F}
+
+```r
 B=1000
 Tobs <- summary(lm_GPA)$coef[2,3]
 Tstar <- matrix(NA, nrow=B)
@@ -1978,15 +2317,13 @@ pdata(abs(Tstar),abs(Tobs),lower.tail=F)[[1]]
 
 (ref:fig2-18) Histogram and density curve of permutation distribution of test statistic for Intermediate Statistics student GPAs.
 
-```{r Figure2-18, fig.cap="(ref:fig2-18)",echo=F,fig.width=10,fig.height=5,cache=F}
-par(mfrow=c(1,2))
-hist(Tstar,labels=T,ylim=c(0,225))
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-18-1.png" alt="(ref:fig2-18)" width="960" />
+<p class="caption">(\#fig:Figure2-18)(ref:fig2-18)</p>
+</div>
 
-```{r eval=F}
+
+```r
 hist(Tstar, labels=T)
 abline(v=c(-1,1)*Tobs, lwd=2, col="red")
 plot(density(Tstar), main="Density curve of Tstar")
@@ -2033,9 +2370,9 @@ using the permutation \index{permutation} results for the grade data:
 
     * $T=-2.69$ from the previous R output. 
     
-    * p-value $=$ `r perm_pval` from the permutation distribution results. 
+    * p-value $=$ 0.011 from the permutation distribution results. 
 
-    * This means that there is about a `r perm_pval*100`% chance we would observe 
+    * This means that there is about a 1.1% chance we would observe 
     a difference in mean GPA (female-male or male-female) of 0.25 points or more 
     if there in fact is no difference in true mean GPA between females and males 
     in Intermediate Statistics in a particular semester. 
@@ -2085,11 +2422,35 @@ In the previous examples, some variation in p-values was observed as different m
 
 \indent The following code generates one realization of this process to explore both the p-values that are created and the estimated differences. To simulate new observations with the null hypothesis true, there are two new ideas to consider. First, we need to fit a model that makes the means the same in both groups. This is called the "mean-only" model \index{model!mean-only} and is implemented with `lm(y~1, data=...)`, with the `~1` indicating that no predictor variable is used and that a common mean is considered for all observations. Note that this notation also works in the `favstats` function to get summary statistics for the response variable without splitting it apart based on a grouping variable. In the $n=30$ passing distance data set, the mean of all the observations is 116.04 cm and this estimate is present in the `(Intercept)` row in the `lm_commonmean` model summary. 
 
-```{r}
+
+```r
 lm_commonmean <- lm(Distance ~ 1, data=ddsub)
 summary(lm_commonmean)
+```
 
+```
+## 
+## Call:
+## lm(formula = Distance ~ 1, data = ddsub)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -108.038  -17.038   -0.038   16.962  128.962 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)
+## (Intercept) 116.0379     0.7361   157.6   <2e-16
+## 
+## Residual standard error: 29.77 on 1635 degrees of freedom
+```
+
+```r
 favstats(Distance ~ 1, data=ddsub)
+```
+
+```
+##   1 min Q1 median  Q3 max     mean       sd    n missing
+## 1 1   8 99    116 133 245 116.0379 29.77388 1636       0
 ```
 
 
@@ -2097,12 +2458,10 @@ The second new R code needed is the `simulate` \index{\texttt{simulate()}} funct
 
 (ref:fig2-19) Pirate-plot of a simulated data set that assumes the same mean for both groups. The means in the two groups are very similar.
 
-```{r Figure2-19, fig.cap="(ref:fig2-19)",echo=F,fig.width=10,fig.height=5,cache=F}
-set.seed(123456)
-ddsub$SimDistance <- simulate(lm_commonmean)[[1]]
-
-pirateplot(SimDistance~Condition, data=ddsub, inf.method="ci", inf.disp="line")
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-19-1.png" alt="(ref:fig2-19)" width="960" />
+<p class="caption">(\#fig:Figure2-19)(ref:fig2-19)</p>
+</div>
 
 \indent The following code chunk generates one run through generating ten data sets as the loop works through the index `c`, simulates a new set of responses (`ddsub$SimDistance`), fits a model that explores the difference in the means of the two groups (`lm_sim`), and extracts the ten p-values (stored in `pval10`) and estimated difference in the means (stored in `diff10`).  The smallest p-value of the ten p-values (`min(pval10)`) is 0.00576. By finding the value of `diff10` where `pval10` is equal to (`==`) the `min(pval10)`, the estimated difference in the means from the simulated responses that produced the smallest p-value can be extracted. The difference was -4.17 here. As in the previous initial explorations of permutations, this is just one realization of this process and it needs to be repeated many times to study the impacts of using (1) the first realization of the responses to estimate the difference and p-value and (2) the result with the smallest p-value from ten different realizations of the responses to estimate the difference and p-value. In the following code, we added 
 octothorpes (#)^[You can correctly call octothorpes *number* symbols or, in the 
@@ -2113,7 +2472,8 @@ provide a way of adding comments that tell the software (here R) to ignore any
 text after a "#" on a given line. In the color version of the text, comments are 
 even more clearly distinguished. 
 
-```{r}
+
+```r
 #For one iteration through generating 10 data sets:
   diff10 <- pval10 <- matrix(NA, nrow=10) #Create empty vectors to store 10 results
   set.seed(222)
@@ -2127,10 +2487,38 @@ even more clearly distinguished.
   }
   
 tibble(pval10, diff10)  
-  
+```
+
+```
+## # A tibble: 10 x 2
+##    pval10[,1] diff10[,1]
+##         <dbl>      <dbl>
+##  1    0.735      -0.492 
+##  2    0.326       1.44  
+##  3    0.158      -2.06  
+##  4    0.265      -1.66  
+##  5    0.153       2.09  
+##  6    0.00576    -4.17  
+##  7    0.915       0.160 
+##  8    0.313      -1.50  
+##  9    0.983       0.0307
+## 10    0.268      -1.69
+```
+
+```r
 min(pval10) #Smallest of 10 p-values
-  
+```
+
+```
+## [1] 0.005764602
+```
+
+```r
 diff10[pval10==min(pval10)] #Estimated difference for data set with smallest p-value
+```
+
+```
+## [1] -4.170526
 ```
 
 \indent In these results, the first data set shows little evidence against the null hypothesis with a p-value of 0.735 and an estimated difference of -0.49. But if you repeat this process and focus just on the "top" p-value result, you think that there is moderate evidence against the null hypothesis with a p-value from the sixth data set due to its p-value of 0.0057. Remember that these are all data sets simulated with the null hypothesis being true, so we should not reject the null hypothesis. But we would expect an occasional false detection (Type I error -- rejecting the null hypothesis when it is true) due to sampling variability in the data sets. But by exploring many results and selecting a single result from that suite of results (and not accounting for that selection process in the results), there is a clear issue with exaggerating the strength of evidence. While not obvious yet, we also create an issue with the estimated mean difference in the groups that is demonstrated below. 
@@ -2141,8 +2529,8 @@ diff10[pval10==min(pval10)] #Estimated difference for data set with smallest p-v
 
 (ref:fig2-20) Pirate-plot of a simulation study results. Panel (a) contains the *B* = 1,000 p-values and (b) contains the *B*=1,000 estimated differences in the means. Note that the estimated means and confidence intervals normally present in pirate-plots are suppressed here with `inf.f.o = 0, inf.b.o = 0, avg.line.o = 0` because these plots are being used to summarize simulation results instead of an original data set. 
 
-```{r Figure2-20, fig.cap="(ref:fig2-20)",echo=T,fig.width=10,fig.height=5,cache=T}
 
+```r
 # Simulation study of generating 10 data sets and either using the first
 # or "best p-value" result:
 set.seed(1234)
@@ -2180,15 +2568,41 @@ pirateplot(pvalue_results~Scenario, data=results, inf.f.o = 0, inf.b.o = 0,
 abline(h=0.05, lwd=2, col="red", lty=2)
 pirateplot(Diffmeans_results~Scenario, data=results, inf.f.o = 0, inf.b.o = 0,
            avg.line.o = 0, main="(b) Estimated difference in mean results")
+```
 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-20-1.png" alt="(ref:fig2-20)" width="960" />
+<p class="caption">(\#fig:Figure2-20)(ref:fig2-20)</p>
+</div>
+
+```r
 #Numerical summaries of results
 favstats(pvalue_results~Scenario,data=results)
 ```
 
+```
+##   Scenario          min         Q1    median        Q3       max       mean
+## 1    First 0.0017051496 0.27075755 0.5234412 0.7784957 0.9995293 0.51899179
+## 2      Min 0.0005727895 0.02718018 0.0646370 0.1273880 0.5830232 0.09156364
+##           sd    n missing
+## 1 0.28823469 1000       0
+## 2 0.08611836 1000       0
+```
+
 \newpage
 
-```{r}
+
+```r
 favstats(Diffmeans_results~Scenario,data=results)
+```
+
+```
+##   Scenario       min         Q1     median       Q3      max       mean
+## 1    First -4.531864 -0.8424604 0.07360378 1.002228 4.458951 0.05411473
+## 2      Min -5.136510 -2.6857436 1.24042295 2.736930 5.011190 0.03539750
+##         sd    n missing
+## 1 1.392940 1000       0
+## 2 2.874454 1000       0
 ```
 
 
@@ -2227,14 +2641,10 @@ second data set. This also has problems but the only way to develop an understan
 
 (ref:fig2-21) Plot of family-wise error rate (bold solid line) as the number of tests performed increases. Dashed line indicates 0.05 and grey solid line highlights the probability of at least on error on $m$=10 tests. 
 
-```{r Figure2-21, fig.cap="(ref:fig2-21)",echo=F,warning=F,message=F}
-m <- 1:100
-pr <- 1-.95^m
-plot(m,pr,type="l",col="blue",xlab="# of Tests",
-     ylab="Probability of at least one Type I error",lwd=2)
-abline(h=.05,lty=2,col="red")
-lines(x=c(10,10), y=c(0.05,1-.95^10), col="grey", lwd=2)
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-21-1.png" alt="(ref:fig2-21)" width="480" />
+<p class="caption">(\#fig:Figure2-21)(ref:fig2-21)</p>
+</div>
 
 \indent All hope is not lost when multiple tests are being considered in the same study or by a researcher and exploring more than one result need not lead to clearly biased and flawed results being reported. To account for multiple testing in the same study/analysis, there are many approaches that adjust results to acknowledge that multiple tests are being considered. A simple approach called the "Bonferroni Correction" [@Bland1995] is a good starting point for learning about these methods. It works to control the family-wise error rate of a suite of tests by either dividing $\alpha$ by the number of tests ($\alpha/m$) or, equivalently and more usefully, multiplying the p-value by the number of tests being considered ($p-value_{adjusted} = p-value \cdot m$ or $1$ if $p-value \cdot m > 1$). The "Bonferroni adjusted p-values" are then used as regular p-values to assess evidence against each null hypothesis but now accounting for exploring many of them together. There are some assumptions that this adjustment method makes that make it to generally be a conservative adjustment method. In particular, it assumes that all $m$ tests are independent of each other and that the null hypothesis was true for all $m$ tests conducted. While all p-values should be reported in this situation when considering ten results, the impacts of using a Bonferroni correction are that the resulting p-values are not driving inflated Type I error rates even if the smallest p-value is the main focus of the results. The correction also provides a suggestion of decreasing evidence in the first test result because it is now incorporated in considering ten results instead of one. 
 
@@ -2243,8 +2653,8 @@ lines(x=c(10,10), y=c(0.05,1-.95^10), col="grey", lwd=2)
 
 (ref:fig2-22) Pirate-plot of a simulation study results of p-values with Bonferroni correction. 
 
-```{r Figure2-22, fig.cap="(ref:fig2-22)",echo=T,fig.width=10,fig.height=5.5,cache=T}
 
+```r
 # Simulation study of generating 10 data sets and either using the first 
 # or "best p-value" result:
 set.seed(1234)
@@ -2278,27 +2688,41 @@ pirateplot(pvalue_results~Scenario, data=results, inf.f.o = 0, inf.b.o = 0,
 abline(h=0.05, lwd=2, col="red", lty=2)
 ```
 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-22-1.png" alt="(ref:fig2-22)" width="960" />
+<p class="caption">(\#fig:Figure2-22)(ref:fig2-22)</p>
+</div>
+
 By applying the `pdata` function to the two groups of results, we can directly assess how many of each type ("First" or "Min") resulted in p-values less than 0.05. It ends up that if we adjust for ten tests and just focus on the first result, it is really hard to find moderate or strong evidence against the null hypothesis as only 3 in 1,000 results had adjusted p-values less than 0.05. When the focus is on the "best" (or minimum) p-value result when ten are considered and adjustments are made, 52 out of 1,000 results (0.052) show at least moderate evidence against the null hypothesis. This is the rate we would expect from a well-behaved hypothesis test when the null hypothesis is true -- that we would only make a mistake 5% of the time when $\alpha$ is 0.05. 
 
 \newpage
 
-```{r echo=F}
-oldWidth <- options()$width
-options(width=90)
-```
 
-```{r}
+
+
+```r
 #Numerical summaries of results
 favstats(pvalue_results~Scenario,data=results)
 ```
 
-```{r echo=F}
-options(width=oldWidth)
+```
+##   Scenario         min        Q1  median Q3 max      mean        sd    n missing
+## 1    First 0.017051496 1.0000000 1.00000  1   1 0.9628911 0.1502805 1000       0
+## 2      Min 0.005727895 0.2718018 0.64637  1   1 0.6212932 0.3597701 1000       0
 ```
 
-```{r}
+
+
+
+```r
 #Proportion of simulations with adjusted p-values less than 0.05
 pdata(pvalue_results~Scenario,data=results,.05, lower.tail=T)
+```
+
+```
+##   Scenario pdata_v
+## 1    First   0.003
+## 2      Min   0.052
 ```
 
 \indent So adjusting for multiple testing is suggested when multiple tests are being considered "simultaneously". The Bonferroni adjustment is easy but also crude and can be conservative in applications, especially when the number of tests grows very large (think of multiplying all your p-values by $m$=1,000,000). So other approaches are considered in situations with many tests (there are six other options in the `p.adjust` function and other functions for doing similar things in R) and there are other approaches that are customized for particular situations with one example discussed in Chapter \@ref(chapter3). The biggest lesson as a statistics student to take from this is that all results are of interest and should be reported and that adjustment of p-values should be considered in studies where many results are being considered. If you are reading results that seem to have walked discretely around these issues you should be suspicious of the real strength of their evidence.
@@ -2358,15 +2782,23 @@ were not sampled at all. Bootstrap sampling thus picks some observations
 multiple times and to do that it has to ignore some^[In any bootstrap sample, about 1/3 of the observations are not used at all.] observations. 
 
 
-```{r}
+
+```r
 set.seed(406)
 dsample_BTS <- resample(dsample)
 ```
 
 
 
-```{r}
+
+```r
 table(as.numeric(dsample_BTS$orig.id))
+```
+
+```
+## 
+##  1  2  3  7  8  9 10 11 12 13 14 16 18 19 23 24 25 26 27 28 30 
+##  2  1  1  1  1  4  1  1  1  1  2  1  1  1  1  1  1  2  1  4  1
 ```
 
 Like in permutations, one randomization isn't enough. A second bootstrap sample 
@@ -2379,9 +2811,16 @@ in the new data set is $1/30$ and the expected or mean number of appearances we
 expect to see for an observation is the number of random draws times the probably 
 of selection on each so $30*1/30=1$. So we expect to see each observation in the bootstrap sample on average once but random variability in the samples then creates the possibility of seeing it more than once or not all. 
 
-```{r}
+
+```r
 dsample_BTS2 <- resample(dsample)
 table(as.numeric(dsample_BTS2$orig.id))
+```
+
+```
+## 
+##  1  6  7  8  9 10 11 12 13 16 17 20 22 23 24 25 26 28 30 
+##  2  2  1  1  2  1  4  1  3  1  1  1  2  2  1  1  2  1  1
 ```
 
 We can use the two results to get an idea of distribution of results in terms 
@@ -2394,23 +2833,10 @@ using bootstrapping methods.
 
 (ref:fig2-23) Counts of number of times of observation (or not observed for times re-sampled of 0) for two bootstrap samples. 
 
-```{r Figure2-23, fig.cap="(ref:fig2-23)",echo=F,cache=T}
-cs1 <- table(as.vector(table(as.numeric(dsample_BTS$orig.id))))
-n0s <- 30-sum(cs1)
-
-cs1_final <- table(c(rep(0,n0s),as.vector(table(as.numeric(dsample_BTS$orig.id)))))
-
-cs2 <- table(as.vector(table(as.numeric(dsample_BTS2$orig.id))))
-n0s <- 30-sum(cs2)
-
-cs2_final <- table(c(rep(0,n0s),as.vector(table(as.numeric(dsample_BTS2$orig.id)))))
-
-par(mfrow=c(1,2))
-plot(cs1_final,ylab="Counts of number of times of re-sampling",
-     main="Bootstrap sample 1",xlab="Times re-sampled", ylim=c(0,16))
-plot(cs2_final,ylab="Counts of number of times of re-sampling", 
-     main="Bootstrap sample 2",xlab="Times re-sampled", ylim=c(0,16))
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-23-1.png" alt="(ref:fig2-23)" width="480" />
+<p class="caption">(\#fig:Figure2-23)(ref:fig2-23)</p>
+</div>
 
 \indent The main point of this exploration was to see that each run of the
 ``resample`` function provides a new version of the data set. Repeating this 
@@ -2433,14 +2859,21 @@ the ``resample`` function to the entire data set used in ``lm`` as opposed to th
 function that was applied only to the explanatory variable. 
 
 
-```{r}
+
+```r
 lm1 <- lm(Distance~Condition, data=dsample)
 Tobs <- coef(lm1)[2]; Tobs
 ```
 
+```
+## Conditioncommute 
+##        -25.93333
+```
+
 <!-- \newpage -->
 
-```{r}
+
+```r
 B <- 1000
 set.seed(1234)
 Tstar <- matrix(NA, nrow=B)
@@ -2450,30 +2883,29 @@ for (b in (1:B)){
 }
 ```
 
-```{r echo=F}
-oldWidth <- options()$width
-options(width=90)
-```
 
-```{r}
+
+
+```r
 favstats(Tstar)
 ```
 
-```{r echo=F}
-options(width=oldWidth)
 ```
+##        min        Q1    median        Q3      max      mean       sd    n missing
+##  -66.96429 -34.57159 -25.65881 -17.12391 17.17857 -25.73641 12.30987 1000       0
+```
+
+
 
 (ref:fig2-24) Histogram and density curve of bootstrap distributions of difference in sample mean ``Distances`` with vertical line for the observed difference in the means of -25.933.
 
-```{r Figure2-24, fig.cap="(ref:fig2-24)",echo=F,fig.width=10,fig.height=5,cache=F}
-par(mfrow=c(1,2))
-hist(Tstar, labels=T,ylim=c(0,330))
-abline(v=Tobs, col="red", lwd=2)
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=Tobs, col="red", lwd=2)
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-24-1.png" alt="(ref:fig2-24)" width="960" />
+<p class="caption">(\#fig:Figure2-24)(ref:fig2-24)</p>
+</div>
 
-```{r eval=F}
+
+```r
 hist(Tstar, labels=T)
 abline(v=Tobs, col="red", lwd=2)
 plot(density(Tstar), main="Density curve of Tstar")
@@ -2513,9 +2945,23 @@ in R, functions are of the form ``q[Name of distribution]``, with the function
 bootstrap results, use the ``qdata`` function on the ``Tstar`` results that 
 contain the bootstrap distribution of the statistic of interest. 
 
-```{r}
+
+```r
 qdata(Tstar, 0.025)
+```
+
+```
+##     2.5% 
+## -50.0055
+```
+
+```r
 qdata(Tstar, 0.975)
+```
+
+```
+##     97.5% 
+## -2.248774
 ```
 
 These results tell us that the 2.5^th^ percentile of the bootstrap
@@ -2525,28 +2971,33 @@ in the true mean distances (*commute* minus *casual* groups) is
 between -50 and -2.25 cm. Or we can switch the direction of the comparison and say that we are 95% confident that the difference in the true means is between 2.25 and 50 cm (*casual* minus *commute*). This result would be incorporated into step 5 of the hypothesis testing protocol to accompany discussing the size of the estimated difference in the groups or used as a result of interest in itself. Both percentiles can be obtained in one line 
 of code using:
 
-```{r}
+
+```r
 quantiles <- qdata(Tstar, c(0.025,0.975))
 ```
 
 
-```{r}
+
+```r
 quantiles
+```
+
+```
+##       2.5%      97.5% 
+## -50.005502  -2.248774
 ```
 
 Figure \@ref(fig:Figure2-25) displays those same percentiles on the bootstrap distribution residing in ``Tstar``. 
 
 (ref:fig2-25) Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (bold vertical lines).
 
-```{r Figure2-25, fig.cap="(ref:fig2-25)",echo=F,fig.width=10,fig.height=5,cache=F}
-par(mfrow=c(1,2))
-hist(Tstar, labels=T,ylim=c(0,330))
-abline(v=quantiles, col="blue", lwd=3)
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=quantiles, col="blue", lwd=3)
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-25-1.png" alt="(ref:fig2-25)" width="960" />
+<p class="caption">(\#fig:Figure2-25)(ref:fig2-25)</p>
+</div>
 
-```{r eval=F}
+
+```r
 hist(Tstar, labels=T)
 abline(v=quantiles, col="blue", lwd=3)
 plot(density(Tstar), main="Density curve of Tstar")
@@ -2591,8 +3042,15 @@ being sampled from are normally distributed instead of just that they have simil
 \index{@$t$-distribution}
 to form the interval with the degrees of freedom for the $t$-distribution of $n-2$ although we can obtain it without direct reference to this distribution using the ``confint`` function applied to the ``lm`` model. This function generates two confidence intervals and the one in the second row is the one we are interested as it pertains to the difference in the true means of the two groups. The parametric 95% confidence interval here is from -51.6 to -0.26 cm which is a bit different in width from the nonparametric bootstrap interval that was from -50 and -2.25 cm. 
 
-```{r}
+
+```r
 confint(lm1)
+```
+
+```
+##                      2.5 %      97.5 %
+## (Intercept)      117.64498 153.9550243
+## Conditioncommute -51.60841  -0.2582517
 ```
 
  The bootstrap interval was narrower by almost 4 cm and its upper limit was much further from 0. The bootstrap CI can vary depending on the random number seed used and additional runs of the code produced intervals of (-49.6, -2.8), (-48.3, -2.5), and (-50.9, -1.1) so the differences between the parametric and nonparametric approaches was not just due to an unusual bootstrap distribution. It is not entirely clear why the two intervals differ but there are slightly more results in the left tail of Figure \@ref(fig:Figure2-25) than in the right tail and this shifts the 95% confidence slightly away from 0 as compared to the parametric approach. All intervals have the same interpretation, only the methods for calculating the 
@@ -2626,14 +3084,10 @@ area in the middle.
 
 (ref:fig2-26) Plot of $t(28)$ with cut-offs for putting 95% of distribution in the middle that delineate the $t^*$ multiplier to make a 95% confidence interval. 
 
-```{r Figure2-26,fig.cap="(ref:fig2-26)",cache=T,echo=F}
-par(mfrow=c(1,1))
-x <- seq(from=-4,to=4,length.out=200)
-plot(x,dt(x,df=28),col="red",lty=2,lwd=3,type="l",xlab="t-values",ylab="Density",
-     main="Plot of t(28) distribution" )
-abline(v=-2.048407,lwd=3)
-abline(v=2.048407,lwd=3)
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-26-1.png" alt="(ref:fig2-26)" width="480" />
+<p class="caption">(\#fig:Figure2-26)(ref:fig2-26)</p>
+</div>
 
 For 95% confidence intervals, the multiplier is going to be close to 2 and 
 anything else is a likely indication of a mistake. We can use R to get the multipliers for
@@ -2648,16 +3102,26 @@ multiplier for the 2.5^th^ percentile is just $-t^*$. The $t^*$
 multiplier to form the confidence interval is 2.0484 for a 95% confidence interval 
 when the $df=28$ based on the results from ``qt``:
 
-```{r}
+
+```r
 qt(0.975, df=28)
+```
+
+```
+## [1] 2.048407
 ```
 
 Note that the 2.5^th^ percentile is just the negative of this value due 
 to symmetry and the real source of the minus in the minus/plus in the formula 
 for the confidence interval. 
 
-```{r}
+
+```r
 qt(0.025, df=28)
+```
+
+```
+## [1] -2.048407
 ```
 
 We can also re-write the confidence interval formula into a slightly more 
@@ -2684,28 +3148,50 @@ calculate the confidence interval "by hand"^[We will often use this term to
 indicate perform a calculation using the ``favstats`` results -- not that you need to go back to 
 the data set and calculate the means and standard deviations yourself.] using R. 
 
-```{r}
+
+```r
 favstats(Distance ~ Condition, data = dsample)
+```
+
+```
+##   Condition min    Q1 median    Q3 max     mean       sd  n missing
+## 1    casual  72 112.5    143 154.5 208 135.8000 39.36133 15       0
+## 2   commute  60  88.5    113 123.0 168 109.8667 28.41244 15       0
 ```
 
 Start with typing the following command to calculate $s_p$ and store it in a 
 variable named ``sp``:
 
-```{r}
+
+```r
 sp <- sqrt(((15-1)*(39.36133^2)+(15-1)*(28.4124^2))/(15+15-2))
 sp
 ```
 
+```
+## [1] 34.32622
+```
+
 Then calculate the confidence interval that ``confint`` provided using:
 
-```{r}
+
+```r
 109.8667-135.8 + c(-1,1)*qt(0.975, df=28)*sp*sqrt(1/15+1/15)
+```
+
+```
+## [1] -51.6083698  -0.2582302
 ```
 
 Or using the information from the model summary:
 
-```{r}
+
+```r
 -25.933 + c(-1,1)*qt(0.975, df=28)*12.534
+```
+
+```
+## [1] -51.6077351  -0.2582649
 ```
 
 
@@ -2715,23 +3201,43 @@ lower and then upper bounds of the confidence interval. If desired, we can also
 use just the last portion of the calculation to find the margin of error,
 which is 25.675 here. 
 
-```{r}
+
+```r
 qt(0.975, df=28)*sp*sqrt(1/15+1/15)
+```
+
+```
+## [1] 25.67507
 ```
 
 \indent For the entire $n=1,636$ data set for these two groups, the results are obtained using the following code. The estimated difference in the means is -3 cm (*commute* minus *casual*). The $t$-based 95% confidence interval is from -5.89 to -0.11. 
 
 
-```{r}
+
+```r
 lm_all <- lm(Distance~Condition, data=ddsub)
 confint(lm_all) #Parametric 95% CI
 ```
 
+```
+##                       2.5 %      97.5 %
+## (Intercept)      115.520697 119.7013823
+## Conditioncommute  -5.891248  -0.1149621
+```
+
 The bootstrap 95% confidence interval is from -5.82 to -0.076. With this large data set, the differences between parametric and permutation approaches decrease and they essentially equivalent here. The bootstrap distribution (not displayed) for the differences in the sample means is relatively symmetric and centered around the estimated difference of -3 cm. So using all the observations we would be 95% confident that the true mean difference in overtake distances (*commute* - *casual*) is between -5.89 and -0.11 cm, providing additional information about the estimated difference in the sample means of -3 cm.
 
-```{r cache=T}
-Tobs <- coef(lm_all)[2]; Tobs
 
+```r
+Tobs <- coef(lm_all)[2]; Tobs
+```
+
+```
+## Conditioncommute 
+##        -3.003105
+```
+
+```r
 B <- 1000
 set.seed(1234)
 Tstar <- matrix(NA, nrow=B)
@@ -2743,8 +3249,14 @@ for (b in (1:B)){
 
 <!-- \newpage -->
 
-```{r}
+
+```r
 qdata(Tstar, c(0.025, 0.975))
+```
+
+```
+##        2.5%       97.5% 
+## -5.81626474 -0.07606663
 ```
 
 ## Bootstrap confidence intervals for difference in GPAs {#section2-10}
@@ -2754,56 +3266,135 @@ This time we start with the parametric 95% confidence interval "by hand" in R
 and then use ``lm`` to verify our result. The ``favstats`` output provides 
 us with the required information to calculate the confidence interval, with the estimated difference in the sample mean GPAs of $3.338-3.0886 = 0.2494$:
 
-```{r}
+
+```r
 favstats(GPA~Sex, data=s217)
+```
+
+```
+##   Sex  min  Q1 median   Q3 max     mean        sd  n missing
+## 1   F 2.50 3.1  3.400 3.70   4 3.338378 0.4074549 37       0
+## 2   M 1.96 2.8  3.175 3.46   4 3.088571 0.4151789 42       0
 ```
 
 The $df$ are $37+42-2 = 77$. Using the SDs from the two groups and their sample 
 sizes, we can calculate $s_p$:
 
-```{r}
+
+```r
 sp <- sqrt(((37-1)*(0.4075^2)+(42-1)*(0.41518^2))/(37+42-2))
 sp
 ```
 
+```
+## [1] 0.4116072
+```
+
 The margin of error is:
 
-```{r}
+
+```r
 qt(0.975, df=77)*sp*sqrt(1/37+1/42)
+```
+
+```
+## [1] 0.1847982
 ```
 
 
 
 All together, the 95% confidence interval is:
 
-```{r}
+
+```r
 3.338-3.0886+c(-1,1)*qt(0.975, df=77)*sp*sqrt(1/37+1/42)
+```
+
+```
+## [1] 0.0646018 0.4341982
 ```
 
 So we are 95% confident that the difference in the true mean GPAs between 
 females and males (females minus males) is between 0.065 and 0.434 GPA points. 
 We get a similar result from ``confint`` on ``lm``, except that ``lm`` switched the direction of the comparison from what was done "by hand" above, with the estimated mean difference of -0.25 GPA points (male - female) and similarly switched CI:
 
-```{r}
+
+```r
 lm_GPA <- lm(GPA~Sex, data=s217)
 summary(lm_GPA)
 ```
 
+```
+## 
+## Call:
+## lm(formula = GPA ~ Sex, data = s217)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.12857 -0.28857  0.06162  0.36162  0.91143 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)
+## (Intercept)  3.33838    0.06766  49.337  < 2e-16
+## SexM        -0.24981    0.09280  -2.692  0.00871
+## 
+## Residual standard error: 0.4116 on 77 degrees of freedom
+## Multiple R-squared:  0.08601,	Adjusted R-squared:  0.07414 
+## F-statistic: 7.246 on 1 and 77 DF,  p-value: 0.008713
+```
+
 \newpage
 
-```{r}
+
+```r
 confint(lm_GPA)
+```
+
+```
+##                  2.5 %      97.5 %
+## (Intercept)  3.2036416  3.47311517
+## SexM        -0.4345955 -0.06501838
 ```
 
 Note that we can easily switch to 90% or 99% confidence intervals by simply 
 changing the percentile in ``qt`` or changing the ``level`` option in the
 ``confint`` function. 
 
-```{r}
+
+```r
 qt(0.95, df=77) #For 90% confidence and 77 df
+```
+
+```
+## [1] 1.664885
+```
+
+```r
 qt(0.995, df=77) #For 99% confidence and 77 df
+```
+
+```
+## [1] 2.641198
+```
+
+```r
 confint(lm_GPA, level=0.9) #90% confidence interval
+```
+
+```
+##                    5 %        95 %
+## (Intercept)  3.2257252  3.45103159
+## SexM        -0.4043084 -0.09530553
+```
+
+```r
 confint(lm_GPA, level=0.99) #99% confidence interval
+```
+
+```
+##                  0.5 %       99.5 %
+## (Intercept)  3.1596636  3.517093108
+## SexM        -0.4949103 -0.004703598
 ```
 
 \indent As a review of some basic ideas with confidence intervals make sure 
@@ -2824,13 +3415,20 @@ in this situation whether we are considering the parametric or bootstrap methods
 confidence interval using the bootstrap distribution in 
 Figure \@ref(fig:Figure2-27). 
 
-```{r}
+
+```r
 Tobs <- coef(lm_GPA)[2]; Tobs
+```
+
+```
+##       SexM 
+## -0.2498069
 ```
 
 \newpage
 
-```{r}
+
+```r
 B <- 1000
 set.seed(1234)
 Tstar <- matrix(NA, nrow=B)
@@ -2843,6 +3441,11 @@ quantiles <- qdata(Tstar, c(0.05, 0.95))
 quantiles
 ```
 
+```
+##          5%         95% 
+## -0.39290566 -0.09622185
+```
+
 The output tells us that the 90% confidence interval is from -0.393 to -0.096 GPA
 points. The bootstrap distribution with the observed difference in the sample 
 means and these cut-offs is displayed in Figure \@ref(fig:Figure2-27) using 
@@ -2850,17 +3453,13 @@ this code:
 
 (ref:fig2-27) Histogram and density curve of bootstrap distribution of difference in sample mean GPAs (male minus female) with observed difference (solid vertical line) and quantiles that delineate the 90% confidence intervals (dashed vertical lines). 
 
-```{r Figure2-27,fig.cap="(ref:fig2-27)",echo=F,fig.width=10,fig.height=5,cache=F}
-par(mfrow=c(1,2))
-hist(Tstar,labels=T,ylim=c(0,250))
-abline(v=Tobs,col="red",lwd=2)
-abline(v=quantiles,col="blue",lwd=3,lty=2)
-plot(density(Tstar),main="Density curve of Tstar")
-abline(v=Tobs,col="red",lwd=2)
-abline(v=quantiles,col="blue",lwd=3,lty=2)
-```
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-27-1.png" alt="(ref:fig2-27)" width="960" />
+<p class="caption">(\#fig:Figure2-27)(ref:fig2-27)</p>
+</div>
 
-```{r eval=F}
+
+```r
 par(mfrow=c(1,2))
 hist(Tstar,labels=T)
 abline(v=Tobs,col="red",lwd=2)
@@ -2937,38 +3536,38 @@ The main components of R code used in this chapter follow with components to
 modify in lighter and/or ALL CAPS text, remembering that any R packages mentioned 
 need to be installed and loaded for this code to have a chance of working:
 
-* **summary(`r colFmt("DATASETNAME","red")`)**
+* **summary(<font color='red'>DATASETNAME</font>)**
 
     * Provides numerical summaries of all variables in the data set. 
     \index{\texttt{summary()}|textbf}
 
-* **summary(lm(`r colFmt("Y","red")` ~ `r colFmt("X","red")`, 
-data=`r colFmt("DATASETNAME","red")`))**
+* **summary(lm(<font color='red'>Y</font> ~ <font color='red'>X</font>, 
+data=<font color='red'>DATASETNAME</font>))**
 
     * Provides estimate, SE, test statistic, and p-value for difference in second row of coefficient table. \index{\texttt{summary(lm())}|textbf}
 
-* **confint(lm(`r colFmt("Y","red")` ~ `r colFmt("X","red")`, 
-data=`r colFmt("DATASETNAME","red")`), level=0.95)**
+* **confint(lm(<font color='red'>Y</font> ~ <font color='red'>X</font>, 
+data=<font color='red'>DATASETNAME</font>), level=0.95)**
 
     * Provides 95% 
     confidence interval for difference in second row of output. \index{\texttt{confint(lm())}|textbf}
 
     
-* **2``*``pt(abs(`r colFmt("Tobs","red")`), df=`r colFmt("DF","red")`, lower.tail=F)**
+* **2``*``pt(abs(<font color='red'>Tobs</font>), df=<font color='red'>DF</font>, lower.tail=F)**
 
     * Finds the two-sided test p-value for an observed 2-sample t-test 
     statistic of ``Tobs``. \index{\texttt{pt()}|textbf}
 
-* **hist(`r colFmt("DATASETNAME\\$Y","red")`)**
+* **hist(<font color='red'>DATASETNAME\$Y</font>)**
 
     * Makes a histogram of a variable named ``Y`` from the data set of 
     interest. 
     
-* **boxplot(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`)**
+* **boxplot(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>)**
 
     * Makes a boxplot of a variable named Y for groups in X from the data set. 
     
-* **pirateplot(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`, inf.method="ci", inf.disp="line")**
+* **pirateplot(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>, inf.method="ci", inf.disp="line")**
 
     * Requires the ``yarrr`` package is loaded. 
     
@@ -2976,22 +3575,22 @@ data=`r colFmt("DATASETNAME","red")`), level=0.95)**
     
     * Add `theme=2` if the confidence intervals extend outside the density curves and you can't see how far they extend.
     
-* **mean(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`); sd(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`)** 
+* **mean(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>); sd(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>)** 
 
     * This usage of ``mean`` and ``sd`` requires the ``mosaic`` package.
 
     * Provides the mean and sd of responses of Y for each group described in X. 
     
 
-* **favstats(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`)** 
+* **favstats(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>)** 
 
     * Provides numerical summaries of Y by groups described in X. 
 
-* **Tobs ``<-`` coef(lm(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`))[2]; Tobs  
+* **Tobs ``<-`` coef(lm(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>))[2]; Tobs  
     B ``<-`` 1000  
     Tstar ``<-`` matrix(NA, nrow=B)  
     for (b in (1:B)){  
-      lmP ``<-`` lm(`r colFmt("Y","red")`~shuffle(`r colFmt("X","red")`), data=`r colFmt("DATASETNAME","red")`)  
+      lmP ``<-`` lm(<font color='red'>Y</font>~shuffle(<font color='red'>X</font>), data=<font color='red'>DATASETNAME</font>)  
       Tstar[b] ``<-`` coef(lmP)[2]  
     }**
 
@@ -2999,7 +3598,7 @@ data=`r colFmt("DATASETNAME","red")`), level=0.95)**
     statistic using the ``shuffle`` function and keep track of the results in 
     ``Tstar`` 
     
-* **pdata(Tstar, abs(`r colFmt("Tobs","red")`), lower.tail=F)[[1]]**
+* **pdata(Tstar, abs(<font color='red'>Tobs</font>), lower.tail=F)[[1]]**
 
     * Finds the proportion of the permuted test statistics in Tstar that are 
     less than -|Tobs| or greater than |Tobs|, useful for finding the two-sided 
@@ -3007,11 +3606,11 @@ data=`r colFmt("DATASETNAME","red")`), level=0.95)**
 
 <!-- \newpage -->
 
-* **Tobs ``<-`` coef(lm(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`))[2]; Tobs  
+* **Tobs ``<-`` coef(lm(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>))[2]; Tobs  
     B ``<-`` 1000  
     Tstar ``<-`` matrix(NA, nrow=B)  
     for (b in (1:B)){  
-      lmP ``<-`` lm(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=resample(`r colFmt("DATASETNAME","red")`))  
+      lmP ``<-`` lm(<font color='red'>Y</font>~<font color='red'>X</font>, data=resample(<font color='red'>DATASETNAME</font>))  
       Tstar[b] ``<-`` coef(lmP)[2]  
     }**
 

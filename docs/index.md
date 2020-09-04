@@ -14,9 +14,7 @@ header-includes:
 - \usepackage{color}
 ---
 
-```{r echo=F}
-library(knitr)
-```
+
 
 # Welcome {-}
  
@@ -79,15 +77,5 @@ textbook, without which this effort would not have been possible. The "original"
 textbook can be found here: 
 [_Introductory Statistics with Randomization and Simulation_](https://scholarworks.montana.edu/xmlui/bitstream/handle/1/2999/Greenwood-Book-v2.2.pdf?sequence=3&isAllowed=y)
 
-```{r include=FALSE}
-knitr::write_bib(c(
-  .packages(), "readr", "knitr", "tibble","mosaic","heplots","spuRs",
-  "mosaicData", "effects", "car", "carData", "multcomp", "faraway", "Sleuth3", "vcd",
-  "poLCA","survey","psych","alr3","corrplot","tigerstats","manipulate",
-  "MASS","MuMIn","coneproj","openintro","smdata","viridis","nlme","ggplot2", "yarrr",
-  "pander","gplots","ggthemes", "remotes", "RColorBrewer"),
-  'packages.bib', width = 60)
-knitr::opts_chunk$set(fig.height=5,fig.width=8,
-                 fig.pos='T')
-```
+
 

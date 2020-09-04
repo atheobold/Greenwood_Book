@@ -11,12 +11,12 @@ bookdown::gitbook:
         position: fixed
     download: ["pdf"]
     sharing: no
-bookdown::pdf_book:
-  includes:
-    in_header: preamble.tex
-    before_body: frontmatterCode.tex
-    after_body: appendix.tex
-  latex_engine: pdflatex
-  citation_package: natbib
-  keep_tex: yes
-bookdown::epub_book: default
+# bookdown::pdf_book:
+#   includes:
+#     in_header: preamble.tex
+#     before_body: frontmatterCode.tex
+#     after_body: appendix.tex
+#   latex_engine: pdflatex
+#   citation_package: natbib
+#   keep_tex: yes
+# bookdown::epub_book: default

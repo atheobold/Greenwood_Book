@@ -16,6 +16,7 @@ header-includes:
 
 ```{r echo=F}
 library(knitr)
+library(emo)
 ```
 
 # Welcome {-}
@@ -37,8 +38,9 @@ Investigations at Montana State University, and has been modified to accompany
 the curriculum for STAT 313: Applied Regression and Experimental Design, at 
 Cal Poly. 
 
-<!-- The syllabus and other course information can be found -->
-<!-- on the [course webpage](https://math.montana.edu/courses/s216/index.html). Detailed learning outcomes for the course can be found [here](https://github.com/MTstateIntroStats/IntroStatTextbook/blob/master/learning_outcomes.md). -->
+The syllabus, learning objectives, and other course information can be found
+on the [course webpage](https://github.com/atheobold/stat-313). Detailed
+learning outcomes for the course can be found [here](https://github.com/atheobold/stat-313/blob/master/Fall%202020%20Details/Syllabus/learning_outcomes.md).
 
 1. **Introduction to R and RStudio.**
 2. **Re-Introduction to Statistics.** Data visualization and summarization for
@@ -62,16 +64,17 @@ relationship between many variables, with an introduction to model selection.
 
 ## Statistical computing {-}
 
-STAT 216 and this textbook use [`R`](https://www.r-project.org/) and [RStudio](https://rstudio.com/products/rstudio/) for statistical computing. In particular, we use
-the [`tidyverse`](https://www.tidyverse.org/) collection of packages designed for doing data science.
-STAT 216 also has its own `R` package called [`catstats`](https://github.com/greenwood-stat/catstats), which contains all of the functions
-for running simulation-based inference in this course.
+STAT 313 and this textbook use [`R`](https://www.r-project.org/) and [RStudio](https://rstudio.com/products/rstudio/) for statistical computing. In
+particular, we use the [`tidyverse`](https://www.tidyverse.org/) collection of
+packages designed for doing data science. 
 
 ### Getting RStudio {-}
 
 Students have four options for accessing this free software:
 
-1. Download to your own laptop. (Note R and RStudio will not run on iPad, notebooks, or Chromebooks. If you have one of these devices, see the cloud-based option below.)
+1. Download to your own laptop. (Note R and RStudio will not run on iPad,
+notebooks, or Chromebooks. If you have one of these devices, see the cloud-based
+options below.)
 
 * Download and install [R](https://cloud.r-project.org/).
 * Download and install [RStudio Desktop](https://rstudio.com/products/rstudio/).
@@ -81,20 +84,23 @@ Students have four options for accessing this free software:
 to use RStudio through a web browser. It is free for use, but it does limit you
 to a certain number of project hours per month.
 
-3. Use RStudio through a Cal Ploy [virtual machine](https://studentlabs.montana.edu/remotelabs/howto.html).
-<!-- Insert link to VM here -->
-
-View this [tutorial video on installing R and RStudio]() if you would
-like additional installation instructions.
-<!-- UPDATE LINK TO VIDEO TUTORIAL -->
+3. If you are unable to install `R` and RStudio on your computer, you can use
+Cal Poly's
+[Virtual Computer Labs](https://tech.calpoly.edu/virtual-computer-labs-appstream).
+RStudio is available in the "Computational" labs. You will need to use a
+two-factor log-in (Cal Poly + Duo Mobile), which will then take you to a list of 
+applications. When you select RStudio, the page will load for 2-4 minutes 
+(`r emo::ji("sad")`). Once you are in, you can work in RStudio the same way 
+you would on your laptop, *except* everything you make during a session 
+__cannot be accessed later__. 
 
 
 ## Acknowledgements {-}
 
-This resource is largely a derivative of the Intermediate Statistics with R
+This resource is largely a derivative of the _Intermediate Statistics with `R`_
 textbook, without which this effort would not have been possible. The "original" 
 textbook can be found here: 
-[_Introductory Statistics with Randomization and Simulation_](https://scholarworks.montana.edu/xmlui/bitstream/handle/1/2999/Greenwood-Book-v2.2.pdf?sequence=3&isAllowed=y)
+[_Intermediate Statistics with R_](https://scholarworks.montana.edu/xmlui/bitstream/handle/1/2999/Greenwood-Book-v2.2.pdf?sequence=3&isAllowed=y)
 
 ```{r include=FALSE}
 knitr::write_bib(c(

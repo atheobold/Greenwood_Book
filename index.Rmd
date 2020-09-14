@@ -35,8 +35,8 @@ learn interesting things about the world.
 
 This textbook accompanies the curriculum for STAT 217: Intermediate Statistical 
 Investigations at Montana State University, and has been modified to accompany
-the curriculum for STAT 313: Applied Regression and Experimental Design, at 
-Cal Poly. 
+the curriculum for STAT 313: Applied Experimental Design and Regression Models,
+at Cal Poly -- San Luis Obispo. 
 
 The syllabus, learning objectives, and other course information can be found
 on the [course webpage](https://github.com/atheobold/stat-313). Detailed

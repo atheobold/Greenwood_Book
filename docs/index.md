@@ -32,8 +32,8 @@ learn interesting things about the world.
 
 This textbook accompanies the curriculum for STAT 217: Intermediate Statistical 
 Investigations at Montana State University, and has been modified to accompany
-the curriculum for STAT 313: Applied Regression and Experimental Design, at 
-Cal Poly. 
+the curriculum for STAT 313: Applied Experimental Design and Regression Models,
+at Cal Poly -- San Luis Obispo. 
 
 The syllabus, learning objectives, and other course information can be found
 on the [course webpage](https://github.com/atheobold/stat-313). Detailed
@@ -87,7 +87,7 @@ Cal Poly's
 RStudio is available in the "Computational" labs. You will need to use a
 two-factor log-in (Cal Poly + Duo Mobile), which will then take you to a list of 
 applications. When you select RStudio, the page will load for 2-4 minutes 
-(😭). Once you are in, you can work in RStudio the same way 
+(🙍). Once you are in, you can work in RStudio the same way 
 you would on your laptop, *except* everything you make during a session 
 __cannot be accessed later__. 
 

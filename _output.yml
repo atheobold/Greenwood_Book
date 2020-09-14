@@ -1,5 +1,5 @@
 bookdown::gitbook:
-  css: [css/oistyle.css, css/toc.css, css/font-awesome.min.css]
+  css: [css/oistyle.css]
   config:
     toc:
       before: |

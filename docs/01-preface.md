@@ -5,15 +5,25 @@ output:
 ---
 \mainmatter
 
-# Introduction to R and RStudio {#chapter1}
+# Introduction to `R` and RStudio {#chapter1}
 
 
 
 
+
+::: {.chapterintro}
+Scientists seek to answer questions using rigorous methods and careful
+observations. These observations – collected from the likes of field notes,
+surveys, and experiments – form the backbone of a statistical investigation and
+are called data. Statistics is the study of how best to collect, analyze, and
+draw conclusions from data, and in this first chapter, we focus on both the
+properties of data and on the collection of data. 
+- _Introduction to Modern Statistics_, Mine Çetinkaya-Rundel & Jo Hardin
+:::
 
 This book is designed primarily for use in a second semester 
 statistics course although it can also be
-useful for researchers needing a quick review or ideas for using R for the
+useful for researchers needing a quick review or ideas for using `R` for the
 methods discussed in the text. As a text primarily designed for a second
 statistics course, it presumes that you have had an introductory statistics
 course. There are now many different varieties of introductory statistics from
@@ -25,38 +35,47 @@ your introductory statistics out of a particular text, just that you have had a
 course that tried to introduce you to the basic terminology and ideas
 underpinning statistical reasoning. We would expect that you are familiar with
 the logic (or sometimes illogic) of hypothesis testing including null and
-alternative hypothesis \index{hypothesis testing} and confidence interval \index{confidence interval} construction and interpretation
-and that you have seen all of this in a couple of basic situations. We start
-with a review of these ideas in one and two group situations with a
-quantitative response, something that you should have seen before. 
+alternative hypothesis \index{hypothesis testing} and confidence interval
+\index{confidence interval} construction and interpretation,
+and that you have seen all of these concepts in a couple of basic situations. We
+start with a review of these ideas in one and two group situations with a
+quantitative response, something that you likely have seen before. 
 
-\indent This text covers a wide array of statistical tools that are connected through situation, methods used, 
-or both. As we explore various techniques, look for the identifying characteristics
-of each method -- what type of research questions are being addressed
-(relationships or group differences, for example) and what type of variables
-are being analyzed (quantitative or categorical). ***Quantitative variables*** \index{quantitative} are made up of numerical measurements that have meaningful units attached to
-them. ***Categorical variables*** \index{categorical} take on values that are categories or labels.
-Additionally, you will need to carefully identify the ***response*** \index{response} and ***explanatory*** \index{explanatory} variables, where
-the study and variable characteristics should suggest which variables should be used
-as the explanatory variables that may explain
+\indent This text covers a wide array of statistical tools that are connected
+through situation, methods used, or both. As we explore various techniques, look
+for the identifying characteristics of each method -- what type of research
+questions are being addressed (relationships or group differences, for example)
+and what type of variables are being analyzed (quantitative or categorical). 
+***Quantitative variables*** \index{quantitative} are made up of numerical
+measurements that have meaningful units attached to them, so that averages of 
+measurements make sense. For example, averages of student heights is meaningful, 
+but averages of letter grades are not. ***Categorical variables*** 
+\index{categorical} take on values that are categories or labels, such as 
+letter grades. Additionally, you will need to carefully identify the 
+***response*** \index{response} and ***explanatory*** \index{explanatory}
+variables, where the study and variable characteristics should suggest which
+variables should be used as the explanatory variables which may explain
 variation in the response variable. Because this is an intermediate statistics
 course, we will start to handle more complex situations (many explanatory
-variables) and will provide some tools for graphical explorations to complement
-the more sophisticated statistical models required to handle these situations. 
+variables), while also providing tools for data wrangling and data visualization, 
+complementing the more sophisticated statistical models required to handle these
+situations. 
 
 ## Overview of methods {#section1-1}
 
-After you are introduced to basic statistical ideas, a wide array of statistical methods become
-available. The methods explored here focus on assessing (estimating and testing
-for) relationships between variables, sometimes when controlling for or
-modifying relationships based on levels of another variable -- which is where statistics gets interesting and really useful. Early statistical analyses (approximately 100 years ago) were
-focused on describing a single variable. Your introductory statistics course
-should have heavily explored methods for summarizing and doing inference in
+After you are introduced to basic statistical ideas, a wide array of statistical
+methods become available. The methods explored here focus on assessing 
+(estimating and testing for) relationships between variables, sometimes when
+controlling for or modifying relationships based on levels of another variable
+-- which is where statistics gets interesting and really useful. Early
+statistical analyses (approximately 100 years ago) were focused on describing a
+single variable. Your introductory statistics course should have explored
+methods for summarizing, visualizing, and doing inference in
 situations with one group or where you were comparing results for two groups of
 observations. Now, we get to consider more complicated situations -- culminating
 in a set of tools for working with multiple explanatory variables, some of
 which might be categorical and related to having different groups of subjects
-that are being compared. Throughout the methods we will cover, it will be
+that are being compared. Throughout all of the methods we will cover, it will be
 important to retain a focus on how the appropriate statistical analysis depends
 on the research question and data collection process as well as the types of
 variables measured. 
@@ -65,22 +84,22 @@ variables measured.
 view of the methods we will consider, 
 there are basically two scenarios -- one when the response is quantitative and
 one when the response is categorical. Examples of quantitative responses we will
-see later involve *passing distance of cars for a bicycle rider* (in centimeters (cm)) and *body fat* (percentage). 
-Examples of categorical variables include *improvement* (none, some, or marked) 
-in a clinical trial related to arthritis symptoms or whether a student has turned in copied work 
-(never, done this on an exam or paper, or both). There are going to be some more
-nuanced aspects to all these analyses as the complexity of both sides of Figure
-\@ref(fig:Figure1-1) suggest, but note that near the bottom, each tree converges 
-on a single
-procedure, using a ***linear model*** \index{model!linear} for a quantitative response variable or 
-using a ***Chi-square test*** for a categorical response. \index{Chi-Square Test} After selecting the
-appropriate procedure and completing the necessary technical steps to get results
-for a
+see later involve *passing distance of cars for a bicycle rider* (in centimeters)
+and *body fat* (percentage). Examples of categorical variables include 
+*improvement* (none, some, or marked) in a clinical trial related to arthritis
+symptoms or whether a student has turned in copied work (never, done this on an
+exam or paper, or both). There are going to be some more nuanced aspects to all
+these analyses as the complexity of both sides of Figure \@ref(fig:Figure1-1)
+suggest, but note that near the bottom, each tree converges on a single
+procedure, using a ***linear model*** \index{model!linear} for a quantitative
+response variable or using a ***Chi-square test*** for a categorical response.
+\index{Chi-Square Test} After selecting the appropriate procedure and completing
+the necessary technical steps to get results for a
 given data set, the final step involves assessing the scope of inference 
 \index{scope of inference} and
 types of conclusions that are appropriate based on the design of the study. 
 
-(ref:fig1-1) Flow chart of methods.
+(ref:fig1-1) Flow chart of data analysis procedures.
 
 <div class="figure" style="text-align: center">
 <img src="01/images/image002.png" alt="(ref:fig1-1)" width="100%" />
@@ -92,188 +111,231 @@ response variables (the
 left side of Figure \@ref(fig:Figure1-1) is covered in Chapters \@ref(chapter2),
 \@ref(chapter3), \@ref(chapter4), \@ref(chapter6), \@ref(chapter7), and
 \@ref(chapter8)), stepping
-over to handle the situation with a categorical response variable in Chapter \@ref(chapter5) (right side
-of Figure \@ref(fig:Figure1-1)).
+over to handle the situation with a categorical response variable in Chapter
+\@ref(chapter5) (right side of Figure \@ref(fig:Figure1-1)).
 Chapter \@ref(chapter9) contains case studies
 illustrating all the methods discussed previously, providing a final opportunity
 to explore additional examples that illustrate how finding a
 path through Figure \@ref(fig:Figure1-1) can lead to the appropriate analysis. 
 
-
-\indent The first topics (Chapters \@ref(chapter1), and \@ref(chapter2)) will be more
-familiar as we start with single and two group situations
+\indent The first topics (Chapters \@ref(chapter1), and \@ref(chapter2)) will be
+more familiar as we start with single and two group situations
 with a quantitative response. In your previous statistics course, you should
 have seen methods for estimating and quantifying uncertainty for the mean of a
-single group and for differences in the means of two groups. Once we have briefly
-reviewed these methods and introduced the statistical software that we will use
-throughout the course, we will consider the first new statistical material in
-Chapter \@ref(chapter3). It involves the situation with a quantitative response
-variable where
+single group and for differences in the means of two groups. Once we have
+briefly reviewed these methods and introduced the statistical software that we
+will use throughout the course, we will consider the first new statistical
+material in Chapter \@ref(chapter3). It involves the situation with a
+quantitative response variable where
 there are more than 2 groups to compare -- this is what we call the ***One-Way
 ANOVA*** situation. It generalizes the 2-independent sample hypothesis
 test to handle situations where more than 2 groups are being studied. When we
-learn this method, we will begin discussing model assumptions \index{assumptions} and methods for
-assessing those assumptions that will be present in every analysis involving a
+learn this method, we will begin discussing model assumptions 
+\index{assumptions} and methods for assessing those assumptions that will be
+present in every analysis involving a
 quantitative response. The ***Two-Way ANOVA*** (Chapter \@ref(chapter3))
 considers situations with two categorical explanatory variables and a 
 quantitative response. To make
 this somewhat concrete, suppose we are interested in assessing differences in, 
-say, the *yield* of wheat from a field based on the amount of *fertilizer* applied
-(none, low, or high) and *variety* of wheat (two types). Here, *yield* is a quantitative response variable that might be measured in bushels per acre and
-there are two categorical explanatory variables, *fertilizer*, with three levels, and *variety*, with two levels. In this material, we introduce the idea of an
-***interaction*** between the two explanatory variables: \index{interaction!Two-Way ANOVA} the relationship between one categorical
+say, the *yield* of wheat from a field based on the amount of *fertilizer*
+applied (none, low, or high) and *variety* of wheat (two types). Here, *yield*
+is a quantitative response variable that might be measured in bushels per acre
+and there are two categorical explanatory variables, *fertilizer*, with three
+levels, and *variety*, with two levels. In this material, we introduce the idea
+of an ***interaction*** between the two explanatory variables: 
+\index{interaction!Two-Way ANOVA} the relationship between one categorical
 variable and the mean of the response changes depending on the levels of the
 other categorical variable. For example, extra fertilizer might enhance the
-growth of one variety and hinder the growth of another so we would say that *fertilizer* has different impacts based on the level of *variety*. Given this interaction may or may not actually be present, we will consider two versions of the model in Two-Way ANOVAs, \index{model!Two-Way ANOVA} what are called the ***additive*** \index{model!additive} (no interaction) and the ***interaction*** \index{model!interaction} models. 
+growth of one variety and hinder the growth of another so we would say that 
+*fertilizer* has different impacts based on the level of *variety*. Given this
+interaction may or may not actually be present, we will consider two versions
+of the model in Two-Way ANOVAs, \index{model!Two-Way ANOVA} what are called the
+***additive*** \index{model!additive} (no interaction) and the ***interaction*** \index{model!interaction} models. 
 
-\indent Following the methods for two categorical variables and a quantitative response, we explore a method for
-analyzing data where the response is categorical, called the ***Chi-square test***
-in Chapter \@ref(chapter5). This most closely matches the One-Way ANOVA
+\indent Following the methods for two categorical variables and a quantitative 
+response, we explore a method for analyzing data where the response is
+categorical, called the ***Chi-square test***
+in Chapter \@ref(chapter5). This most closely matches the one-way ANOVA
 situation with a single categorical explanatory variable, except now the
 response variable is categorical. For example, we will assess whether taking a
-drug (vs taking a ***placebo***^[A ***placebo*** is a treatment level designed to
-mimic the potentially efficacious level(s) but that can have no actual effect. The
-***placebo effect*** is the effect that thinking that an effective treatment was
-received has on subjects. There are other related issues in performing experiments
-like the ***Hawthorne*** or ***observer effect*** where subjects modify behavior
-because they are being observed.])
-has an ***effect***^[We will reserve the term "effect" for situations where we could
-potentially infer causal impacts on the response of the explanatory variable which
-occurs in situations where the levels of the explanatory variable are randomly
-assigned to the subjects.] on the type of improvement the subjects demonstrate. There
-are two different scenarios
+drug (vs taking a ***placebo***^[A ***placebo*** is a treatment level designed
+to mimic the potentially efficacious level(s) but that can have no actual
+effect. The ***placebo effect*** is the effect that thinking that an effective
+treatment was received has on subjects. There are other related issues in
+performing experiments like the ***Hawthorne*** or ***observer effect*** where
+subjects modify behavior because they are being observed.])
+has an ***effect***^[We will reserve the term "effect" for situations where we
+could potentially infer causal impacts on the response of the explanatory
+variable which occurs in situations where the levels of the explanatory variable
+are randomly assigned to the subjects.] on the type of improvement the subjects
+demonstrate. There are two different scenarios
 for study design that impact the analysis technique and hypotheses tested in
 Chapter \@ref(chapter5). If the explanatory variable reflects the group that
 subjects were
 obtained from, either through randomization of the treatment level to the
 subjects or by taking samples from separate populations, this is called a
-***Chi-square Homogeneity Test***. \index{Chi-Square Test!Homogeneity Test} It is also possible to obtain a single sample
+***Chi-square Homogeneity Test***. \index{Chi-Square Test!Homogeneity Test} It
+is also possible to obtain a single sample
 from a population and then obtain information on the levels of the explanatory
 variable for each
-subject. We will analyze these results using what is called a ***Chi-square Independence Test***.
-\index{Chi-Square Test!Independence Test} They both use the same test statistic but we use slightly different graphics and are testing different hypotheses in these two related
-situations. Figure \@ref(fig:Figure1-1) also shows that if we had a quantitative explanatory
-variable and a categorical response that we would need to "bin" or create
+subject. We will analyze these results using what is called a 
+***Chi-square Independence Test***. \index{Chi-Square Test!Independence Test}
+They both use the same test statistic but we will use slightly different
+graphics and are testing different hypotheses in these two related situations.
+Figure \@ref(fig:Figure1-1) also shows that if we had a quantitative explanatory
+variable and a categorical response that we could "bin" or create
 categories of responses from the quantitative variable to use the Chi-square
-testing methods. 
+testing methods. Alternatively, if we did not create categories from the 
+quantitative explanatory variable, we would use a **Logistic Regression**. 
+This type of data model will be covered in additional statistics classes, but 
+has connections to the linear models discussed in this textbook.
 
-\indent If the predictor and response variables are both quantitative, we start with
-scatterplots, correlation, 
+\indent If the predictor and response variables are both quantitative, we start
+with scatterplots, correlation, 
 and ***simple linear regression*** models (Chapters \@ref(chapter6) and
-\@ref(chapter7)) -- things you should have seen, at least to some degree,
-previously. The biggest differences here will be
+\@ref(chapter7)) -- things you should have seen, at least to some degree, in 
+your introductory statistics course. The biggest differences here will be
 the depth of exploration of diagnostics and inferences for this model and
-discussions of transformations of variables. \index{transformation} If there is more than one
-explanatory variable, then we say that we are doing ***multiple linear regression***
-(Chapter \@ref(chapter8)) -- the "multiple" part of the name reflects that there will
-be more
-than one explanatory variable. We use the same name if we have a mix of
-categorical and quantitative predictor variables but there are some new issues
-in setting up the models and interpreting the coefficients that we need to
-consider. In the situation with one categorical predictor and one quantitative
-predictor, we revisit the idea of an interaction. 
-\index{interaction!MLR} 
-It allows us to consider situations
+discussions of transformations of variables included in the model. 
+\index{transformation} If there is more than one explanatory variable, then we
+say that we are performing a ***multiple linear regression***
+(Chapter \@ref(chapter8)) -- where the "multiple" part of the procedure reflects
+the inclusion of more than one explanatory variable in the model. We use the
+same procedure if we have a mix of categorical and quantitative predictor
+variables but there are some new issues in setting up the models and
+interpreting the coefficients that we will need to consider. In the situation
+with one categorical predictor and one quantitative predictor, we will revisit
+the idea of an interaction. \index{interaction!MLR} 
+An interaction allows us to consider situations
 where the estimated relationship between a quantitative predictor and the 
 mean response
-varies among different levels of the categorical variable. In Chapter \@ref(chapter9), connections among all the methods used for quantitative responses are discussed, showing that they are all just linear models \index{model!linear}. We also show how the methods discussed can be applied to a suite of new problems with a set of case studies and how that relates to further extensions of the methods.
+varies across different levels of the categorical variable. In Chapter 
+\@ref(chapter9), connections among all the methods used for quantitative
+responses are discussed, showing that they all have the same foundation,
+beacause they are all linear models \index{model!linear}. We also show how the
+methods discussed can be applied to a suite of new problems using a set of case
+studies and how that relates to further extensions of the methods.
 
-\indent By the end of Chapter \@ref(chapter9) you should be able to identify, perform 
-using the statistical software R [@R-base], and interpret the results from each of these methods. There
-is a lot to learn, but many of the tools for using R and interpreting results
-of the analyses accumulate and repeat throughout the textbook. If you work hard to
-understand the initial methods, it will help you when the methods get more
+\indent By the end of Chapter \@ref(chapter9) you should be able to identify,
+perform using the statistical software `R` [@R-base], and interpret the results 
+from each of these methods. There
+is a lot to learn, but many of the tools for using `R` and interpreting results
+of the analyses accumulate and repeat throughout the textbook. If you work hard
+to understand the initial methods, it will help you when the methods get more
 complicated. You will likely feel like you are just starting to learn how to
-use R at the end of the semester and for learning a new language that is
-actually an accomplishment. We will just be taking you on the first steps of a
+use `R` at the end of the semester and for learning a programming language that
+is a big accomplishment! We will be taking you on the first steps of a
 potentially long journey and it is up to you to decide how much further you
-want to go with learning the software. 
+want to go with learning the software for wrangling, visualizing, and modeling 
+data. 
 
-\indent All the methods you will learn require you to carefully consider how the data were collected, how that
+\indent All the methods you will learn require you to carefully consider how the
+data were collected, how that
 pertains to the population of interest, and how that impacts the inferences
 that can be made. The ***scope of inference*** from the bottom of Figure
-\@ref(fig:Figure1-1) is our shorthand term for remembering to think about two aspects
-of the study -- ***random assignment*** and ***random sampling***.
+\@ref(fig:Figure1-1) is our shorthand term for remembering to think about two
+aspects of the study -- ***random assignment*** and ***random sampling***.
 \index{random assignment} \index{random sampling} In a given
 situation, you need to use the description of the study to decide if the
-explanatory variable was randomly assigned to study units (this allows for ***causal inferences*** \index{causal effect} if differences are detected) or not (so no causal statements
-are possible). As an example, think about two studies, one where students are
+explanatory variable was randomly assigned to the study units (this allows for
+***causal inferences*** \index{causal effect} if differences are detected) or 
+not (where no causal statements are possible). As an example, think about two
+studies, one where students are
 randomly assigned to either get tutoring with their statistics course or not
 and another where the students are asked at the end of the semester whether
 they sought out tutoring or not. Suppose we compare the final grades in the
 course for the two groups (tutoring/not) and find a big difference. In the
-first study with random assignment, \index{random assignment} we can say the tutoring caused the
+first study where students were randomly assigned to receive tutoring,
+\index{random assignment} we can say the tutoring *caused* the
 differences we observed. In the second, we could only say that the tutoring was
-associated with differences but because students self-selected the group they
+*associated* with differences. Because students self-selected the group they
 ended up in, we can't say that the tutoring caused the differences. The other
-aspect of scope of inference concerns random sampling: \index{random sampling} If the data were obtained
-using a random sampling mechanism, then our inferences can be safely extended
-to the population that the sample was taken from. However, if we have a non-random
+aspect of scope of inference concerns random sampling: \index{random sampling} 
+If the data were obtained using a random sampling mechanism, then our inferences
+can be safely extended to the population that the sample was taken from.
+However, if we have a non-random
 sample, our inference can only apply to the sample collected. In the previous
 example, the difference would be studying a random sample of students from the
 population of, say, Introductory Statistics students at a university versus
 studying a sample of students that volunteered for the research project, maybe
 for extra credit in the class. We could still randomly assign them to
 tutoring/not but the non-random sample would only lead to conclusions about
-those students that volunteered. The most powerful scope of inference is when there
-are randomly assigned levels of explanatory variables with a random sample from
-a population -- conclusions would be about causal impacts that would happen in the
-population. 
+those students that volunteered. The most powerful scope of inference is when
+random assignment is used in a random sample from a population -- conclusions
+would be about causal impacts that we would expect to happen in the population. 
 
-\indent By the end of this material, you should have some basic R skills and abilities to create basic ANOVA and
-regression models, as well as to handle Chi-square testing situations. 
-Together, this should prepare you for future statistics courses or for other
+\indent By the end of this material, you should have some `R` skills to wrangle 
+data in preparation for analysis, create professional quality data
+visualizations, and the ability to fit ANOVA and regression models to data, as
+well as to handle Chi-square testing situations. Together, this should prepare
+you for future statistics courses or for other
 situations where you are expected to be able to identify an appropriate
-analysis, do the calculations and required graphics using the data set, and then effectively
-communicate interpretations for the methods discussed here. 
+analysis, do the calculations and required graphics using the data set, and then
+effectively communicate interpretations for the methods discussed here. 
 
-## Getting started in R {#section1-2}
+## Getting started in `R` {#section1-2}
 
-You will need to download the statistical software package called R and an enhanced interface to R called
-RStudio [@RStudio]. They are open source and free to download and use
-(and will always be that way). This means that the skills you learn now can
-follow you the rest of your life. R is becoming the primary language of
-statistics and is being adopted across academia, government, and businesses to
-help manage and learn from the growing volume of data being obtained. Hopefully
-you will get a sense of some of the power of R in this book. 
+You will need to download the statistical software package called `R` and an
+enhanced interface to R called RStudio [@RStudio]. These are both open source
+and free to download and use (and will always be that way). This means that the
+skills you learn now can follow you the rest of your life. `R` is becoming the
+primary language of statistics and is being adopted across academia, government,
+and businesses to help manage and learn from the growing volume of data being
+obtained. Hopefully you will get a sense of some of the power of `R` in this
+book. 
 
-\indent The next pages will walk you through the process of getting the software downloaded and provide you with
+\indent The next pages will walk you through the process of getting the software
+downloaded and provide you with
 an initial experience using RStudio to do things that should look familiar
-even though the interface will be a new experience. Do not expect to master R
+even though the interface will be a new experience. Do not expect to master `R`
 quickly -- it takes years (sorry!) even if you know the statistical methods
-being used. We will try to keep all your interactions with R code in a similar
-code format and that should help you in learning how to use R as we move
-through various methods. We will also often provide you with example code. Everyone
-that learns R starts with copying other people's code and then making changes
-for specific applications -- so expect to go back to examples from the text and focus
-on learning how to modify that code to work for your particular data set. Only
-really experienced R users "know" functions without having to check other
-resources. After we complete this basic introduction, Chapter \@ref(chapter2) begins doing
-more sophisticated things with R, allowing us to compare quantitative responses
-from two groups, make some graphical displays, do hypothesis testing \index{hypothesis testing} and create
+being used. We will try to keep all your interactions with `R` code in a similar
+code format and that should help you in learning how to use `R` as we move
+through various methods. We will also often provide you with example code.
+Everyone that learns `R` starts with copying other people's code and then making
+changes for specific applications -- so expect to go back to examples from the
+text and focus on learning how to modify that code to work for your particular
+data set. Only really experienced `R` users "know" functions without having to
+check other resources. After we complete this basic introduction, Chapter 
+\@ref(chapter2) starts the exploration of more sophisticated tasks in `R`,
+allowing us to compare quantitative responses from two groups, make some
+graphical displays, do hypothesis testing \index{hypothesis testing} and create
 confidence intervals in a couple of different ways. 
 
-\indent You will have two^[There is a cloud version of R Studio available at https://rstudio.cloud/ that is free for limited usage. We recommend following the steps to be able to work locally but try this option if you have issues with the installation process and need to complete an assignment or two until you get the installation sorted out.] downloading activities to complete before you can do anything
-more than read this book^[I created this interactive website (https://greenwood-stat.shinyapps.io/InstallDemo/) that contains discussions and activities related to installing and using R and RStudio.]. First, you need to download R. It is the engine that will do all the computing
+\indent You will have two^[There is a cloud version of R Studio available at 
+https://rstudio.cloud/ that is free for limited usage. We recommend following 
+the steps to be able to work locally but try this option if you have issues with 
+the installation process and need to complete an assignment or two until you get
+the installation sorted out.] downloading activities to complete before
+you can do anything more than read this book^[I created this interactive website (https://greenwood-stat.shinyapps.io/InstallDemo/) that contains discussions and
+activities related to installing and using R and RStudio.]. First, you need to
+download `R`. It is the engine that will do all the computing
 for us, but you will only interact with it once. Go to http://cran.rstudio.com
 and click on the "**Download R for...**" button that
-corresponds to your operating system. On the next page, click on "**base**" and then it will take you 
-to a screen to download the most current version of R that is compiled for your
-operating system, something like "**Download R 4.0.2 for Windows**". Click on that link and then open 
-the file you downloaded. You will need to select your preferred language (choose English so your  instructor can help you), then hit "**Next**"
-until it starts to unpack and install the program (all the base settings will be fine). After you hit "**Finish**" you will not do anything further with R directly. 
+corresponds to your operating system. On the next page, click on "**base**" and
+then it will take you to a screen to download the most current version of `R` 
+that is compiled for your operating system, something like 
+"**Download R 4.0.2 for Windows**". Click on that link and then open the file
+you downloaded. You will need to select your preferred language (choose English
+so your instructor can help you), then hit "**Next**" until it starts to unpack
+and install the program (all the base settings will be fine). After you hit
+"**Finish**" you will not do anything further with `R` directly. 
 
-\indent Second, you need to download RStudio. It is an enhanced interface that will make interacting with
-R less frustrating and allow you to directly create reports that include the code and output. To download RStudio, go near the bottom of  https://www.rstudio.com/products/rstudio/download/ and select the correct version under
-"Installers for Supported Platforms" for your operating system. Download and
-then install RStudio using the installer. From this point forward, you should only
-open RStudio; it provides your interface with R. Note that both R and RStudio
-are updated frequently (up to four times a year) and if you downloaded either
-more than a few months previously, you should download the up-to-date versions, 
-especially if something you are trying to do is not working. Sometimes code
-will not work in older versions of R and sometimes old code won't work in new
-versions of R.^[The need to keep the code up-to-date as R continues to evolve is one reason that this book is locally published and that this is the 7^th^ time it has been revised in
-seven years...]
+\indent Second, you need to download RStudio. RStudio is an integrated 
+development enviroment (IDE), which means it provides an enhanced interface that
+will make interacting with `R` less frustrating and allow you to directly create
+reports that include the code and output. To download RStudio, go near the
+bottom of <https://www.rstudio.com/products/rstudio/download/> and select the
+correct version under "Installers for Supported Platforms" for your operating
+system. Download and then install RStudio using the installer. From this point
+forward, you should only open RStudio; it provides your interface with `R`. 
+Note that both `R` and RStudio are updated frequently (up to four times a year) 
+and if you downloaded either more than a few months previously, you should
+download the up-to-date versions, especially if something you are trying to do
+is not working. Sometimes code will not work in older versions of `R` and
+sometimes old code won't work in new versions of `R`.^[The need to keep the code
+up-to-date as `R` continues to evolve is one reason that this book is locally
+published and that this is the 7^th^ time it has been revised in seven years...]
  
 (ref:fig1-2) Initial RStudio layout.
 
@@ -282,110 +344,258 @@ seven years...]
 <p class="caption">(\#fig:Figure1-2)(ref:fig1-2)</p>
 </div>
 
-\indent To get started, we can complete some basic tasks in R using the RStudio
-interface. When you open RStudio, you will see a screen like Figure 
+\indent To get started, we can complete some basic tasks in `R` using the
+RStudio interface. When you open RStudio, you will see a screen like Figure 
 \@ref(fig:Figure1-2). The
 added annotation in this and the following screen-grabs is there to help you
 get initially oriented to the software interface. R is command-line software --
-meaning that in some way or another you have to create code and get it evaluated, either by entering and execute
-it at a command prompt or by using the RStudio interface to run the code that is stored in a file. RStudio makes the management and
-execution of that code more efficient than the basic version of R. In RStudio, 
-the lower left panel is called the "console" window and is where you can type R
-code directly into R or where you will see the code you run and (most
-importantly!) where the results of your executed commands will show up. The
-most basic interaction with R is available once you get the cursor active at
-the command prompt ">" by clicking in that panel (look for a blinking
-vertical line). The upper left panel is for writing, saving, and running your R
-code either in .R script files or .Rmd (markdown) files, discussed below. Once you have code available in this window, the "Run" button will
-execute the code for the line that your cursor is on or for any text that you
-have highlighted with your mouse. The "data management" or environment panel is
-in the upper right, providing information on what data sets have been loaded. 
-It also contains the "Import Dataset" button that provides the easiest way for
-you to read a data set into R so you can analyze it. The lower right panel
-contains information on the "Packages" (additional code we will download and
-install to add functionality to R) that are available and is where you will see
-plots that you make and requests for "Help" on specific functions. 
+meaning that in some way or another you have to create code and get it
+evaluated, either by entering to be executed (run) in the command prompt (in the 
+bottom left-hand panel) or by creating a document to store the code, and 
+executing the code from that file. RStudio makes the management and
+execution of that code more efficient than the basic version of `R`. 
 
+In RStudio, the lower left panel is called the "console" window, and is where
+all of the action happens. Every time you launch RStudio, it will have the same
+text at the top of the console telling you the version of R that you're running. 
+Below that information is the *prompt*, indicated by the `>` symbol.
+As its name suggests, this prompt is really a request: a request for a command.
+Initially, interacting with `R` is all about typing commands and interpreting
+the output. These commands and their syntax have evolved over decades
+(literally) and now provide what many users feel is a fairly natural way to
+access data and organize, describe, and invoke statistical computations.
 
-\indent As a first interaction with R we can use it as a calculator. To do this, click near the command prompt
-(``>``) in the lower left "console" panel, type 3+4, and then hit enter. It
-should look like this:
+The upper left panel is for writing, saving, and running your `R` code either in
+`R` script (.R) files or R Markdown (.Rmd) files. The panel in the upper right
+contains your *environment* as well as a history of the commands that you've
+previously entered. It also contains the "Import Dataset" button that provides
+the easiest way for you to read a data set into `R` so you can analyze it.
+
+The panel in the lower right contains tabs for browse the *files* in your
+project folder, access *help* files for `R` functions, install and manage
+`R` *packages*, and inspecting visualizations. By default, all data
+visualizations you make will appear directly below the code you used to create
+them. If you would rather your plots appear in the *plots* tab, you will need to
+change your global options.
+
+<!-- RUNNING CODE -->
+<!-- Once you have code available -->
+<!-- in this window, the "Run" button will execute the code for the line that your  -->
+<!-- cursor is on or for any text that you -->
+<!-- have highlighted with your mouse. -->
+
+<!-- Going forward you should refrain from typing your code directly in the console, as this makes it very difficult to remember and reproduce the output you want to reference. -->
+<!-- Potentially the most important feature of R Markdown files is that they allow for us to nest our `R` code within a written report. -->
+<!-- In an R Markdown file, `R` code appears in a gray box, which we call "code chunks." The R Markdown file knows that the gray box contains `R` code because it begins with three tick marks (\`\`\`), followed by two curly braces that contain a lowercase letter r ({r}). -->
+<!-- You've already seen this above! -->
+
+<!-- Instead of typing our `R` code into the console, we encourage you to type any code you produce (final correct answer, or anything you're just trying out) in the `R` code chunk associated with each problem. -->
+<!-- You can execute the `R` code you type in these code chunks similar to how you typed code into the console and pressed enter/return. -->
+<!-- Within the code chunk there are two ways to execute a line of `R` code: (1) place your cursor on the line on code and press `Ctrl-Enter` or `Cmd-Enter` at the same time, or (2) place your cursor on the line and press the "Run" button in the upper right hand corner of the R Markdown file. -->
+<!-- Alternatively, if you wanted to run all of the `R` code in a given code chunk, you can click on the "Play" button in the upper right hand corner of the code chunk (green sideways triangle). -->
+
+<!-- If at any point you need to start over and run all of the code chunks before a specific code chunk, you click on the "Fastforward" button in the upper right hand corner of that code chunk (gray upside down triangle with a bar below). -->
+<!-- This will run every code chunk that occurred *before* that code chunk, but *will not* execute the `R` code included in that code chunk. -->
+
+### Using `R` as a Big Calculator
+
+\indent As a first interaction with `R` we can use it as a very powerful
+calculator. To do this, click near the command prompt (`>`) in the lower left
+"console" panel, type `3+4`, and then hit enter. It should look like this:
+
 
 ```r
-> 3+4
-[1] 7
+3+4
 ```
 
-You can do more interesting calculations, like finding the mean of the 
-numbers -3, 5, 7, and 8 by adding them up and dividing by 4:
+```
+## [1] 7
+```
+
+You can do more interesting calculations, like finding the mean of a set of 
+numbers, say -3, 5, 7, and 8, You can do this by adding the numbers up and 
+dividing by 4: 
+
 
 ```r
-> (-3+5+7+8)/4
-[1] 4.25
+(-3+5+7+8)/4
 ```
 
-Note that the parentheses help R to figure out your desired order of operations. If you drop that grouping, you get
-a very different (and wrong!) result:
+```
+## [1] 4.25
+```
+
+Note that the parentheses help `R` to figure out your desired order of
+operations. If you drop that grouping, you get a very different (and wrong!) 
+result:
+
 
 ```r
-> -3+5+7+8/4
-[1] 11
+-3+5+7+8/4
 ```
 
-We could estimate the standard deviation similarly using the formula you might remember from introductory
-statistics, but that will only work in very limited situations. To use the real
-power of R this semester, we need to work with data sets that store the
-observations for our subjects in *variables*.
-Basically, we need to store observations in named vectors (one dimensional 
-arrays) that contain a list of the observations. To create a vector containing
-the four numbers and assign it to a variable named *variable1*, we need to 
-create a vector using the concatenate function 
-``c`` which means "combine the items" that follow, if they are inside 
-parentheses and have commas separating the values, 
-as follows:
+```
+## [1] 11
+```
+
+We could the use a formula from introductory statistics to estimate the standard
+deviation of this set of numbers, but that gets us away from the reason we are 
+using `R`. To use the real power of `R` in this course, we need to work with
+data sets that store observations for our subjects as *variables*, where 
+each subject's information is stored in a different row. 
+
+In `R`, data frames are the _de facto_ data structure, and what
+we use for data processing, statistics, and plotting. A data frame is the
+representation of data in the format of a table where the columns are vectors
+that all have the same length. Data frames are analogous to the more familiar
+spreadsheet in programs such as Excel, with one key difference. Because columns
+are vectors, each column must contain a single type of data (e.g., characters,
+integers, factors). For example, here is a figure depicting a data frame
+comprising a numeric, a character, and a logical vector.
+
+(ref:fig1-3) Dataframe structure.
+
+<div class="figure" style="text-align: center">
+<img src="01/images/data-frame.svg" alt="(ref:fig1-2)" width="100%" />
+<p class="caption">(\#fig:Figure1-3)(ref:fig1-2)</p>
+</div>
+
+What we will call "tidy" dataframes, are dictated by three main rules:
+
+1. Each variable has its own column
+2. Each observation has its own row
+3. Each value must have its own cell
+
+A data frame can be created by hand, but most commonly they are generated by the
+functions `read_csv()` or `read_table()`. But, we are going to start by working 
+with the building blocks of datafames: vectors. 
+
+Every column of a dataframe contains a vector of observations. To create a
+vector we use the concatenate function (`c()`), which binds together a list of 
+numbers to form a vector. For example, running the code `c(1, 2, 3, 4)`, would 
+output a vector of four numbers, 1, 2, 3, and 4. 
+
 
 ```r
-> c(-3, 5, 7, 8)
-[1] -3 5 7 8
+c(-3, 5, 7, 8)
 ```
 
-To get this vector stored in a variable called *variable1* we need to 
-use the assignment operator, ``<-`` (read as "is defined to contain") that assigns 
-the information on the right into the variable that you are creating on 
-the left. 
+```
+## [1] -3  5  7  8
+```
+
+If we would like store this vector into a variable, so we can refer back to it,
+we will need to assign it to a variable, like *`variable1`*. To get a vector
+stored in a variable we need to use the assignment operator,
+`<-` (read as "is defined to contain") that assigns the object on the right
+into the variable that you are creating on the left. 
+
 
 ```r
-> variable1 <- c(-3, 5, 7, 8)
+variable1 <- c(-3, 5, 7, 8)
 ```
 
-In R, the assignment operator, ``<-``, is created by typing a 
-"less than" symbol ``<`` followed by a "minus" sign (``-``)
-**without a space between them**. If you
-ever want to see what numbers are residing in an object in R, just type 
-its name and hit *enter*. You can see how that variable contains the same 
-information that was initially generated by 
-``c(-3, 5, 7, 8)`` but is easier to access since we just need the text 
-for the variable name representing that vector. 
+In `R`, the assignment operator, ``<-``, is created by typing a "less than"
+symbol ``<`` followed by a "minus" sign (``-``) 
+**without a space between them**. If you ever want to see what numbers are
+residing in an object in `R`, just type its name in the console and hit *enter*.
+You can see how that variable contains the same information that was initially
+generated by ``c(-3, 5, 7, 8)`` but is easier to access since we just need the
+text for the variable name representing that vector. 
+
 
 ```r
-> variable1
-[1] -3 5 7 8
+variable1
 ```
 
-With the data stored in a variable, we can use functions such as
-``mean`` and
-``sd`` to find the mean and standard deviation of the observations contained in
-``variable1``: 
+```
+## [1] -3  5  7  8
+```
+
+::: {.protip}
+`R` is case sensitive! `Variable1` is not the same as `variable1`!
+:::
+
+Once we have created a variable, we can start to explore functions we can use 
+to summarize the contents of the vector. 
+
+### Functions and their arguments
+
+Functions can be thought of as "prepackaged scripts" that automate more
+complicated sets of commands. Many functions are what we call "base" functions, 
+meaning they come automatically installed when you download `R`. Other 
+functions are made available by importing `R` *packages*, which we will explore 
+later. 
+
+A function usually gets one or more inputs called *arguments*, and often (but
+not always) return a *value* called an *output*. A typical example would be the
+function `mean()`. The input (the argument) must be numbers, and the return
+value (in fact, the output) is the mean of those numbers. Executing a function
+('running it') is called *calling* the function. An example of a function call
+is:
+
+
+
+Here, the `variable1` is the input to the `mean()` function, which the 
+`mean()` function uses to calculates the mean of that input, and then returns
+the value which is then assigned to the object `mean_var1`. This function is
+very simple, because it only has one required argument.
+
 \index{mean}
-\index{standard deviation}
+
+The return 'value' of a function need not be numerical (like that of `mean()`),
+and it also does not need to be a single item: it can be a set of things, or
+even a dataset. We'll see that when we read data files into `R`.
+
+Arguments can be anything, not only numbers or filenames, but also other
+objects. Exactly what each argument means differs per function, and must be
+looked up in the documentation (see below). Some functions take arguments which
+may either be specified by the user, or, if left out, take on a *default* value:
+these are called *options*. Options are typically used to alter the way the
+function operates, such as whether it ignores 'bad values', or what symbol to
+use in a plot.  However, if you want something specific, you can specify a value
+of your choice which will be used instead of the default.
+
+### Missing Values 
+
+Let's explore some of the options in the `mean()` function. Say your vector 
+contained missing values, or `NA` values. If we use the `mean()` function as 
+we did before, we will no longer obtain a numeric output if our vector contains 
+`NA` values. 
+
 
 ```r
-> mean(variable1)
-[1] 4.25
-> sd(variable1)
-[1] 4.99166
+a <- c(-3, 5, 7, 8, NA)
+mean(a)
 ```
 
+```
+## [1] NA
+```
+
+When doing operations on numbers, most functions will return `NA` if the data
+you are working with include missing values. This feature makes it harder to
+overlook missing data.
+
+
+If we want to know if we can omit the missing values when finding the mean, we 
+can look at the help file for the `mean()` function using `?round`.
+
+
+
+We see that the `mean()` function has an `na.rm` argument that allows for us to 
+omit `NA`s when calculating the mean. Notice, this argument defaults to a value 
+of `FALSE`, meaning the option is turned off. If you want to turn the option on, 
+you need to tell `R` that you wish for `na.rm` to be `TRUE`. 
+
+
+```r
+mean(a, na.rm = TRUE)
+```
+
+```
+## [1] 4.25
+```
 
 \indent When dealing with real data, we will often have information about more than one
 variable. We could enter all observations by hand for each variable but this is
@@ -488,9 +698,6 @@ labeled D:, it would be:
 
 
 
-```r
-treadmill <- read_csv("01/data/treadmill.csv")
-```
 
 What is put inside the 
 ``" "`` will depend on the location and name of your saved .csv file. A 
@@ -498,11 +705,11 @@ version of the data set in what looks like a
 spreadsheet will appear in the upper left window due to the second line of 
 code (``View(treadmill``)). 
 
-(ref:fig1-3) RStudio with initial data set loaded.
+(ref:fig1-4) RStudio with initial data set loaded.
 
 <div class="figure" style="text-align: center">
 <img src="01/images/fig1-3.png" alt="(ref:fig1-3)" width="100%" />
-<p class="caption">(\#fig:Figure1-3)(ref:fig1-3)</p>
+<p class="caption">(\#fig:Figure1-4)(ref:fig1-3)</p>
 </div>
 
 \indent Just directly typing (or using) a line of code like this is actually the 
@@ -585,11 +792,11 @@ section in the upper left panel, saved in
 a file called "Ch1.R", with the results of highlighting and executing the first
 section of code using the "Run" button. 
 
-(ref:fig1-4) RStudio with highlighted code run.
+(ref:fig1-5) RStudio with highlighted code run.
 
 <div class="figure" style="text-align: center">
 <img src="01/images/fig1-4.png" alt="(ref:fig1-4)" width="100%" />
-<p class="caption">(\#fig:Figure1-4)(ref:fig1-4)</p>
+<p class="caption">(\#fig:Figure1-5)(ref:fig1-4)</p>
 </div>
 
 ## Basic summary statistics, histograms, and boxplots using R {#section1-3}
@@ -669,24 +876,24 @@ is more spread out than the right tail) \index{skew} and ***outliers*** \index{o
 Histograms display connected bars with counts of observations defining
 the height of bars based on a set of bins of values of the quantitative variable. 
 We will apply the ``hist`` function to the ``RunTime`` variable, which produces 
-Figure \@ref(fig:Figure1-5). 
+Figure \@ref(fig:Figure1-6). 
 
 ```r
 > hist(treadmill$RunTime)
 ```
 
-(ref:fig1-5) Histogram of Run Times (minutes) of $n$=31 subjects in Treadmill study, bar heights are counts.
+(ref:fig1-6) Histogram of Run Times (minutes) of $n$=31 subjects in Treadmill study, bar heights are counts.
 
 <div class="figure">
-<img src="01-preface_files/figure-html/Figure1-5-1.png" alt="(ref:fig1-5)" width="480" />
-<p class="caption">(\#fig:Figure1-5)(ref:fig1-5)</p>
+<img src="01-preface_files/figure-html/Figure1-6-1.png" alt="(ref:fig1-5)" width="480" />
+<p class="caption">(\#fig:Figure1-6)(ref:fig1-5)</p>
 </div>
 
-(ref:fig1-6) RStudio while in the process of copying the histogram.
+(ref:fig1-7) RStudio while in the process of copying the histogram.
 
 <div class="figure" style="text-align: center">
 <img src="01/images/Fig1-6.png" alt="(ref:fig1-6)" width="100%" />
-<p class="caption">(\#fig:Figure1-6)(ref:fig1-6)</p>
+<p class="caption">(\#fig:Figure1-7)(ref:fig1-6)</p>
 </div>
 
 \indent You can save this plot by clicking on the **Export** button found above 
@@ -709,11 +916,11 @@ into each bar. Specifically, we can turn the ``labels`` option "on" by making it
 > hist(treadmill$RunTime, labels=T)
 ```
 
-(ref:fig1-7) Histogram of Run Times with counts in bars labeled.
+(ref:fig1-8) Histogram of Run Times with counts in bars labeled.
 
 <div class="figure">
-<img src="01-preface_files/figure-html/Figure1-7-1.png" alt="(ref:fig1-7)" width="480" />
-<p class="caption">(\#fig:Figure1-7)(ref:fig1-7)</p>
+<img src="01-preface_files/figure-html/Figure1-8-1.png" alt="(ref:fig1-7)" width="480" />
+<p class="caption">(\#fig:Figure1-8)(ref:fig1-7)</p>
 </div>
 
 
@@ -763,11 +970,11 @@ distance from the median to the maximum. Additionally, the distance from Q1 to
 the median is smaller than the distance from the median to Q3. It is modest skew,
 but worth noting. 
 
-(ref:fig1-8) Boxplot of 1.5 mile Run Times.
+(ref:fig1-9) Boxplot of 1.5 mile Run Times.
 
 <div class="figure">
-<img src="01-preface_files/figure-html/Figure1-8-1.png" alt="(ref:fig1-8)" width="480" />
-<p class="caption">(\#fig:Figure1-8)(ref:fig1-8)</p>
+<img src="01-preface_files/figure-html/Figure1-9-1.png" alt="(ref:fig1-8)" width="480" />
+<p class="caption">(\#fig:Figure1-9)(ref:fig1-8)</p>
 </div>
 
 ```r
@@ -782,11 +989,11 @@ Figure \@ref(fig:Figure1-9). When we add text to plots, it will be contained wit
 be assigned into the options ``ylab`` (for y-axis) or ``main``
 (for the title) here to put it into those locations. 
 
-(ref:fig1-9) Boxplot of Run Times with improved labels.
+(ref:fig1-10) Boxplot of Run Times with improved labels.
 
 <div class="figure">
-<img src="01-preface_files/figure-html/Figure1-9-1.png" alt="(ref:fig1-9)" width="480" />
-<p class="caption">(\#fig:Figure1-9)(ref:fig1-9)</p>
+<img src="01-preface_files/figure-html/Figure1-10-1.png" alt="(ref:fig1-9)" width="480" />
+<p class="caption">(\#fig:Figure1-10)(ref:fig1-9)</p>
 </div>
 
 ```r
@@ -817,10 +1024,6 @@ longer see the command prompt (">") with the code. The output will be
 flagged by having two "##"'s before it. For example, the summary statistics for
 the *RunTime* variable from ``favstats`` function would look like when run using R Markdown:
 
-
-```r
-favstats(treadmill$RunTime)
-```
 
 ```
 ##   min   Q1 median    Q3   max     mean       sd  n missing
@@ -943,7 +1146,7 @@ to make sure you understood the
 material. You can download the code to answer questions 1.1 to 1.5 below at 
 http://www.math.montana.edu/courses/s217/documents/Ch1.Rmd. But to practice 
 learning R, it would be most useful for you to try to accomplish the requested tasks 
-yourself and then only refer to the provided R code if/when you struggle. 
+yourself and then only refer to the provided `R` code if/when you struggle. 
 These questions provide a great venue to check your learning, often to see the
 methods applied to another data set, and for something to discuss in study groups,
 with your instructor, and at the Math Learning Center. 

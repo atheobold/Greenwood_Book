@@ -149,13 +149,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#section1-1"><i class="fa fa-check"></i><b>1.1</b> Overview of methods</a></li>
 <li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section1-2"><i class="fa fa-check"></i><b>1.2</b> Getting started in <code>R</code></a><ul>
 <li class="chapter" data-level="1.2.1" data-path="chapter1.html"><a href="chapter1.html#using-r-as-a-big-calculator"><i class="fa fa-check"></i><b>1.2.1</b> Using <code>R</code> as a Big Calculator</a></li>
-<li class="chapter" data-level="1.2.2" data-path="chapter1.html"><a href="chapter1.html#functions-and-their-arguments"><i class="fa fa-check"></i><b>1.2.2</b> Functions and their arguments</a></li>
+<li class="chapter" data-level="1.2.2" data-path="chapter1.html"><a href="chapter1.html#functions-and-their-arguments"><i class="fa fa-check"></i><b>1.2.2</b> Functions and Their Arguments</a></li>
 <li class="chapter" data-level="1.2.3" data-path="chapter1.html"><a href="chapter1.html#missing-values"><i class="fa fa-check"></i><b>1.2.3</b> Missing Values</a></li>
+<li class="chapter" data-level="1.2.4" data-path="chapter1.html"><a href="chapter1.html#packages-in-r"><i class="fa fa-check"></i><b>1.2.4</b> Packages in <code>R</code></a></li>
+<li class="chapter" data-level="1.2.5" data-path="chapter1.html"><a href="chapter1.html#r-markdown-documents-for-reproducibilty"><i class="fa fa-check"></i><b>1.2.5</b> R Markdown Documents for Reproducibilty</a></li>
+<li class="chapter" data-level="1.2.6" data-path="chapter1.html"><a href="chapter1.html#importing-data-into-r"><i class="fa fa-check"></i><b>1.2.6</b> Importing Data into <code>R</code></a></li>
+<li class="chapter" data-level="1.2.7" data-path="chapter1.html"><a href="chapter1.html#inspecting-data"><i class="fa fa-check"></i><b>1.2.7</b> Inspecting Data</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section1-3"><i class="fa fa-check"></i><b>1.3</b> Basic summary statistics, histograms, and boxplots using R</a></li>
-<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#section1-4"><i class="fa fa-check"></i><b>1.4</b> Chapter summary</a></li>
-<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#section1-5"><i class="fa fa-check"></i><b>1.5</b> Summary of important R code</a></li>
-<li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#section1-6"><i class="fa fa-check"></i><b>1.6</b> Practice problems</a></li>
+<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section1-3"><i class="fa fa-check"></i><b>1.3</b> Introduction to Data Summarization</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="chapter1.html"><a href="chapter1.html#the-pipe-operator"><i class="fa fa-check"></i><b>1.3.1</b> The pipe operator</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#section1-4"><i class="fa fa-check"></i><b>1.4</b> Introduction to Data Visualization in <code>R</code></a></li>
+<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#section1-4"><i class="fa fa-check"></i><b>1.5</b> Chapter summary</a></li>
+<li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#section1-5"><i class="fa fa-check"></i><b>1.6</b> Summary of Important R code</a></li>
+<li class="chapter" data-level="1.7" data-path="chapter1.html"><a href="chapter1.html#section1-6"><i class="fa fa-check"></i><b>1.7</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter2.html"><a href="chapter2.html"><i class="fa fa-check"></i><b>2</b> (R)e-Introduction to statistics</a><ul>
 <li class="chapter" data-level="2.1" data-path="chapter2.html"><a href="chapter2.html#section2-1"><i class="fa fa-check"></i><b>2.1</b> Histograms, boxplots, and density curves</a></li>
@@ -629,7 +636,7 @@ text for the variable name representing that vector.</p>
 to summarize the contents of the vector.</p>
 </div>
 <div id="functions-and-their-arguments" class="section level3">
-<h3><span class="header-section-number">1.2.2</span> Functions and their arguments</h3>
+<h3><span class="header-section-number">1.2.2</span> Functions and Their Arguments</h3>
 <p>Functions can be thought of as “prepackaged scripts” that automate more
 complicated sets of commands. Many functions are what we call “base” functions,
 meaning they come automatically installed when you download <code>R</code>. Other
@@ -678,446 +685,562 @@ of <code>FALSE</code>, meaning the option is turned off. If you want to turn the
 you need to tell <code>R</code> that you wish for <code>na.rm</code> to be <code>TRUE</code>.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter1.html#cb14-1"></a><span class="kw">mean</span>(a, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 4.25</code></pre>
-<p>When dealing with real data, we will often have information about more than one
-variable. We could enter all observations by hand for each variable but this is
-prone to error and onerous for all but the smallest data sets. If you are to
-ever utilize the power of statistics in the evolving data-centered world, data
-management has to be accomplished in a more sophisticated way. While you can
-manage data sets quite effectively in R, it is often easiest to start with your
-data set in something like Microsoft Excel or OpenOffice’s Calc. You want to
-make sure that observations are in the rows and the names of variables are in
-first row of the columns and that there is no “extra stuff” in the spreadsheet. If you have
-missing observations, they should be represented with blank cells. The file should
-be saved as a “.csv” file (stands for comma-separated values although Excel
-calls it “CSV (Comma Delimited)”), which basically strips off some of the junk
-that Excel adds to the necessary information in the file. Excel will tell you that
-this is a bad idea, but it actually creates a more stable archival format and
-one that R can use directly.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
-<p>The following code to read in the data set relies on an R package called
-<code>readr</code> <span class="citation">(Wickham, Hester, and Francois <a href="#ref-R-readr" role="doc-biblioref">2018</a>)</span>. Packages in R provide additional functions and data sets that
-are not available in the initial download of R or RStudio. To get access to the packages,
-first “install” (basically
-download) and then “load” the package. To install an R package, go to the <strong>Packages</strong>
-tab in the lower right panel of
-RStudio. Click on the <strong>Install</strong> button and then type in the name of the package in
-the box (here type in <code>readr</code>).
-
-RStudio will try to auto-complete the package name
-you are typing which should help you make sure you got it typed correctly. If you are working in a .Rmd file, a highlighted message may show up on the top of the file to suggest packages to install that are not present – look for this to help make sure you have the needed packages installed. This will
-be the first of <em>many</em> times that we will mention that R is case sensitive – in
-other words, <code>Readr</code> is different from <code>readr</code> in R syntax and this sort of
-thing applies to everything you do in R. You should only need to install each R
-package once on a given computer. If you ever see a message that R can’t find a
-package, make sure it appears in the list in the <strong>Packages</strong> tab. If it
-doesn’t, repeat the previous steps to install it.</p>
-<table>
-<tbody>
-<tr class="odd">
-<td><strong>Important</strong>: R is case sensitive! <code>Readr</code> is not the same as <code>readr</code>!</td>
-</tr>
-</tbody>
-</table>
-<p>After installing the package, we need to load it to make it active in a given work
-session. Go to the command prompt and type (or copy and paste) <code>library(readr)</code> or <code>require(readr)</code>:
+</div>
+<div id="packages-in-r" class="section level3">
+<h3><span class="header-section-number">1.2.4</span> Packages in <code>R</code></h3>
+<p><code>R</code> is an open-source programming language, meaning that users can contribute
+packages that make our lives easier, and we can use them for free. Packages in
+<code>R</code> provide additional functions and data sets that are not available in the
+initial download of <code>R</code> or RStudio.</p>
+<p>In this textbook we will use the following packages:</p>
+<ul>
+<li>The <strong>tidyverse</strong> “umbrella” package which houses a suite of many different
+<code>R</code> packages: for data wrangling and data visualization</li>
+<li>The <strong>openintro</strong> <code>R</code> package: for data and custom functions with the
+OpenIntro resources</li>
+</ul>
+<p>To install an <code>R</code> package, go to the <strong>Packages</strong> tab in the lower right panel
+of RStudio. Click on the <strong>Install</strong> button and then type in the name of the
+package in the box (here type in tidyverse and openintro).
+ RStudio will try to auto-complete the name
+of the package you are typing which should help you make sure you got it typed
+correctly. If you are working in a .Rmd file, a highlighted message may show up
+on the top of the file to suggest packages to install that are not present –
+look for this to help make sure you have the needed packages installed.</p>
+<p>After pressing enter/return, a stream of text will begin, communicating the
+process <code>R</code> is going through to install the package from the location you
+selected when you installed <code>R</code>. If you were not prompted to select a server for
+downloading packages when you installed <code>R</code>, RStudio may prompt you to select a
+server from which to download; any of them will work.</p>
+<p>You will only need to install each <code>R</code> package once on a given computer. If you
+ever see a message that <code>R</code> can’t find a package, make sure it appears in the
+list in the <strong>Packages</strong> tab. If it doesn’t, repeat the previous steps to
+install it.</p>
+<p>You only need to <em>install</em> packages once, but you need to <em>load</em> them each time
+you relaunch RStudio. We load packages with the <code>library()</code> function.
 </p>
-<pre><code>&gt; library(readr)</code></pre>
-<p>With a data set converted to a CSV file and <code>readr</code> installed and loaded, we need to read the data set into the active workspace.
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="chapter1.html#cb16-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<p>When you load an installed package with <code>library()</code>, you may see a
+warning message about versions of the package and versions of
+<code>R</code> – this is <em>usually</em> something you can ignore. Other warning messages could
+be more ominous for proceeding but before getting too concerned, there are
+couple of basic things to check.
 
-There are two ways to do this, either using the point-and-click GUI in RStudio (click
-the “Import Dataset” button in the upper right “Environment” panel as
-indicated in Figure <a href="chapter1.html#fig:Figure1-2">1.2</a>) or modifying the <code>read_csv</code>
-function to find the file of interest. To practice this, you can
-download an Excel (.xls) file from
-<a href="http://www.math.montana.edu/courses/s217/documents/treadmill.xls" class="uri">http://www.math.montana.edu/courses/s217/documents/treadmill.xls</a>
-that contains observations on 31 males that volunteered for a study on methods
-for measuring fitness <span class="citation">(Westfall and Young <a href="#ref-Westfall1993" role="doc-biblioref">1993</a>)</span>.
-In the spreadsheet, you will find a data set that
-starts and ends with the following information (only results for Subjects 1, 2,
-30, and 31 shown here):</p>
-<table>
-<colgroup>
-<col width="9%" />
-<col width="13%" />
-<col width="17%" />
-<col width="12%" />
-<col width="13%" />
-<col width="10%" />
-<col width="17%" />
-<col width="6%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Sub-
-ject</th>
-<th align="left">Tread-
-MillOx</th>
-<th align="left">TreadMill-
-MaxPulse</th>
-<th>RunTime</th>
-<th>RunPulse</th>
-<th align="left">Rest
-Pulse</th>
-<th align="left">BodyWeight</th>
-<th align="left">Age</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1</td>
-<td align="left">60.05</td>
-<td align="left">186</td>
-<td>8.63</td>
-<td>170</td>
-<td align="left">48</td>
-<td align="left">81.87</td>
-<td align="left">38</td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="left">59.57</td>
-<td align="left">172</td>
-<td>8.17</td>
-<td>166</td>
-<td align="left">40</td>
-<td align="left">68.15</td>
-<td align="left">42</td>
-</tr>
-<tr class="odd">
-<td align="left">…</td>
-<td align="left">…</td>
-<td align="left">…</td>
-<td>…</td>
-<td>…</td>
-<td align="left">…</td>
-<td align="left">…</td>
-<td align="left">…</td>
-</tr>
-<tr class="even">
-<td align="left">30</td>
-<td align="left">39.2</td>
-<td align="left">172</td>
-<td>12.88</td>
-<td>168</td>
-<td align="left">44</td>
-<td align="left">91.63</td>
-<td align="left">54</td>
-</tr>
-<tr class="odd">
-<td align="left">31</td>
-<td align="left">37.39</td>
-<td align="left">192</td>
-<td>14.03</td>
-<td>186</td>
-<td align="left">56</td>
-<td align="left">87.66</td>
-<td align="left">45</td>
-</tr>
-</tbody>
-</table>
-<p>The variables contain information on the subject number (<em>Subject</em>), subjects’
-maximum treadmill oxygen consumption (<em>TreadMillOx</em>, in ml per kg per minute, also called maximum VO2) and
-maximum pulse rate (<em>TreadMillMaxPulse</em>, in beats per minute), time to run 1.5
-miles (<em>Run Time</em>, in minutes), maximum pulse
-during 1.5 mile run (<em>RunPulse</em>, in beats per minute), resting pulse rate
-(<em>RestPulse</em>, beats per minute), Body Weight (<em>BodyWeight</em>, in kg), and <em>Age</em>
-(in years). Open the file in Excel or equivalent software and then save it as
-a .csv file in a location you can find on your computer. Then go to RStudio
-and click on <strong>File</strong>, then <strong>Import Dataset</strong>, then <strong>From Text (readr)…</strong><a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>
-
-Click “<strong>Import</strong>” and find your file. R will store the data set as an object with the same name
-as the .csv file. You could use another name as well, but it is
-often easiest just to keep the data
-set name in R related to the original file name. You should see some text appear
-in the console (lower left panel) like in Figure <a href="chapter1.html#fig:Figure1-3">1.3</a>. The text
-that is created
-will look something like the following – if you had stored the file in a drive
-labeled D:, it would be:</p>
-<p>What is put inside the
-<code>" "</code> will depend on the location and name of your saved .csv file. A
-version of the data set in what looks like a
-spreadsheet will appear in the upper left window due to the second line of
-code (<code>View(treadmill</code>)).</p>
+First, double check that the package is installed (see previous steps). Second,
+check for typographical errors in your code – especially for mis-spellings or
+unintended capitalization. If you are still having issues, try repeating the
+installation process. Then click on the “<strong>Update</strong>” button to check for
+potentially newer versions of packages.</p>
+</div>
+<div id="r-markdown-documents-for-reproducibilty" class="section level3">
+<h3><span class="header-section-number">1.2.5</span> R Markdown Documents for Reproducibilty</h3>
+<p>Statisticians (and other scientists) are starting to use R Markdown and
+similar methods because they provide what is called “reproducible research”
+<span class="citation">(Gandrud <a href="#ref-Gandrud2015" role="doc-biblioref">2015</a>)</span> where all the code and output it produced are available in a
+<strong>single</strong> place. This allows different researchers to run and verify
+results (so they are “reproducible”) or the original researchers to revisit
+their earlier work at a later date and recreate all their results exactly.
+Scientific publications are currently encouraging researchers to work in this
+way and may someday require it. The term <strong><em>reproducible</em></strong> can also be related
+to whether repeated studies get the same result (also called <strong><em>replication</em></strong>)
+– further discussion of these terms and the implications for scientific
+research are discussed in Chapter <a href="chapter2.html#chapter2">2</a>.</p>
+<p>In this course, will be using R Markdown to create reproducible lab reports.
+See the following videos describing why and how:</p>
+<p><a href="https://youtu.be/lNWVQ2oxNho"><strong>Why use R Markdown for Lab Reports?</strong></a> <iframe width="560" height="315" src="https://www.youtube.com/embed/lNWVQ2oxNho" frameborder="0" allowfullscreen></iframe></p>
+<p><a href="https://youtu.be/o0h-eVABe9M"><strong>Using R Markdown for Lab Reports in RStudio</strong></a> <iframe width="560" height="315" src="https://www.youtube.com/embed/o0h-eVABe9M" frameborder="0" allowfullscreen></iframe></p>
+<p>In order to get some practice using R Markdown, create a sample document
+in this format using File -&gt; New File -&gt; R Markdown… Choose a title for your
+file and select the “HTML” option. This will create a new file in the upper left
+window. Save that file to your computer, <strong>in a location where you can find it
+again</strong>. Then you can use the “Knit” button to have RStudio run the code and
+create an HTML document with the results.</p>
+<p>Potentially the most important feature of R Markdown files is that
+they allow for us to nest our <code>R</code> code within a written report. In an R Markdown
+file, <code>R</code> code appears in a gray box, which we call “code chunks.” The R
+Markdown file knows that the gray box contains <code>R</code> code because it begins with
+three tick marks (```), followed by two curly braces that contain a lowercase
+letter r ({r}). You can insert a code chunk using the “Insert” button in the
+upper right-hand corner of the R Markdown document, and selecting the “R”
+option. Then write your code in between the <code>```{r}</code> and <code>```</code> lines
+(it should have grey highlights for those lines and white for the rest of the
+portions of the .Rmd document).</p>
+<p>Once you write some code inside a code chunk, you can execute the <code>R</code> code you
+typed in the code chunk similar to how you typed code into the console and
+pressed enter/return. Within the code chunk
+there are two ways to execute a line of <code>R</code> code: (1) place your cursor on the
+line on code and press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> or <kbd>Cmd</kbd> +
+<kbd>Enter</kbd> at the same time, or (2) place your cursor on the line and
+press the “Run” button in the upper right hand corner of the R Markdown file.</p>
+<p>Alternatively, if you wanted to run all of the <code>R</code> code in a given code chunk,
+you can click on the “Play” button in the upper right hand corner of the code
+chunk (green sideways triangle).</p>
+<p>If at any point you need to start over and run all of the code chunks before a
+specific code chunk, you click on the “Fastforward” button in the upper right
+hand corner of that code chunk (gray upside down triangle with a bar below).
+This will run every code chunk that occurred <em>before</em> that code chunk, but
+<em>will not</em> execute the <code>R</code> code included in that code chunk.</p>
+<p>Keep your write up outside of these code chunks to avoid code errors and
+failures to compile. Once you think your code and writing is done, you can use
+the “Knit” button to try to compile the file. As you are learning, you may find
+this challenging, so start with trying to review the sample document and knit
+each time you get a line of code written so you know when you broke the file.</p>
+<p>After you do this a couple of times, you will find that the challenge of working
+with markdown files is more than matched by the simplicity of the final product
+and, at least to researchers, the reproducibility and documentation of work that
+this method provides.</p>
+<p>Going forward you should refrain from typing your code directly in the console,
+as this makes it very difficult to remember and reproduce the output you want to
+reference. Instead of typing our <code>R</code> code into the console, we encourage you to
+type any code you produce (final correct answer, or anything you’re just trying
+out) in the <code>R</code> code chunk associated with each problem.</p>
+<p>Finally, when you are done with your work and attempt to exit out of
+RStudio, it will ask you to save your workspace. <strong><em>DO NOT DO THIS!</em></strong> It will
+just create a cluttered workspace and could even cause you to get incorrect
+results. In fact, you should go into the Tools -&gt; Global Options and then make
+sure that “Save workspace to .RData on exit” option on the first screen you will
+see is set to <strong><em>Never</em></strong>. If you save your reports as an R Markdown (.Rmd)
+file, you can re-create any results by simply re-running that code or
+re-knitting the file.</p>
+</div>
+<div id="importing-data-into-r" class="section level3">
+<h3><span class="header-section-number">1.2.6</span> Importing Data into <code>R</code></h3>
+<p>When dealing with real data, we will often have information about more
+than one variable. We could enter all observations by hand for each variable but
+this is prone to error and onerous for all but the smallest data sets. If you
+are to ever utilize the power of statistics in the evolving data-centered world,
+data management has to be accomplished in a more sophisticated way. While you can
+manage data sets quite effectively in <code>R</code>, it is often easiest to start with
+your data set in something like Microsoft Excel or OpenOffice’s Calc. You want
+to make sure that observations are in the rows and the names of variables are in
+first row of the columns and that there is no “extra stuff” in the spreadsheet.
+If you have missing observations, they should be represented with blank cells.
+The file should be saved as a “.csv” file (stands for comma-separated values
+although Excel calls it “CSV (Comma Delimited)”), which basically strips off
+some of the junk that Excel adds to the necessary information in the file. Excel
+will tell you that this is a bad idea, but it actually creates a more stable
+archival format and one that <code>R</code> can use directly.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
+<p>In order to visualize and summarize a dataset, we first need to read the
+data into <code>R</code>.  There are two ways to do this, either using
+the point-and-click GUI in RStudio (click the “Import Dataset” button in the
+upper right “Environment” panel as indicated in Figure <a href="chapter1.html#fig:Figure1-2">1.2</a>) or
+modifying the <code>read_csv</code> function to find the file of interest.</p>
+<p>Because reproducibility is a learning objective of this textbook, we will choose
+option 2, modifying the <code>read_csv()</code> function to tell <code>R</code> where to import the
+data from. Interestingly, there are also two ways we can get data into <code>R</code> using
+the <code>read_csv()</code> function.</p>
+<ol style="list-style-type: decimal">
+<li>You can go to the textbook webpage in GitHub, navigate to the <em>book_data</em>
+folder, and then click on the treadmill.csv file. This will bring to the file’s
+location in the textbook repository. If you click on the link that says “Raw,”
+you will be taken to a page that preview the raw file. Highlight the contents by
+pressing <kbd>Command</kbd> + <kbd>A</kbd> (on a Mac) or <kbd>Control</kbd> +
+<kbd>A</kbd> (on a PC). Then save this file to your computer by pressing
+<kbd>Command</kbd> + <kbd>S</kbd> or <kbd>Control</kbd> + <kbd>S</kbd>.
+Navigate to where you want for the data to be stored, and make sure the file
+is saved as <em>treadmill.csv</em>!</li>
+</ol>
+<p>Next, in RStudio modify the code below to reflect the location of the downloaded
+data:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="chapter1.html#cb17-1"></a>treadmill &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;stat 313/week 2/data/treadmill.csv&quot;</span>)<span class="st">`</span><span class="dt"> </span></span></code></pre></div>
+<p></p>
+<p>Here, I’ve saved the treadmill.csv file inside a data folder, which lives inside
+my week 2 folder, which lives inside my stat 313 folder. Notice, my folder
+structure is organized, so that I can easily find the files I am looking for!
+Organizing the files in your computer will save you a lot of headaches!</p>
+<ol start="2" style="list-style-type: decimal">
+<li>You can download the data directly from GitHub inside of RStudio. You would
+follow the same instructions as above, but instead of downloading the data, you
+would copy-and-paste the web address of the data directly into RStudio. This
+would look like:</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="chapter1.html#cb18-1"></a>treadmill &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/atheobold/stat-313/master/book_data/treadmill.csv&quot;</span>)</span></code></pre></div>
+<p>Using either method, you should notice that the location of the file is enclosed
+in <code>" "</code>. The <code>read_csv()</code> funciton takes a file path as an argument. These
+quotation marks indicate to <code>R</code> that the contents between them
+are a name, not an object. For example, running the following code would
+produce an error, because <code>R</code> would believe that the name between the
+parentheses is an object (like <code>variable1</code>), rather than the name of the location
+the data are stored.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="chapter1.html#cb19-1"></a>treadmill &lt;-<span class="st"> </span><span class="kw">read_csv</span>(stat <span class="dv">313</span><span class="op">/</span>week <span class="dv">2</span><span class="op">/</span>data<span class="op">/</span>treadmill.csv) </span></code></pre></div>
+<p>Using either method, <code>R</code> will store the data set as an object with the name
+of the object that you put it into. Here, we named the data object <code>treadmill</code>,
+the same name as the .csv file. You could use another name as well, but it is
+often easiest just to keep the data set name in <code>R</code> related to the original file
+name. When you run this code, you should see some text appear in the console
+(lower left panel) like in Figure <a href="chapter1.html#fig:Figure1-3">1.3</a>. The text that is created
+will look something like the following – if you had imported the data
+direcly from GitHub, it would look something like:</p>
 
 <div class="figure" style="text-align: center"><span id="fig:Figure1-4"></span>
-<img src="01/images/fig1-3.png" alt="Dataframe structure." width="100%" />
+<img src="01/images/alt_fig%201-3.png" alt="Dataframe structure." width="100%" />
 <p class="caption">
 Figure 1.4: Dataframe structure.
 </p>
 </div>
-<p>Just directly typing (or using) a line of code like this is actually the
-other way that we can read in
-files. If you choose to use the text-only interface, then you need to tell R
-where to look in your computer to find the data file. <code>read_csv</code> is a
-function that takes a path as an argument. To use it, specify the path to
-your data file, put quotes around it, and put it as the input to
-<code>read_csv(...)</code>. For some examples later in the book, you will be able to
-copy a command like this from the text and read data sets and other
-code directly from the website, assuming you are connected to the
-internet.</p>
-<p>To verify that you read the data set in correctly, it is always good to check
-its contents. We can view the first and last rows in the data set using the
-<code>head</code> and <code>tail</code> functions on the data set, which show the following
-results for the
-<code>treadmill</code> data. Note that you will sometimes need to resize the console
-window in RStudio to get all the columns to display
-in a single row which can be performed by dragging the gray bars that separate
-the panels.
-
-</p>
-
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="chapter1.html#cb17-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(treadmill)</span>
-<span id="cb17-2"><a href="chapter1.html#cb17-2"></a><span class="co"># A tibble: 6 x 8</span></span>
-<span id="cb17-3"><a href="chapter1.html#cb17-3"></a>  Subject TreadMillOx TreadMillMaxPulse RunTime RunPulse RestPulse BodyWeight   Age</span>
-<span id="cb17-4"><a href="chapter1.html#cb17-4"></a>    <span class="op">&lt;</span>int<span class="op">&gt;</span><span class="st">       </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st">             </span><span class="er">&lt;</span>int<span class="op">&gt;</span><span class="st">   </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st">    </span><span class="er">&lt;</span>int<span class="op">&gt;</span><span class="st">     </span><span class="er">&lt;</span>int<span class="op">&gt;</span><span class="st">      </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>int<span class="op">&gt;</span></span>
-<span id="cb17-5"><a href="chapter1.html#cb17-5"></a><span class="dv">1</span>       <span class="dv">1</span>       <span class="fl">60.05</span>               <span class="dv">186</span>    <span class="fl">8.63</span>      <span class="dv">170</span>        <span class="dv">48</span>      <span class="fl">81.87</span>    <span class="dv">38</span></span>
-<span id="cb17-6"><a href="chapter1.html#cb17-6"></a><span class="dv">2</span>       <span class="dv">2</span>       <span class="fl">59.57</span>               <span class="dv">172</span>    <span class="fl">8.17</span>      <span class="dv">166</span>        <span class="dv">40</span>      <span class="fl">68.15</span>    <span class="dv">42</span></span>
-<span id="cb17-7"><a href="chapter1.html#cb17-7"></a><span class="dv">3</span>       <span class="dv">3</span>       <span class="fl">54.62</span>               <span class="dv">155</span>    <span class="fl">8.92</span>      <span class="dv">146</span>        <span class="dv">48</span>      <span class="fl">70.87</span>    <span class="dv">50</span></span>
-<span id="cb17-8"><a href="chapter1.html#cb17-8"></a><span class="dv">4</span>       <span class="dv">4</span>       <span class="fl">54.30</span>               <span class="dv">168</span>    <span class="fl">8.65</span>      <span class="dv">156</span>        <span class="dv">45</span>      <span class="fl">85.84</span>    <span class="dv">44</span></span>
-<span id="cb17-9"><a href="chapter1.html#cb17-9"></a><span class="dv">5</span>       <span class="dv">5</span>       <span class="fl">51.85</span>               <span class="dv">170</span>   <span class="fl">10.33</span>      <span class="dv">166</span>        <span class="dv">50</span>      <span class="fl">83.12</span>    <span class="dv">54</span></span>
-<span id="cb17-10"><a href="chapter1.html#cb17-10"></a><span class="dv">6</span>       <span class="dv">6</span>       <span class="fl">50.55</span>               <span class="dv">155</span>    <span class="fl">9.93</span>      <span class="dv">148</span>        <span class="dv">49</span>      <span class="fl">59.08</span>    <span class="dv">57</span></span>
-<span id="cb17-11"><a href="chapter1.html#cb17-11"></a></span>
-<span id="cb17-12"><a href="chapter1.html#cb17-12"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">tail</span>(treadmill)</span>
-<span id="cb17-13"><a href="chapter1.html#cb17-13"></a><span class="co"># A tibble: 6 x 8</span></span>
-<span id="cb17-14"><a href="chapter1.html#cb17-14"></a>  Subject TreadMillOx TreadMillMaxPulse RunTime RunPulse RestPulse BodyWeight   Age</span>
-<span id="cb17-15"><a href="chapter1.html#cb17-15"></a>    <span class="op">&lt;</span>int<span class="op">&gt;</span><span class="st">       </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st">             </span><span class="er">&lt;</span>int<span class="op">&gt;</span><span class="st">   </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st">    </span><span class="er">&lt;</span>int<span class="op">&gt;</span><span class="st">     </span><span class="er">&lt;</span>int<span class="op">&gt;</span><span class="st">      </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span><span class="st"> </span><span class="er">&lt;</span>int<span class="op">&gt;</span></span>
-<span id="cb17-16"><a href="chapter1.html#cb17-16"></a><span class="dv">1</span>      <span class="dv">26</span>       <span class="fl">44.61</span>               <span class="dv">182</span>   <span class="fl">11.37</span>      <span class="dv">178</span>        <span class="dv">62</span>      <span class="fl">89.47</span>    <span class="dv">44</span></span>
-<span id="cb17-17"><a href="chapter1.html#cb17-17"></a><span class="dv">2</span>      <span class="dv">27</span>       <span class="fl">40.84</span>               <span class="dv">172</span>   <span class="fl">10.95</span>      <span class="dv">168</span>        <span class="dv">57</span>      <span class="fl">69.63</span>    <span class="dv">51</span></span>
-<span id="cb17-18"><a href="chapter1.html#cb17-18"></a><span class="dv">3</span>      <span class="dv">28</span>       <span class="fl">39.44</span>               <span class="dv">176</span>   <span class="fl">13.08</span>      <span class="dv">174</span>        <span class="dv">63</span>      <span class="fl">81.42</span>    <span class="dv">44</span></span>
-<span id="cb17-19"><a href="chapter1.html#cb17-19"></a><span class="dv">4</span>      <span class="dv">29</span>       <span class="fl">39.41</span>               <span class="dv">176</span>   <span class="fl">12.63</span>      <span class="dv">174</span>        <span class="dv">58</span>      <span class="fl">73.37</span>    <span class="dv">57</span></span>
-<span id="cb17-20"><a href="chapter1.html#cb17-20"></a><span class="dv">5</span>      <span class="dv">30</span>       <span class="fl">39.20</span>               <span class="dv">172</span>   <span class="fl">12.88</span>      <span class="dv">168</span>        <span class="dv">44</span>      <span class="fl">91.63</span>    <span class="dv">54</span></span>
-<span id="cb17-21"><a href="chapter1.html#cb17-21"></a><span class="dv">6</span>      <span class="dv">31</span>       <span class="fl">37.39</span>               <span class="dv">192</span>   <span class="fl">14.03</span>      <span class="dv">186</span>        <span class="dv">56</span>      <span class="fl">87.66</span>    <span class="dv">45</span></span></code></pre></div>
-
-<p>When you load an installed package with <code>library</code>, you may see a warning message about versions of the package and versions of
-R – this is <em>usually</em> something you can ignore. Other warning messages could
-be more ominous for proceeding but before getting too concerned, there are
-couple of basic things to check.
-
-First, double check that the package is
-installed (see
-previous steps). Second, check for typographical errors in your code –
-especially for mis-spellings or unintended capitalization. If you are still
-having issues, try repeating the installation process. Then click on the “<strong>Update</strong>” button to check for potentially newer versions of packages. If all that fails, try the cloud version of RStudio discussed before and repeat the steps there.</p>
-<p>To help you go from basic to intermediate R usage and especially to help with more
-complicated problems, you will want to learn how to manage and save your R code.
-The best way to do this is using the upper left panel in RStudio. If you just want to manage code, then you can use what
-are called R Scripts, which are files that have a file extension of “.R”. To
-start a new “.R” file to store your code, click on <strong>File</strong>, then
-<strong>New File</strong>, then <strong>R Script</strong>. This will create a blank page to enter and
-edit code – then save the file as something like “MyFileName.R” in your preferred location.
-Saving your code will mean that you can return to where you
-were working last by simply re-running the saved script file. With code in the
-script window, you can place the cursor on a line of code or highlight a chunk
-of code and hit the “Run” button<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>
-on the upper part of the panel. It will appear
-in the console with results just like what you would obtain if you typed it
-after the command prompt and hit enter for each line. Figure <a href="chapter1.html#fig:Figure1-4">1.4</a>
-shows the screen with the code used in this
-section in the upper left panel, saved in
-a file called “Ch1.R”, with the results of highlighting and executing the first
-section of code using the “Run” button.</p>
-
-<div class="figure" style="text-align: center"><span id="fig:Figure1-5"></span>
-<img src="01/images/fig1-4.png" alt="RStudio with initial data set loaded." width="100%" />
-<p class="caption">
-Figure 1.5: RStudio with initial data set loaded.
-</p>
 </div>
+<div id="inspecting-data" class="section level3">
+<h3><span class="header-section-number">1.2.7</span> Inspecting Data</h3>
+<p>In the spreadsheet, you will find a data with variables that contain information
+on the subject number (<code>Subject</code>),
+subjects’ maximum treadmill oxygen consumption (<code>TreadMillOx</code>, in ml per kg per
+minute, also called maximum VO2) and maximum pulse rate (<code>TreadMillMaxPulse</code>,
+in beats per minute), time to run 1.5 miles (<code>Run Time</code>, in minutes), maximum
+pulse during 1.5 mile run (<code>RunPulse</code>, in beats per minute), resting pulse rate
+(<code>RestPulse</code>, beats per minute), Body Weight (<code>BodyWeight</code>, in kg), and <code>Age</code>
+(in years). To access the data, you have two options.</p>
+<p>To verify that you read the data set in correctly, it is always good to
+inspect its contents. We can view the contents of the dataset using the
+following code:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="chapter1.html#cb20-1"></a>treadmill</span></code></pre></div>
+<p>This command does display the data for us, however, printing the whole dataset
+in the console is not that useful. One advantage of RStudio is that it comes
+with a built-in data viewer. The <em>Environment</em> tab (in the upper right pane)
+lists the objects in your environment. Clicking on the name <code>treadmill</code> will
+open up a <em>Data Viewer</em> tab next to your R Markdown file, which provides an
+alternative display of the data set. This display should feel similar to viewing
+data in Excel, where you are able to scroll through the dataset to inspect it.
+However, unlike Excel, you <strong>will not</strong> be able to edit the data in this tab.
+Once you are done viewing the data, You can close this tab by clicking on the
+<code>x</code> in the upper left hand corner.</p>
+<p>When inspecting the data, you should see eight columns of numbers and 31 rows.
+Each row represents a different subject in the study. The first entry in each
+row is the row number (an index we can use to access the data from individual
+years if we want), the second is the subject number, and the rest of the columns
+are the variables for which data was collected for every subject. You can use
+the scrollbar on the right side of the console window to examine the complete
+data set.</p>
+<p>Note that the row numbers in the first column are not part of the <code>treadmill</code>
+data. <code>R</code> adds these row numbers as part of its printout to help you make visual
+comparisons. You can think of them as the index that you see on the left side of
+a spreadsheet. In fact, the comparison of the data to a spreadsheet will
+generally be helpful. <code>R</code> has stored the <code>treadmill</code> data in an object similar
+to a spreadsheet or a table, which <code>R</code> calls a <em>data frame</em>.</p>
+<p>You can see the dimensions of this data frame as well as the names of the
+variables and the first few observations by inserting the name of the dataset
+into the <code>glimpse()</code> function, as seen below:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="chapter1.html#cb21-1"></a><span class="kw">glimpse</span>(treadmill)</span></code></pre></div>
+<p>Although we previously said that it is best practice to type all of your <code>R</code>
+code into the code chunk, it is better practice to type this command into your
+console. Generally, you should type all of the code that is necessary for your
+solution into the code chunk. Because this command is used to explore the data,
+it is not necessary for your solution code and <strong>should not</strong> be included in
+your R Markdown file.</p>
+<p>This command should output the following:</p>
+<pre><code>## Rows: 31
+## Columns: 8
+## $ Subject           &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, …
+## $ TreadMillOx       &lt;dbl&gt; 60.05, 59.57, 54.62, 54.30, 51.85, 50.55, 50.54, 50…
+## $ TreadMillMaxPulse &lt;dbl&gt; 186, 172, 155, 168, 170, 155, 168, 168, 180, 185, 1…
+## $ RunTime           &lt;dbl&gt; 8.63, 8.17, 8.92, 8.65, 10.33, 9.93, 10.13, 10.08, …
+## $ RunPulse          &lt;dbl&gt; 170, 166, 146, 156, 166, 148, 168, 168, 178, 180, 1…
+## $ RestPulse         &lt;dbl&gt; 48, 40, 48, 45, 50, 49, 45, 67, 55, 44, 64, 56, 52,…
+## $ BodyWeight        &lt;dbl&gt; 81.87, 68.15, 70.87, 85.84, 83.12, 59.08, 73.03, 73…
+## $ Age               &lt;dbl&gt; 38, 42, 50, 44, 54, 57, 44, 49, 38, 49, 43, 49, 48,…</code></pre>
+<p>At this point, you might notice that many of the commands in <code>R</code> look a lot like
+functions from math class; that is, invoking <code>R</code> commands means supplying a
+function with some number of inputs (what are called arguments) which the
+function uses to produce an output. The <code>glimpse()</code> command, for example, took a
+single argument, the name of a data frame and produced a display of the dataset
+as an output.</p>
+<p></p>
 </div>
 </div>
 <div id="section1-3" class="section level2">
-<h2><span class="header-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</h2>
-<p>For the following material, you will need to install and load the <code>mosaic</code> package <span class="citation">(Pruim, Kaplan, and Horton <a href="#ref-R-mosaic" role="doc-biblioref">2020</a><a href="#ref-R-mosaic" role="doc-biblioref">b</a>)</span>.</p>
-<p></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="chapter1.html#cb18-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(mosaic)</span></code></pre></div>
-<p>It provides a suite of enhanced functions to aid our initial explorations. With RStudio running, the <code>mosaic</code> package loaded, a place to write and
-save code, and the <code>treadmill</code> data set loaded, we can (finally!) start to
-summarize the results of the study. The <code>treadmill</code> object is what R calls a
-<strong><em>tibble</em></strong><a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> and contains columns corresponding to each variable in
-the spreadsheet. Every
-function in R will involve specifying the variable(s) of interest and how you
-want to use them. To access a particular variable (column) in a tibble, you
-can use a $ between the name of the tibble and the name of the variable of
-interest, generically as <code>tibblename$variablename</code>. You can think of this as <em>tibblename’s variablename</em> where the <em>’s</em> is replaced by the dollar sign. To identify the
-<code>RunTime</code> variable here it would be <code>treadmill$RunTime</code>. In the command line it would look like:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="chapter1.html#cb19-1"></a><span class="op">&gt;</span><span class="st"> </span>treadmill<span class="op">$</span>RunTime</span>
-<span id="cb19-2"><a href="chapter1.html#cb19-2"></a>[<span class="dv">1</span>]  <span class="fl">8.63</span>  <span class="fl">8.17</span>  <span class="fl">8.92</span>  <span class="fl">8.65</span> <span class="fl">10.33</span>  <span class="fl">9.93</span> <span class="fl">10.13</span> <span class="fl">10.08</span>  <span class="fl">9.22</span>  <span class="fl">8.95</span> <span class="fl">10.85</span>  <span class="fl">9.40</span> <span class="fl">11.50</span> <span class="fl">10.50</span></span>
-<span id="cb19-3"><a href="chapter1.html#cb19-3"></a>[<span class="dv">15</span>] <span class="fl">10.60</span> <span class="fl">10.25</span> <span class="fl">10.00</span> <span class="fl">11.17</span> <span class="fl">10.47</span> <span class="fl">11.95</span>  <span class="fl">9.63</span> <span class="fl">10.07</span> <span class="fl">11.08</span> <span class="fl">11.63</span> <span class="fl">11.12</span> <span class="fl">11.37</span> <span class="fl">10.95</span> <span class="fl">13.08</span></span>
-<span id="cb19-4"><a href="chapter1.html#cb19-4"></a>[<span class="dv">29</span>] <span class="fl">12.63</span> <span class="fl">12.88</span> <span class="fl">14.03</span></span></code></pre></div>
-<p>Just as in the previous section, we can generate summary statistics using functions like <code>mean</code> and <code>sd</code> by running them on a specific variable:
+<h2><span class="header-section-number">1.3</span> Introduction to Data Summarization</h2>
+<p>The <code>treadmill</code> object is what <code>R</code> calls a <strong><em>tibble</em></strong><a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> and contains columns
+corresponding to each variable in the spreadsheet. Every function in <code>R</code> will
+involve specifying the variable(s) of interest and how you want to use them.
+To access a particular variable (column) in a tibble, you can use a <code>$</code> between
+the name of the tibble and the name of the variable of interest. Generically,
+this looks something like: <code>tibblename$variablename</code>. You can think of this as
+<em>tibblename’s variablename</em> where the <em>’s</em> is replaced by the dollar sign (<code>$</code>).
+To access the <code>RunTime</code> variable here it would be <code>treadmill$RunTime</code>.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="chapter1.html#cb23-1"></a>treadmill<span class="op">$</span>RunTime</span></code></pre></div>
+<pre><code>##  [1]  8.63  8.17  8.92  8.65 10.33  9.93 10.13 10.08  9.22  8.95 10.85  9.40
+## [13] 11.50 10.50 10.60 10.25 10.00 11.17 10.47 11.95  9.63 10.07 11.08 11.63
+## [25] 11.12 11.37 10.95 13.08 12.63 12.88 14.03</code></pre>
+<p>When we looked at the complete data frame, we saw 31 rows, one on each line of
+the display. These data have been extracted from the data frame, so they are no
+longer structured in a table with other variables. Instead, these data are
+displayed one right after another. Objects that print out in this way are called
+<em>vectors</em>; similar to the vectors you have seen in mathematics courses, vectors
+represent a list of numbers. <code>R</code> has added numbers displayed in [brackets] along
+the left side of the printout to indicate each entry’s location within the
+vector. For example, 8.63 follows <code>[1]</code>, indicating that <code>8.63</code> is the first
+entry in the vector. If <code>[43]</code> was displayed at the beginning of a line, that
+indicate that the first number displayed on that line would correspond to the
+43<sup>rd</sup> entry in that vector.</p>
+<p>Just as in the previous section, we can generate summary statistics for
+a particular variable using functions like <code>mean()</code> and <code>sd()</code>:
 
 </p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="chapter1.html#cb20-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(treadmill<span class="op">$</span>RunTime)</span>
-<span id="cb20-2"><a href="chapter1.html#cb20-2"></a>[<span class="dv">1</span>] <span class="fl">10.58613</span></span>
-<span id="cb20-3"><a href="chapter1.html#cb20-3"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">sd</span>(treadmill<span class="op">$</span>RunTime)</span>
-<span id="cb20-4"><a href="chapter1.html#cb20-4"></a>[<span class="dv">1</span>] <span class="fl">1.387414</span></span></code></pre></div>
-<p>And now we know that the average running time for 1.5 miles for the subjects in the study was 10.6 minutes with a standard deviation (SD) of 1.39 minutes. But you should remember that the
-mean and SD are only appropriate summaries if the distribution is roughly
-<strong><em>symmetric</em></strong> (both sides of the distribution are approximately the same shape and length). The
-<code>mosaic</code> package provides a useful function called <code>favstats</code> that provides
-the mean and SD as well as the <strong><em>5 number summary</em></strong>: 
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="chapter1.html#cb25-1"></a><span class="kw">mean</span>(treadmill<span class="op">$</span>RunTime)</span></code></pre></div>
+<pre><code>## [1] 10.58613</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="chapter1.html#cb27-1"></a><span class="kw">sd</span>(treadmill<span class="op">$</span>RunTime)</span></code></pre></div>
+<pre><code>## [1] 1.387414</code></pre>
+<p>And now we know that the average running time for 1.5 miles for the subjects
+in the study was 10.586129 minutes with a standard
+deviation of 1.3874141 minutes. But you should remember that
+the mean and SD are only appropriate summaries if the distribution is roughly
+<strong><em>symmetric</em></strong> (both sides of the distribution are approximately the same shape
+and length).</p>
+<!-- (Note: answers to all Guided Practice exercises are provided in footnotes!) -->
+<div class="guidedpractice">
+<p>But how can we determine if the distribution of a variable is symmetric?<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
+</div>
+<p>The <strong>dplyr</strong> package (included in the tidyverse) provides a useful function
+called <code>summarize()</code> that allows
+for us to calculate many different summary statistics all at the same time. A
+<strong><em>5 number summary</em></strong> is a common calculation people use to assess the
+distribution of a variable, where the summaries are 
 the minimum (<code>min</code>), the first quartile (<code>Q1</code>, the 25<sup>th</sup> percentile),
-the median (50<sup>th</sup> percentile), the third quartile (<code>Q3</code>, the 75<sup>th</sup>
-percentile), and the maximum (<code>max</code>). It also provides the number of
-observations (<code>n</code>) which was 31, as noted above, and a count of whether any
-missing values were encountered (<code>missing</code>), which was 0 here since all
-subjects had measurements available on this variable.
+the <code>median</code> (50<sup>th</sup> percentile), the third quartile (<code>Q3</code>, the 75<sup>th</sup>
+percentile), and the maximum (<code>max</code>).
 </p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="chapter1.html#cb21-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">favstats</span>(treadmill<span class="op">$</span>RunTime)</span>
-<span id="cb21-2"><a href="chapter1.html#cb21-2"></a>  min   Q1 median    Q3   max     mean       sd  n missing</span>
-<span id="cb21-3"><a href="chapter1.html#cb21-3"></a> <span class="fl">8.17</span> <span class="fl">9.78</span>  <span class="fl">10.47</span> <span class="fl">11.27</span> <span class="fl">14.03</span> <span class="fl">10.58613</span> <span class="fl">1.387414</span> <span class="dv">31</span>       <span class="dv">0</span></span></code></pre></div>
-<p>We are starting to get somewhere with understanding that the runners were
-somewhat fit with the worst runner covering 1.5 miles in 14 minutes
-(the equivalent of a 9.3 minute mile)
-and the best running at a 5.4 minute mile pace. The limited variation in the
-results suggests that the sample was obtained from a restricted group with
-somewhat common characteristics. When you explore the ages and weights of the
-subjects in the Practice Problems in Section <a href="chapter1.html#section1-6">1.6</a>, you will get even more
-information about how similar all the subjects in this study were. Researchers often publish numerical summaries of this sort of demographic information to help readers understand the subjects that they studied and that their results might apply to.</p>
-<p>A graphical display of these results will help us to assess the shape
-of the distribution of run times – including considering the potential for the presence of a <strong><em>skew</em></strong> (whether the right or left tail of the distribution
-is noticeably more spread out, with left skew meaning that the left tail
-is more spread out than the right tail)  and <strong><em>outliers</em></strong> 
-(unusual observations). A <strong><em>histogram</em></strong>  is a good place to start.
-Histograms display connected bars with counts of observations defining
-the height of bars based on a set of bins of values of the quantitative variable.
-We will apply the <code>hist</code> function to the <code>RunTime</code> variable, which produces
-Figure <a href="chapter1.html#fig:Figure1-6">1.6</a>.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="chapter1.html#cb22-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">hist</span>(treadmill<span class="op">$</span>RunTime)</span></code></pre></div>
+<p>Let’s use the <code>summarize()</code> function to calculate a five number summary of the
+running times, including the mean:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="chapter1.html#cb29-1"></a><span class="kw">summarize</span>(treadmill, </span>
+<span id="cb29-2"><a href="chapter1.html#cb29-2"></a>          <span class="dt">min =</span> <span class="kw">min</span>(RunTime), </span>
+<span id="cb29-3"><a href="chapter1.html#cb29-3"></a>          <span class="dt">Q1 =</span> <span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.25</span>),</span>
+<span id="cb29-4"><a href="chapter1.html#cb29-4"></a>          <span class="dt">mean =</span> <span class="kw">mean</span>(RunTime), </span>
+<span id="cb29-5"><a href="chapter1.html#cb29-5"></a>          <span class="dt">median =</span> <span class="kw">median</span>(RunTime), </span>
+<span id="cb29-6"><a href="chapter1.html#cb29-6"></a>          <span class="dt">Q3 =</span> <span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.75</span>), </span>
+<span id="cb29-7"><a href="chapter1.html#cb29-7"></a>          <span class="dt">max =</span> <span class="kw">max</span>(RunTime), </span>
+<span id="cb29-8"><a href="chapter1.html#cb29-8"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 6
+##     min    Q1  mean median    Q3   max
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  8.17  9.78  10.6   10.5  11.3  14.0</code></pre>
+<p>This code may look overwhelming, so let’s break it down! The first argument
+(input) into the <code>summarize()</code> function is the name of the dataset you would
+like to summarize. Next, you tell the function all of the summaries you would
+like, giving names to each summary. Here, we give simple names to the summaries,
+e.g. <code>min</code> or <code>median</code> or <code>Q3</code>, which are indicated on the left-hand side of the
+<code>=</code> sign. On the right-hand side of the <code>=</code> sign is the calculation you want
+<code>R</code> to do for you. <code>R</code> has built-in functions for calculating the <code>min()</code>,
+<code>max()</code>, <code>median()</code>, and percentiles of a distribution.</p>
+<p>The <code>quantile()</code> function may look a little confusing, so let’s look at what is
+going on. There are two arguments to <code>quantile()</code>, the a numeric vector, and
+a percentage. The percentage tells the function what percent of the data you
+want to be below. For example, in the below picture, we can see that the first
+quantile corresponds to the number where approximately 25% of the data is below
+that number and 75% is above that number. This should make a bit more sense if
+you think about the median being the center of the distribution, where 50% of
+the data is below the median and 50% is above.</p>
 
-<div class="figure"><span id="fig:Figure1-6"></span>
-<img src="01-preface_files/figure-html/Figure1-6-1.png" alt="RStudio with highlighted code run." width="480" />
+<div class="figure" style="text-align: center"><span id="fig:Figure1-6"></span>
+<img src="01/images/quantile.jpg" alt="Quantiles of a distribution." width="100%" />
 <p class="caption">
-Figure 1.6: RStudio with highlighted code run.
+Figure 1.5: Quantiles of a distribution.
 </p>
 </div>
-
-<div class="figure" style="text-align: center"><span id="fig:Figure1-7"></span>
-<img src="01/images/Fig1-6.png" alt="Histogram of Run Times (minutes) of \(n\)=31 subjects in Treadmill study, bar heights are counts." width="100%" />
-<p class="caption">
-Figure 1.7: Histogram of Run Times (minutes) of <span class="math inline">\(n\)</span>=31 subjects in Treadmill study, bar heights are counts.
-</p>
+<p>Alternatively, we could have used the following code to obtain the same
+five number summary:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="chapter1.html#cb31-1"></a>treadmill <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb31-2"><a href="chapter1.html#cb31-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">min =</span> <span class="kw">min</span>(RunTime), </span>
+<span id="cb31-3"><a href="chapter1.html#cb31-3"></a>            <span class="dt">Q1 =</span> <span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.25</span>),</span>
+<span id="cb31-4"><a href="chapter1.html#cb31-4"></a>            <span class="dt">mean =</span> <span class="kw">mean</span>(RunTime), </span>
+<span id="cb31-5"><a href="chapter1.html#cb31-5"></a>            <span class="dt">median =</span> <span class="kw">median</span>(RunTime), </span>
+<span id="cb31-6"><a href="chapter1.html#cb31-6"></a>            <span class="dt">Q3 =</span> <span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.75</span>), </span>
+<span id="cb31-7"><a href="chapter1.html#cb31-7"></a>            <span class="dt">max =</span> <span class="kw">max</span>(RunTime), </span>
+<span id="cb31-8"><a href="chapter1.html#cb31-8"></a>)</span></code></pre></div>
+<p>The only difference between the previous code and this code is the location of
+the <code>treadmill</code> data. Previously, we told the <code>summarize()</code> function to use
+the <code>treadmill</code> data by inserting the data as the first argument into the
+function. Here, we instead “pipe” the <code>treadmill</code> data into the <code>summarize()</code>
+function using what is calle the pipe operator (<code>%&gt;%</code>).</p>
+<p>You might be wondering what we mean by <em>“pipe it into the <code>summarize()</code> function”</em>?</p>
+<div id="the-pipe-operator" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> The pipe operator</h3>
+<p><img src="images/pipe-operator.png" style="width:30.0%" /></p>
+<p>The <strong>pipe operator</strong>, which <strong>is percent greater than percent</strong>, tells <code>R</code> to
+pass the object that comes before it into the first argument of the function
+that comes after it. Mathematically, <strong>x pipe f(y)</strong> becomes <em>f(x, y)</em>, since x
+is piped into the first argument of the function f().</p>
+<p><img src="images/pipe-operator2.png" style="width:30.0%" /></p>
+<p>You may think that it seems kind of silly to use the pipe rather than simply
+typing the name of the data into the <code>summarize()</code> function, but as we progress
+through the textbook, acquiring additional data wrangling skills, you will see
+that the piping operator will allow us to sequentially link together data
+wrangling operations. This can save us a great deal of headache later on, as the
+format of operations that use the pipe are far simpler to read! We’ll start with
+short pipes and throughout the tutorial build up to longer pipes that perform
+multiple operations.</p>
 </div>
-<p>You can save this plot by clicking on the <strong>Export</strong> button found above
-the plot, followed by <strong>Copy to Clipboard</strong> and clicking on the
-<strong>Copy Plot</strong> button. Then if you open your
-favorite word-processing program, you should be able to paste it into a
-document for writing reports that include the figures. You can see the first
-parts of this process in the screen grab in Figure <a href="chapter1.html#fig:Figure1-6">1.6</a>. You can also directly save the figures as separate files using
-<strong>Save as Image</strong> or <strong>Save as PDF</strong> and then insert them into your word
-processing documents.</p>
-<p>The function <code>hist</code> defaults into providing a histogram on the <strong><em>frequency</em></strong>
-(count) scale. In most R functions, there are the default options that will
-occur if we don’t make any specific choices but we
-can override the default options if we desire. One option we can modify here is
-to add labels to the bars to be able to see exactly how many observations fell
-into each bar. Specifically, we can turn the <code>labels</code> option “on” by making it true (“T”) by adding <code>labels=T</code> to the previous call to the <code>hist</code> function, separated by a comma. Note that we will use the <code>=</code> sign only for changing options within functions.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="chapter1.html#cb23-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">hist</span>(treadmill<span class="op">$</span>RunTime, <span class="dt">labels=</span>T)</span></code></pre></div>
-
-<div class="figure"><span id="fig:Figure1-8"></span>
-<img src="01-preface_files/figure-html/Figure1-8-1.png" alt="RStudio while in the process of copying the histogram." width="480" />
-<p class="caption">
-Figure 1.8: RStudio while in the process of copying the histogram.
-</p>
-</div>
-<p>Based on this histogram (Figure <a href="chapter1.html#fig:Figure1-8">1.8</a>), it does not appear that there any outliers in the responses
-since there are no bars that are separated from the other observations. However,
-the distribution does not look symmetric and there might be a skew to the
-distribution. Specifically, it appears to be <strong><em>skewed right</em></strong> (the right tail is longer than the left). But histograms can sometimes mask features of
-the data set by binning observations and it is hard to find the percentiles
-accurately from the plot.</p>
-<p>When assessing outliers and skew, the <strong><em>boxplot</em></strong>
-(or <em>Box and Whiskers</em> plot) can also be helpful (Figure <a href="chapter1.html#fig:Figure1-8">1.8</a>) to describe the
-shape of the distribution as it displays the 5-number summary and will also indicate
-observations that are “far” above the middle of the observations.
-
-R’s <code>boxplot</code> function uses the standard rule to indicate an observation as a
-<strong><em>potential outlier</em></strong> if it falls more than 1.5 times the <strong><em>IQR</em></strong>
-(Inter-Quartile Range, calculated as Q3 – Q1) below Q1 or above Q3.
-
-The potential outliers
-are plotted with circles and the <em>Whiskers</em> (lines that extend from Q1 and Q3 typically to
-the minimum and maximum) are shortened to only go as far as
-observations that are within <span class="math inline">\(1.5*\)</span>IQR of the upper and lower quartiles. The <em>box</em>
-part of the boxplot is a box that goes from Q1 to Q3 and the median is displayed as a line
-somewhere inside the box.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> Looking back at the summary statistics above, Q1=9.78 and Q3=11.27, providing an IQR of:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="chapter1.html#cb24-1"></a><span class="op">&gt;</span><span class="st"> </span>IQR &lt;-<span class="st"> </span><span class="fl">11.27</span> <span class="op">-</span><span class="st"> </span><span class="fl">9.78</span></span>
-<span id="cb24-2"><a href="chapter1.html#cb24-2"></a><span class="op">&gt;</span><span class="st"> </span>IQR</span>
-<span id="cb24-3"><a href="chapter1.html#cb24-3"></a>[<span class="dv">1</span>] <span class="fl">1.49</span></span></code></pre></div>
-<p>One observation (the maximum value of 14.03) is indicated as a potential outlier
-based on this result by being larger than Q3 <span class="math inline">\(+1.5*\)</span>IQR, which was 13.505:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="chapter1.html#cb25-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="fl">11.27</span> <span class="op">+</span><span class="st"> </span><span class="fl">1.5</span><span class="op">*</span>IQR</span>
-<span id="cb25-2"><a href="chapter1.html#cb25-2"></a>[<span class="dv">1</span>] <span class="fl">13.505</span></span></code></pre></div>
-<p>The boxplot also shows a slight indication of a right skew (skew towards
-larger values) with the distance from the minimum to the median being smaller than the
-distance from the median to the maximum. Additionally, the distance from Q1 to
-the median is smaller than the distance from the median to Q3. It is modest skew,
-but worth noting.</p>
-
-<div class="figure"><span id="fig:Figure1-9"></span>
-<img src="01-preface_files/figure-html/Figure1-9-1.png" alt="Histogram of Run Times with counts in bars labeled." width="480" />
-<p class="caption">
-Figure 1.9: Histogram of Run Times with counts in bars labeled.
-</p>
-</div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="chapter1.html#cb26-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">boxplot</span>(treadmill<span class="op">$</span>RunTime)</span></code></pre></div>
-<p>While the default boxplot is fine, it fails to provide good graphical labels,
-especially on the y-axis. Additionally, there is no title on the plot. The
-following code provides some enhancements to the plot by using the <code>ylab</code> and
-<code>main</code> options in the call to <code>boxplot</code>, with the results displayed in
-Figure <a href="chapter1.html#fig:Figure1-9">1.9</a>. When we add text to plots, it will be contained within quotes and
-be assigned into the options <code>ylab</code> (for y-axis) or <code>main</code>
-(for the title) here to put it into those locations.</p>
-
-<div class="figure"><span id="fig:Figure1-10"></span>
-<img src="01-preface_files/figure-html/Figure1-10-1.png" alt="Boxplot of 1.5 mile Run Times." width="480" />
-<p class="caption">
-Figure 1.10: Boxplot of 1.5 mile Run Times.
-</p>
-</div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="chapter1.html#cb27-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">boxplot</span>(treadmill<span class="op">$</span>RunTime, <span class="dt">ylab=</span><span class="st">&quot;1.5 Mile Run Time (minutes)&quot;</span>, </span>
-<span id="cb27-2"><a href="chapter1.html#cb27-2"></a>          <span class="dt">main=</span><span class="st">&quot;Boxplot of the Run Times of n=31 participants&quot;</span>)</span></code></pre></div>
-<p>Throughout the book, we will often use extra options to make figures that
-are easier for you to understand. There
-are often simpler versions of the functions that will suffice but the extra
-work to get better labeled figures is often worth it. I guess the point is that
-“a picture is worth a thousand words” but in data visualization, that is only
-true if the reader can understand what is being displayed. It is also important
-to think about the quality of the information that is being displayed,
-regardless of how pretty the graphic might be. So maybe it is better to say
-“a picture can be worth a thousand words” if it is well-labeled?</p>
-<p>All the previous results were created by running the R code and then copying the
-results from either the console or by copying the figure and then pasting the results
-into the typesetting program. There is another way
-to use RStudio where you can have it compile the results (both output and
-figures) directly into a document together with other writing and the code that generated it,
-using what is called R Markdown (<a href="http://shiny.rstudio.com/articles/rmarkdown.html" class="uri">http://shiny.rstudio.com/articles/rmarkdown.html</a>).
-It is basically what we used to prepare this book and what you should learn to use to do your work.
-From here forward, you will see a
-change in formatting of the R code and output as you will no
-longer see the command prompt (“&gt;”) with the code. The output will be
-flagged by having two “##”’s before it. For example, the summary statistics for
-the <em>RunTime</em> variable from <code>favstats</code> function would look like when run using R Markdown:</p>
-<pre><code>##   min   Q1 median    Q3   max     mean       sd  n missing
-##  8.17 9.78  10.47 11.27 14.03 10.58613 1.387414 31       0</code></pre>
-<p>Statisticians (and other scientists) are starting to use R Markdown and similar methods
-because they provide what is called “Reproducible
-research” <span class="citation">(Gandrud <a href="#ref-Gandrud2015" role="doc-biblioref">2015</a>)</span> where all the code and output it produced are
-available in a single place. This allows different researchers to run and verify
-results (so “reproducible results”) or the original researchers to revisit their earlier work at a later
-date and recreate all their results exactly. Scientific publications are currently
-encouraging researchers to work in this way and may someday require it. The term <strong><em>reproducible</em></strong> can also be related to whether repeated studies get the same result (also called <strong><em>replication</em></strong>) – further discussion of these terms and the implications for scientific research are discussed in Chapter <a href="chapter2.html#chapter2">2</a>.</p>
-<p>In order to get some practice using R Markdown, create a sample document in this format using File -&gt; New File -&gt; R Markdown… Choose a title for your file and select the “Word” option. This will create a new file in the upper left window where we stored our .R script. Save that file to your computer. Then you can use the “Knit” button to have RStudio run the code and create a word document with the results. R Markdown documents contain basically two components, “code chunks” that contain your code and the rest of the document where you can write descriptions and interpretations of the results that code generates. The code chunks can be inserted using the “Insert” button by selecting the “R” option. Then write your code in between the <code>```{r}</code> and <code>```</code> lines (it should have grey highlights for those lines and white for the rest of the portions of the .Rmd document). Once you write some code inside a code chunk, you can test your code using the triangle on the upper right side of it to run all the code that resides in that chunk. Keep your write up outside of these code chunks to avoid code errors and failures to compile. Once you think your code and writing is done, you can use the “Knit” button to try to compile the file. As you are learning, you may find this challenging, so start with trying to review the sample document and knit each time you get a line of code written so you know when you broke the file. Also look around for posted examples of .Rmd files to learn how others have incorporated code with write-ups. You might even be given a template of homework or projects as .Rmd files from your instructor. After you do this a couple of times, you will find that the challenge of working with markdown files is more than matched by the simplicity of the final product and, at least to researchers, the reproducibility and documentation of work that this method provides.</p>
-<p>Finally, when you are done with your work and attempt to exit out of RStudio,
-it will
-ask you to save your workspace. <strong><em>DO NOT DO THIS!</em></strong> It will just create a cluttered
-workspace and could even cause you to get incorrect results. In fact, you should go into the Tools -&gt; Global Options and then make sure that “Save workspace to .RData on exit” option on the first screen you will see is set to <strong><em>Never</em></strong>. If you
-save your R code either as a .R or (better) an R Markdown (.Rmd) file, you can re-create any results by simply
-re-running that code or re-knitting the file. If you find that you have lots of “stuff” in your
-workspace because you accidentally saved your workspace, just run <code>rm(list = ls())</code>.
-It will delete all the data sets from your workspace.</p>
 </div>
 <div id="section1-4" class="section level2">
-<h2><span class="header-section-number">1.4</span> Chapter summary</h2>
+<h2><span class="header-section-number">1.4</span> Introduction to Data Visualization in <code>R</code></h2>
+<p>We are starting to get somewhere with understanding that the runners
+were somewhat fit with the worst runner covering 1.5 miles in 14 minutes
+(the equivalent of a 9.3 minute mile) and the best running at a 5.4 minute mile
+pace. The limited variation in the results suggests that the sample was obtained
+from a restricted group with somewhat common characteristics. When you explore
+the ages and weights of the subjects in the Practice Problems in Section
+<a href="chapter1.html#section1-6">1.7</a>, you will get even more information about how similar all the
+subjects in this study were. Researchers often publish numerical summaries of
+this sort of demographic information to help readers understand the subjects
+that they studied and that their results might apply to.</p>
+<p>A graphical display of the variable is a simpler method to help us to
+assess the shape of its distribution – including considering the potential for
+the presence of a <strong><em>skew</em></strong> (whether the right or left tail of the distribution
+is noticeably more spread out, with left skew meaning that the left tail
+is more spread out than the right tail)  and <strong><em>outliers</em></strong>
+ (unusual observations). A <strong><em>histogram</em></strong>  is a
+good place to start. Histograms display connected bars with counts of
+observations defining the height of bars based on a set of bins of values of the
+quantitative variable.</p>
+<p><code>R</code> has some powerful functions for making graphics. We can create a simple plot
+of the distribution of the running times with the following code:</p>
+<!-- HISTOGRAM  -->
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="chapter1.html#cb32-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> treadmill, <span class="kw">aes</span>(<span class="dt">x =</span> RunTime)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb32-2"><a href="chapter1.html#cb32-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span></code></pre></div>
+<p><img src="01-preface_files/figure-html/unnamed-chunk-24-1.png" width="480" /></p>
+<p>In this code, we use the <code>ggplot()</code> function to build a plot. If you run this
+code chunk, a plot will appear below the code chunk. The R Markdown document
+displays the plot below the code that was used to generate it, to give you an
+idea of what the plot would look like in a final report.</p>
+<p>The command above also looks like a mathematical function.
+This time, however, the function requires multiple inputs (arguments), which are
+separated by commas.</p>
+<p>With <code>ggplot()</code>:</p>
+<ul>
+<li>The first argument is always the name of the dataset you wish to use for
+plotting.</li>
+<li>Next, you provide the variables from the dataset to be assigned to different
+<code>aes</code>thetic elements of the plot, such as the x and the y axes.</li>
+</ul>
+<p>These commands will build a blank plot, with the variables you assigned to the x
+and y axes. Next, you need to tell <code>ggplot()</code> what type of visualization you
+would like to add to the blank template. You add another layer to the <code>ggplot()</code>
+by:</p>
+<ul>
+<li>adding a <code>+</code> at the end of the line, to indicate that you are adding a layer</li>
+<li>then specify the <code>geom</code>etric object to be used to create the plot.</li>
+</ul>
+<p>Since we want to creat a histogram, we use <code>geom_histogram()</code>. This tells
+<code>ggplot()</code> to take the data values and bin them up, so that the height of each
+bin reflects the number of observations included in that bin.</p>
+<p>Based on this histogram, it does not
+appear that there any outliers in the responses since there are no bars that are
+separated from the other observations. However, the distribution does not look
+symmetric and there might be a skew to the distribution. Specifically, it
+appears to be <strong><em>skewed right</em></strong> (the right tail is longer than the left).
+Histograms can sometimes mask features of the data set by binning observations,
+making it difficult to find the percentiles accurately from the plot.
+Alternative visualizations for these data would be a boxplot or a density plot,
+which we will explore next.</p>
+<!-- BOXPLOT -->
+<p>When assessing outliers and skew, the <strong><em>boxplot</em></strong>
+(or <em>Box and Whiskers</em> plot) can also be helpful to describe the
+shape of the distribution as it displays the 5-number summary and will also
+indicate observations that are “far” above the middle of the observations.
+</p>
+<p>As you may have expected, to create a boxplot in ggplot you change the
+geometric representation of your data, in the <code>geom</code> function. Here, we will
+use the <code>geom_boxplot()</code> to create a boxplot of the running times. The
+<code>geom_boxplot()</code> function uses the standard rule to indicate an observation as a
+<strong><em>potential outlier</em></strong> if it falls more than 1.5 times the <strong><em>IQR</em></strong>
+(Inter-Quartile Range, calculated as Q3 – Q1) below Q1 or above Q3.
+</p>
+<p>The potential outliers are plotted with circles and the <em>Whiskers</em> (lines that
+extend from Q1 and Q3 typically to the minimum and maximum) are shortened to
+only go as far as observations that are within <span class="math inline">\(1.5*\)</span>IQR of the upper and lower
+quartiles. The <em>box</em> part of the boxplot is a box that goes from Q1 to Q3 and
+the median is displayed as a line somewhere inside the box.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="chapter1.html#cb33-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> treadmill, <span class="kw">aes</span>(<span class="dt">y =</span> RunTime, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb33-2"><a href="chapter1.html#cb33-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="01-preface_files/figure-html/unnamed-chunk-25-1.png" width="480" /></p>
+<p>You’ll notice there are a few additional changes in the code above. First, the
+running times are now the y variable instead of the x variable. This is because
+it is more “standard” for a boxplot to appear vertically rather than
+horizontally. Thus, plotting <code>RunTime</code> as the y variable, creates a vertical
+boxplot. Second, there are empty quotations next to the x variable. This is
+because <code>ggplot()</code> expects for us to be creating multiple boxplots
+(side-by-side boxplots) when we use <code>geom_boxplot()</code>. To create a boxplot of
+only one group, you need to insert an empty variable (<code>" "</code>) as the x variable.</p>
+<p>Looking at the boxplot, one observation, the maximum, was flagged as an
+“outlier” and plotted as a point. In the summary statistics we calculated
+before, Q1 was 9.78 and Q3 was
+11.27, providing an IQR of:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="chapter1.html#cb34-1"></a>treadmill <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb34-2"><a href="chapter1.html#cb34-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">IQR =</span> <span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.75</span>) <span class="op">-</span><span class="st"> </span></span>
+<span id="cb34-3"><a href="chapter1.html#cb34-3"></a><span class="st">              </span><span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.25</span>)</span>
+<span id="cb34-4"><a href="chapter1.html#cb34-4"></a>            )</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##     IQR
+##   &lt;dbl&gt;
+## 1  1.49</code></pre>
+<p>Based on this result the maximum (14.03) was flagged as a
+potential outlier, because it was larger than than Q3 <span class="math inline">\(+1.5*\)</span>IQR, which was
+13.505.</p>
+<p>The boxplot also shows a slight indication of a right skew (skew towards
+larger values) with the distance from the minimum to the median being smaller
+than the distance from the median to the maximum. Additionally, the distance
+from Q1 to the median is smaller than the distance from the median to Q3. It is
+modest skew, but worth noting.</p>
+<p>While the default boxplot is okay, it fails to provide good graphical
+labels, especially on the y-axis. Additionally, there is no title on the plot.
+The following code provides some enhancements to the plot by using the <code>labs()</code>
+function to add labels to the plot. When we add text to plots, it must be
+contained within quotes and be assigned into the options <code>ylab</code> (for y-axis)
+or <code>title</code> (for the title) here to put it into those locations.</p>
+<div class="figure"><span id="fig:Figure1-10"></span>
+<img src="01-preface_files/figure-html/Figure1-10-1.png" alt="(ref:fig1-9)" width="480" />
+<p class="caption">
+Figure 1.6: (ref:fig1-9)
+</p>
+</div>
+<p>Unfortunately, boxplots can be misleading. They are not affected by data’s
+distribution, which allows for the data to “morph” but maintain their stat
+summaries (medians and ranges), their box plots stay the same. One of the ways
+this “morphing” becomes extrememly problematic, is if a distribution looks okay
+on a boxplot, but actually has multiple peaks (called modes). Density plots
+allow for us to detect these small changes in the distribution of a variable
+far more easily.</p>
+<!-- DENSITY PLOT -->
+<p>To create a density plot instead of a histogram or boxplot, (as expected) you
+would use <code>geom_density()</code>. This would tell <code>ggplot()</code> to
+draw a continuous line around the outside of the histogram, where the height of
+the density curve reflects the number of observations at that run time. Another,
+potentially less noticable difference, is that a density plot has different
+values on the y-axis. A histogram has counts on the y-axis, representing the
+number of observations in each bin. A density plot, however, has density on the
+y-axis, with values between 0 and 1. If you remember from your introductory
+statistics course, the total area under a a density plot adds up to 100%, so
+the values on the side represent the percentage of the data that
+took on values in that data range. For example, it appears that nearly 30% of
+the runners in this study had running times around 11 minutes for the 1.5 miles.</p>
+<p><img src="01-preface_files/figure-html/plot-girls-vs-year-line-1.png" width="480" /></p>
+<div class="protip">
+<p>Many people would prefer for their density plot to be filled in (shaded) below
+the density line. To do this you need to add a color to the <code>fill</code> argument,
+inside the <code>geom_density()</code> function. This tells <code>ggplot()</code> that you want for
+your density curvey to be filled with whatever color you tell it. Here, I’ve
+selected blue, although tomato is another favorite of mine.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="chapter1.html#cb36-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> treadmill, <span class="kw">aes</span>(<span class="dt">x =</span> RunTime)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb36-2"><a href="chapter1.html#cb36-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="01-preface_files/figure-html/unnamed-chunk-27-1.png" width="480" /></p>
+</div>
+<p>You might wonder how you are supposed to know the syntax for the <code>ggplot()</code>
+function. Thankfully, <code>R</code> documents all of its functions extensively. To learn
+what a function does and how to use it (e.g. the function’s arguments), just
+type in a question mark followed by the name of the function that you’re
+interested in into the console. Type the following in your console:</p>
+<p>Notice that the help file comes to the forefront, replacing the plot in the
+lower right panel. You can toggle between the tabs by clicking on their names.</p>
+<p>Throughout the book, we will often use extra options to make figures that
+are easier for you to understand. There are often ways to create the same plots
+using base <code>R</code> functions, but we feel that ggplot2 makes it simple for you to
+create complex plots from data stored in a data frame. Additionally, ggplot2
+provides a programmatic interface for specifying what variables to plot, how
+they are displayed, and general visual properties. Therefore, we only need
+minimal changes if the underlying data change or if we decide to change from a
+bar plot to a scatterplot. This helps in creating high quality plots with
+minimal amounts of adjustments and tweaking.</p>
+</div>
+<div id="section1-4" class="section level2">
+<h2><span class="header-section-number">1.5</span> Chapter summary</h2>
 <p>This chapter covered getting R and RStudio downloaded and some basics of working with
 R via RStudio. You should be able to read a data set into R and run some basic
 functions, all done using the RStudio interface. If you are struggling with
@@ -1137,16 +1260,15 @@ from your previous statistics experience(s).</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div id="section1-5" class="section level2">
-<h2><span class="header-section-number">1.5</span> Summary of important R code</h2>
-<p>To help you learn and use R, there is a section highlighting the most important
-R code used near the end of each
-chapter. The bold text will never change but the
-lighter and/or ALL CAPS text (red in the online or digital version) will need
-to be customized to your particular application. The sub-bullet for each
-function will discuss the use of the function and pertinent options or packages
-required. You can use this as a guide to finding the function names and some
-hints about options that will help you to get the code to work. You can also
-revisit the worked examples using each of the functions.</p>
+<h2><span class="header-section-number">1.6</span> Summary of Important R code</h2>
+<p>To help you learn and use <code>R</code>, there is a section highlighting the most
+important <code>R</code> code used near the end of each chapter. The bold text will never
+change but the lighter and/or ALL CAPS text (red in the online or digital
+version) will need to be customized to your particular application. The
+sub-bullet for each function will discuss the use of the function and pertinent
+options or packages required. You can use this as a guide to finding the
+function names and some hints about options that will help you to get the code
+to work. You can also revisit the worked examples using each of the functions.</p>
 <ul>
 <li><p><font color='red'>FILENAME</font> <code>&lt;-</code> <strong>read_csv(</strong><font color='red'>“path to csv file/FILENAME.csv”</font><strong>)</strong></p>
 <ul>
@@ -1199,7 +1321,7 @@ installing the package).</p></li>
 <div style="page-break-after: always;"></div>
 </div>
 <div id="section1-6" class="section level2">
-<h2><span class="header-section-number">1.6</span> Practice problems</h2>
+<h2><span class="header-section-number">1.7</span> Practice problems</h2>
 <p>In each chapter, the last section contains some questions for you to complete
 to make sure you understood the
 material. You can download the code to answer questions 1.1 to 1.5 below at
@@ -1229,7 +1351,7 @@ ages does this study pertain to?</p>
 kilograms and you might prefer to see them in pounds. The conversion is
 <code>lbs=2.205*kgs</code>. Create a new variable in the <code>treadmill</code>
 tibble called <em>BWlb</em> using this code:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="chapter1.html#cb29-1"></a>treadmill<span class="op">$</span>BWlb &lt;-<span class="st"> </span><span class="fl">2.205</span><span class="op">*</span>treadmill<span class="op">$</span>BodyWeight</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="chapter1.html#cb37-1"></a>treadmill<span class="op">$</span>BWlb &lt;-<span class="st"> </span><span class="fl">2.205</span><span class="op">*</span>treadmill<span class="op">$</span>BodyWeight</span></code></pre></div>
 <p>and find the mean and SD of the new variable (<em>BWlb</em>).</p>
 <p>1.5. Make histograms and boxplots of
 the original <em>BodyWeight</em> and new <em>BWlb</em> variables. Discuss aspects of the
@@ -1243,20 +1365,11 @@ transformation from kilograms to pounds. What does this tell you about changing 
 <div id="ref-Gandrud2015">
 <p>Gandrud, Christopher. 2015. <em>Reproducible Research with R and R Studio, Second Edition</em>. Chapman Hall, CRC.</p>
 </div>
-<div id="ref-R-mosaic">
-<p>Pruim, Randall, Daniel T. Kaplan, and Nicholas J. Horton. 2020b. <em>Mosaic: Project Mosaic Statistics and Mathematics Teaching Utilities</em>. <a href="https://CRAN.R-project.org/package=mosaic">https://CRAN.R-project.org/package=mosaic</a>.</p>
-</div>
 <div id="ref-R-base">
 <p>R Core Team. 2020. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
 </div>
 <div id="ref-RStudio">
 <p>RStudio Team. 2018. <em>RStudio: Integrated Development Environment for R</em>. Boston, MA: RStudio, Inc. <a href="http://www.rstudio.com/">http://www.rstudio.com/</a>.</p>
-</div>
-<div id="ref-Westfall1993">
-<p>Westfall, Peter H., and S. Stanley Young. 1993. <em>Resampling-Based Multiple Testing: Examples and Methods for P-Value Adjustment</em>. New York: Wiley.</p>
-</div>
-<div id="ref-R-readr">
-<p>Wickham, Hadley, Jim Hester, and Romain Francois. 2018. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>.</p>
 </div>
 </div>
 <div class="footnotes">
@@ -1282,21 +1395,24 @@ activities related to installing and using R and RStudio.<a href="chapter1.html#
 <li id="fn5"><p>The need to keep the code
 up-to-date as <code>R</code> continues to evolve is one reason that this book is locally
 published and that this is the 7<sup>th</sup> time it has been revised in seven years…<a href="chapter1.html#fnref5" class="footnote-back">↩︎</a></p></li>
-<li id="fn6"><p>There are ways to read “.xls” and “.xlsx” files
-directly into R that we will explore later so you can also use that format if you prefer.<a href="chapter1.html#fnref6" class="footnote-back">↩︎</a></p></li>
-<li id="fn7"><p>If
-you are having trouble getting the file converted and read into R, copy and
-run the following code:
-<code>treadmill &lt;- read_csv("01/data/treadmill.csv")</code>.<a href="chapter1.html#fnref7" class="footnote-back">↩︎</a></p></li>
-<li id="fn8"><p>You can also use Ctrl+Enter if you like hot keys.<a href="chapter1.html#fnref8" class="footnote-back">↩︎</a></p></li>
-<li id="fn9"><p>Tibbles are R objects that can contain both
-categorical and quantitative variables on your <span class="math inline">\(n\)</span> subjects with a name for each
-variable that is also the name of each column in a matrix.  Each subject is a
-row of the data set. The name (supposedly) is due to the way <em>table</em> sounds in the accent of a particularly influential developer at RStudio who is from New Zealand.<a href="chapter1.html#fnref9" class="footnote-back">↩︎</a></p></li>
-<li id="fn10"><p>The median, quartiles and whiskers sometimes occur at the same
-values when there are many tied observations. If you can’t see all the
-components of the boxplot, produce the numerical summary to help you understand
-what happened.<a href="chapter1.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>There are ways to read
+“.xls” and “.xlsx” files directly into <code>R</code> that we will explore later so you can
+also use that format if you prefer.<a href="chapter1.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>Tibbles are an
+<code>R</code> object that behaves slightly different from a dataframe, but can be used in
+the same way, e.g. a tibble can contain both categorical and quantitative
+variables on your <span class="math inline">\(n\)</span> subjects with a name for each variable that is also the
+name of each column in a matrix, like what we saw with dataframes.
+ Each subject is a row of the data set. The name (supposedly)
+is due to the way <em>table</em> sounds in the accent of a particularly influential
+developer at RStudio who is from New Zealand.<a href="chapter1.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>We can
+assess the distribution of a variable most easily from a graph, or we could use
+a five number summary to asses how different the mean and the median are.<a href="chapter1.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>The median,
+quartiles and whiskers sometimes occur at the same values when there are many
+tied observations. If you can’t see all the components of the boxplot, produce
+the numerical summary to help you understand what happened.<a href="chapter1.html#fnref9" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

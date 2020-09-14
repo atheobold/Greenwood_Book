@@ -87,7 +87,7 @@ Cal Poly's
 RStudio is available in the "Computational" labs. You will need to use a
 two-factor log-in (Cal Poly + Duo Mobile), which will then take you to a list of 
 applications. When you select RStudio, the page will load for 2-4 minutes 
-(🙍). Once you are in, you can work in RStudio the same way 
+(😭). Once you are in, you can work in RStudio the same way 
 you would on your laptop, *except* everything you make during a session 
 __cannot be accessed later__. 
 

@@ -11,7 +11,7 @@ output:
 This chapter is currently under construction!
 :::
 
-::: {.chapterintro}
+::: {.guidedpractice}
 This chapter explores how the familiar difference in means procedure can 
 be generalized to more than three groups. 
 :::

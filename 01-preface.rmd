@@ -9,15 +9,19 @@ output:
 
 ```{r include=F}
 library(mosaic)
+library(tidyverse)
+library(kableExtra)
 library(knitr)
-library(readr)
+library(DT)
+
 knitr::opts_chunk$set(cache = F,
                       echo = FALSE, 
                       fig.width = 5,
                       fig.height = 3.5,
                       fig.pos = "ht!",
                       message = F,
-                      warning = F)
+                      warning = F, 
+                      tidy = TRUE)
 options(show.signif.stars = FALSE)
 ```
 
@@ -513,7 +517,7 @@ variable1
 Once we have created a variable, we can start to explore functions we can use 
 to summarize the contents of the vector. 
 
-### Functions and their arguments
+### Functions and Their Arguments
 
 Functions can be thought of as "prepackaged scripts" that automate more
 complicated sets of commands. Many functions are what we call "base" functions, 
@@ -584,6 +588,143 @@ you need to tell `R` that you wish for `na.rm` to be `TRUE`.
 mean(a, na.rm = TRUE)
 ```
 
+### Packages in `R` 
+
+`R` is an open-source programming language, meaning that users can contribute
+packages that make our lives easier, and we can use them for free. Packages in
+`R` provide additional functions and data sets that are not available in the
+initial download of `R` or RStudio. 
+
+In this textbook we will use the following packages:
+
+-   The **tidyverse** "umbrella" package which houses a suite of many different
+    `R` packages: for data wrangling and data visualization
+-   The **openintro** `R` package: for data and custom functions with the
+    OpenIntro resources
+
+To install an `R` package, go to the **Packages** tab in the lower right panel
+of RStudio. Click on the **Install** button and then type in the name of the
+package in the box (here type in tidyverse and openintro). 
+\index{R packages!\textbf{readr}} RStudio will try to auto-complete the name 
+of the package you are typing which should help you make sure you got it typed
+correctly. If you are working in a .Rmd file, a highlighted message may show up
+on the top of the file to suggest packages to install that are not present -- 
+look for this to help make sure you have the needed packages installed. 
+
+After pressing enter/return, a stream of text will begin, communicating the
+process `R` is going through to install the package from the location you
+selected when you installed `R`. If you were not prompted to select a server for
+downloading packages when you installed `R`, RStudio may prompt you to select a
+server from which to download; any of them will work.
+
+You will only need to install each `R` package once on a given computer. If you
+ever see a message that `R` can't find a package, make sure it appears in the
+list in the **Packages** tab. If it doesn't, repeat the previous steps to
+install it. 
+
+You only need to *install* packages once, but you need to *load* them each time
+you relaunch RStudio. We load packages with the `library()` function.
+\index{R packages!\textbf{tidyverse}}
+
+```{r, eval = FALSE, echo = TRUE} 
+library(tidyverse)
+```
+
+\indent When you load an installed package with ``library()``, you may see a
+warning message about versions of the package and versions of
+`R` -- this is *usually* something you can ignore. Other warning messages could
+be more ominous for proceeding but before getting too concerned, there are
+couple of basic things to check.
+\index{warning message}
+First, double check that the package is installed (see previous steps). Second,
+check for typographical errors in your code -- especially for mis-spellings or
+unintended capitalization. If you are still having issues, try repeating the
+installation process. Then click on the "**Update**" button to check for
+potentially newer versions of packages. 
+
+### R Markdown Documents for Reproducibilty
+
+\indent Statisticians (and other scientists) are starting to use R Markdown and 
+similar methods because they provide what is called "reproducible research"
+[@Gandrud2015] where all the code and output it produced are available in a
+__single__ place. This allows different researchers to run and verify
+results (so they are "reproducible") or the original researchers to revisit
+their earlier work at a later date and recreate all their results exactly.
+Scientific publications are currently encouraging researchers to work in this 
+way and may someday require it. The term ***reproducible*** can also be related
+to whether repeated studies get the same result (also called ***replication***)
+-- further discussion of these terms and the implications for scientific
+research are discussed in Chapter \@ref(chapter2).
+
+In this course, will be using R Markdown to create reproducible lab reports.
+See the following videos describing why and how:
+
+[**Why use R Markdown for Lab Reports?**](https://youtu.be/lNWVQ2oxNho) <iframe width="560" height="315" src="https://www.youtube.com/embed/lNWVQ2oxNho" frameborder="0" allowfullscreen></iframe>
+
+[**Using R Markdown for Lab Reports in RStudio**](https://youtu.be/o0h-eVABe9M) <iframe width="560" height="315" src="https://www.youtube.com/embed/o0h-eVABe9M" frameborder="0" allowfullscreen></iframe>
+
+\indent In order to get some practice using R Markdown, create a sample document
+in this format using File -> New File -> R Markdown... Choose a title for your
+file and select the "HTML" option. This will create a new file in the upper left
+window. Save that file to your computer, __in a location where you can find it 
+again__. Then you can use the "Knit" button to have RStudio run the code and
+create an HTML document with the results. 
+
+Potentially the most important feature of R Markdown files is that
+they allow for us to nest our `R` code within a written report. In an R Markdown
+file, `R` code appears in a gray box, which we call "code chunks." The R
+Markdown file knows that the gray box contains `R` code because it begins with
+three tick marks (\`\`\`), followed by two curly braces that contain a lowercase
+letter r ({r}). You can insert a code chunk using the "Insert" button in the 
+upper right-hand corner of the R Markdown document, and selecting the "R"
+option. Then write your code in between the `` ```{r} `` and `` ``` `` lines
+(it should have grey highlights for those lines and white for the rest of the
+portions of the .Rmd document).
+
+Once you write some code inside a code chunk, you can execute the `R` code you
+typed in the code chunk similar to how you typed code into the console and
+pressed enter/return. Within the code chunk
+there are two ways to execute a line of `R` code: (1) place your cursor on the
+line on code and press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> or <kbd>Cmd</kbd> + 
+<kbd>Enter</kbd> at the same time, or (2) place your cursor on the line and
+press the "Run" button in the upper right hand corner of the R Markdown file.
+
+Alternatively, if you wanted to run all of the `R` code in a given code chunk,
+you can click on the "Play" button in the upper right hand corner of the code
+chunk (green sideways triangle).
+
+If at any point you need to start over and run all of the code chunks before a
+specific code chunk, you click on the "Fastforward" button in the upper right
+hand corner of that code chunk (gray upside down triangle with a bar below).
+This will run every code chunk that occurred *before* that code chunk, but
+*will not* execute the `R` code included in that code chunk.
+
+Keep your write up outside of these code chunks to avoid code errors and 
+failures to compile. Once you think your code and writing is done, you can use
+the "Knit" button to try to compile the file. As you are learning, you may find
+this challenging, so start with trying to review the sample document and knit
+each time you get a line of code written so you know when you broke the file. 
+
+After you do this a couple of times, you will find that the challenge of working
+with markdown files is more than matched by the simplicity of the final product
+and, at least to researchers, the reproducibility and documentation of work that
+this method provides.
+
+Going forward you should refrain from typing your code directly in the console,
+as this makes it very difficult to remember and reproduce the output you want to
+reference. Instead of typing our `R` code into the console, we encourage you to
+type any code you produce (final correct answer, or anything you're just trying
+out) in the `R` code chunk associated with each problem.
+
+\indent Finally, when you are done with your work and attempt to exit out of
+RStudio, it will ask you to save your workspace. ***DO NOT DO THIS!*** It will
+just create a cluttered workspace and could even cause you to get incorrect
+results.  In fact, you should go into the Tools -> Global Options and then make
+sure that "Save workspace to .RData on exit" option on the first screen you will
+see is set to ***Never***. If you save your reports as an R Markdown (.Rmd)
+file, you can re-create any results by simply re-running that code or
+re-knitting the file. 
+
 ### Importing Data into `R` 
 
 \indent When dealing with real data, we will often have information about more
@@ -604,447 +745,512 @@ archival format and one that `R` can use directly.^[There are ways to read
 ".xls" and ".xlsx" files directly into `R` that we will explore later so you can
 also use that format if you prefer.]
 
-\indent The following code to read in the data set relies on an `R` package
-called __readr__ [@R-readr]. Packages in `R` provide additional functions and
-data sets that are not available in the initial download of `R` or RStudio. To
-get access to the packages, first "install" (basically download) and then "load"
-the package.
+\indent In order to visualize and summarize a dataset, we first need to read the
+data into `R`. \index{import data} There are two ways to do this, either using
+the point-and-click GUI in RStudio (click the "Import Dataset" button in the
+upper right "Environment" panel as indicated in Figure \@ref(fig:Figure1-2)) or
+modifying the ``read_csv`` function to find the file of interest. 
 
-To install an R package, go to the **Packages** 
-tab in the lower right panel of
-RStudio. Click on the **Install** button and then type in the name of the package in
-the box (here type in readr). 
-\index{R packages!\textbf{readr}} RStudio will try to auto-complete the name 
-of the package you are typing which should help you make sure you got it typed
-correctly. If you are working in a .Rmd file, a highlighted message may show up
-on the top of the file to suggest packages to install that are not present -- 
-look for this to help make sure you have the needed packages installed. 
+Because reproducibility is a learning objective of this textbook, we will choose
+option 2, modifying the `read_csv()` function to tell `R` where to import the 
+data from. Interestingly, there are also two ways we can get data into `R` using
+the `read_csv()` function.
 
-After pressing enter/return, a stream of text will begin, communicating the
-process `R` is going through to install the package from the location you
-selected when you installed `R`. If you were not prompted to select a server for
-downloading packages when you installed `R`, RStudio may prompt you to select a
-server from which to download; any of them will work.
+1. You can go to the textbook webpage in GitHub, navigate to the _book_data_
+folder, and then click on the  treadmill.csv file. This will bring to the file's
+location in the textbook repository. If you click on the link that says "Raw," 
+you will be taken to a page that preview the raw file. Highlight the contents by
+pressing <kbd>Command</kbd> + <kbd>A</kbd> (on a Mac) or <kbd>Control</kbd> + 
+<kbd>A</kbd> (on a PC). Then save this file to your computer by pressing 
+<kbd>Command</kbd> + <kbd>S</kbd> or <kbd>Control</kbd> +  <kbd>S</kbd>. 
+Navigate to where you want for the data to be stored, and make sure the file 
+is saved as _treadmill.csv_! 
 
-You will only need to install each `R` package once on a given computer. If you
-ever see a message that `R` can't find a package, make sure it appears in the
-list in the **Packages** tab. If it doesn't, repeat the previous steps to
-install it. 
+Next, in RStudio modify the code below to reflect the location of the downloaded
+data: 
 
-You only need to *install* packages once, but you need to *load* them each time
-you relaunch RStudio. We load packages with the `library()` function.
-\index{R packages!\textbf{readr}}
-
-```{r, eval = FALSE, echo = TRUE} 
-library(readr)
+```{r, echo = TRUE, eval = FALSE}
+treadmill <- read_csv("stat 313/week 2/data/treadmill.csv")` 
 ```
 
-With a data set converted to a CSV file and readr installed and loaded, we need 
-to read the data set into the active workspace. \index{import data}
-There are two ways to do this, either using the point-and-click GUI in RStudio 
-(click the "Import Dataset" button in the upper right "Environment" panel as
-indicated in Figure \@ref(fig:Figure1-2)) or modifying the ``read_csv`` 
-function to find the file of interest. To practice this, you can 
-download an Excel (.xls) file from 
-http://www.math.montana.edu/courses/s217/documents/treadmill.xls 
-that contains observations on 31 males that volunteered for a study on methods 
-for measuring fitness [@Westfall1993]. 
-In the spreadsheet, you will find a data set that
-starts and ends with the following information (only results for Subjects 1, 2, 
-30, and 31 shown here):
-
-----------------------------------------------------------------------------
-Sub-   Tread-    TreadMill-   RunTime  RunPulse  Rest    BodyWeight   Age
-ject   MillOx    MaxPulse                        Pulse
------  --------  -----------  -------  --------  ------  -----------  ----
-1      60.05     186          8.63     170       48      81.87        38
-
-2      59.57     172          8.17     166       40      68.15        42
-
-…      …         …            …        …         …       …            …
-
-30     39.2      172          12.88    168       44      91.63        54
-
-31     37.39     192          14.03    186       56      87.66        45
-----------------------------------------------------------------------------
-
-\indent The variables contain information on the subject number (*Subject*), subjects' 
-maximum treadmill oxygen consumption (*TreadMillOx*, in ml per kg per minute, also called maximum VO2) and 
-maximum pulse rate (*TreadMillMaxPulse*, in beats per minute), time to run 1.5
-miles (*Run Time*, in minutes), maximum pulse
-during 1.5 mile run (*RunPulse*, in beats per minute), resting pulse rate 
-(*RestPulse*, beats per minute), Body Weight (*BodyWeight*, in kg), and *Age* 
-(in years). Open the file in Excel or equivalent software and then save it as 
-a .csv file in a location you can find on your computer. Then go to RStudio 
-and click on **File**, then **Import Dataset**, then **From Text (readr)...**^[If
-you are having trouble getting the file converted and read into R, copy and 
-run the following code: 
-``treadmill <- read_csv("01/data/treadmill.csv")``.] 
 \index{import data}
-Click "**Import**" and find your file. R will store the data set as an object with the same name 
-as the .csv file. You could use another name as well, but it is 
-often easiest just to keep the data
-set name in R related to the original file name. You should see some text appear
-in the console (lower left panel) like in Figure \@ref(fig:Figure1-3). The text 
-that is created
-will look something like the following -- if you had stored the file in a drive
-labeled D:, it would be:
 
-```{r include=F}
-treadmill <- read_csv("01/data/treadmill.csv")
+Here, I've saved the treadmill.csv file inside a data folder, which lives inside
+my week 2 folder, which lives inside my stat 313 folder. Notice, my folder 
+structure is organized, so that I can easily find the files I am looking for! 
+Organizing the files in your computer will save you a lot of headaches!
+
+2. You can download the data directly from GitHub inside of RStudio. You would 
+follow the same instructions as above, but instead of downloading the data, you 
+would copy-and-paste the web address of the data directly into RStudio. This 
+would look like:
+
+```{r, echo = TRUE}
+treadmill <- read_csv("https://raw.githubusercontent.com/atheobold/stat-313/master/book_data/treadmill.csv")
 ```
 
-```{r eval=F}
-treadmill <- read_csv("01/data/treadmill.csv")
+Using either method, you should notice that the location of the file is enclosed 
+in ``" "``.  The ``read_csv()`` funciton takes a file path as an argument. These
+quotation marks indicate to `R` that the contents between them 
+are a name, not an object. For example, running the following code would 
+produce an error, because `R` would believe that the name between the 
+parentheses is an object (like `variable1`), rather than the name of the location
+the data are stored. 
+
+```{r, echo = TRUE, eval = FALSE}
+treadmill <- read_csv(stat 313/week 2/data/treadmill.csv) 
 ```
 
-What is put inside the 
-``" "`` will depend on the location and name of your saved .csv file. A 
-version of the data set in what looks like a
-spreadsheet will appear in the upper left window due to the second line of 
-code (``View(treadmill``)). 
+Using either method, `R` will store the data set as an object with the name 
+of the object that you put it into. Here, we named the data object `treadmill`, 
+the same name as the .csv file. You could use another name as well, but it is 
+often easiest just to keep the data set name in `R` related to the original file
+name. When you run this code, you should see some text appear in the console
+(lower left panel) like in Figure \@ref(fig:Figure1-3). The text that is created
+will look something like the following -- if you had imported the data 
+direcly from GitHub, it would look something like:
 
 (ref:fig1-4) RStudio with initial data set loaded.
 
 ```{r Figure1-4, echo=FALSE, fig.cap="(ref:fig1-3)",out.width="100%",fig.align="center"}
-knitr::include_graphics('01/images/fig1-3.png')
+knitr::include_graphics('01/images/alt_fig 1-3.png')
 ```
 
-\indent Just directly typing (or using) a line of code like this is actually the 
-other way that we can read in
-files. If you choose to use the text-only interface, then you need to tell R
-where to look in your computer to find the data file. ``read_csv`` is a 
-function that takes a path as an argument. To use it, specify the path to 
-your data file, put quotes around it, and put it as the input to 
-``read_csv(...)``. For some examples later in the book, you will be able to 
-copy a command like this from the text and read data sets and other
-code directly from the website, assuming you are connected to the
-internet. 
+### Inspecting Data
 
-\indent To verify that you read the data set in correctly, it is always good to check 
-its contents. We can view the first and last rows in the data set using the 
-``head`` and ``tail`` functions on the data set, which show the following 
-results for the
-``treadmill`` data. Note that you will sometimes need to resize the console
-window in RStudio to get all the columns to display
-in a single row which can be performed by dragging the gray bars that separate
-the panels.
-\index{\texttt{head()}}
-\index{\texttt{tail()}}
+In the spreadsheet, you will find a data with variables that contain information
+on the subject number (`Subject`),
+subjects' maximum treadmill oxygen consumption (`TreadMillOx`, in ml per kg per
+minute, also called maximum VO2) and maximum pulse rate (`TreadMillMaxPulse`,
+in beats per minute), time to run 1.5 miles (`Run Time`, in minutes), maximum
+pulse during 1.5 mile run (`RunPulse`, in beats per minute), resting pulse rate 
+(`RestPulse`, beats per minute), Body Weight (`BodyWeight`, in kg), and `Age` 
+(in years). To access the data, you have two options. 
 
-\small
+\indent To verify that you read the data set in correctly, it is always good to
+inspect its contents. We can view the contents of the dataset using the
+following code:
 
-```r
-> head(treadmill)
-# A tibble: 6 x 8
-  Subject TreadMillOx TreadMillMaxPulse RunTime RunPulse RestPulse BodyWeight   Age
-    <int>       <dbl>             <int>   <dbl>    <int>     <int>      <dbl> <int>
-1       1       60.05               186    8.63      170        48      81.87    38
-2       2       59.57               172    8.17      166        40      68.15    42
-3       3       54.62               155    8.92      146        48      70.87    50
-4       4       54.30               168    8.65      156        45      85.84    44
-5       5       51.85               170   10.33      166        50      83.12    54
-6       6       50.55               155    9.93      148        49      59.08    57
-
-> tail(treadmill)
-# A tibble: 6 x 8
-  Subject TreadMillOx TreadMillMaxPulse RunTime RunPulse RestPulse BodyWeight   Age
-    <int>       <dbl>             <int>   <dbl>    <int>     <int>      <dbl> <int>
-1      26       44.61               182   11.37      178        62      89.47    44
-2      27       40.84               172   10.95      168        57      69.63    51
-3      28       39.44               176   13.08      174        63      81.42    44
-4      29       39.41               176   12.63      174        58      73.37    57
-5      30       39.20               172   12.88      168        44      91.63    54
-6      31       37.39               192   14.03      186        56      87.66    45
-```
- 
-\normalsize
-
-\indent When you load an installed package with ``library``, you may see a warning message about versions of the package and versions of 
-R -- this is *usually* something you can ignore. Other warning messages could
-be more ominous for proceeding but before getting too concerned, there are 
-couple of basic things to check. 
-\index{warning message}
-First, double check that the package is 
-installed (see
-previous steps). Second, check for typographical errors in your code --
-especially for mis-spellings or unintended capitalization. If you are still
-having issues, try repeating the installation process. Then click on the "**Update**" button to check for potentially newer versions of packages. If all that fails, try the cloud version of RStudio discussed before and repeat the steps there. 
-
-\indent To help you go from basic to intermediate R usage and especially to help with more
-complicated problems, you will want to learn how to manage and save your R code. 
-The best way to do this is using the upper left panel in RStudio. If you just want to manage code, then you can use what
-are called R Scripts, which are files that have a file extension of ".R". To
-start a new ".R" file to store your code, click on **File**, then 
-**New File**, then **R Script**. This will create a blank page to enter and 
-edit code -- then save the file as something like "MyFileName.R" in your preferred location. 
-Saving your code will mean that you can return to where you
-were working last by simply re-running the saved script file. With code in the
-script window, you can place the cursor on a line of code or highlight a chunk
-of code and hit the "Run" button^[You can also use Ctrl+Enter if you like hot keys.] 
-on the upper part of the panel. It will appear
-in the console with results just like what you would obtain if you typed it
-after the command prompt and hit enter for each line. Figure \@ref(fig:Figure1-4) 
-shows the screen with the code used in this 
-section in the upper left panel, saved in
-a file called "Ch1.R", with the results of highlighting and executing the first
-section of code using the "Run" button. 
-
-(ref:fig1-5) RStudio with highlighted code run.
-
-```{r Figure1-5, echo=FALSE, fig.cap="(ref:fig1-4)",out.width="100%",fig.align="center"}
-knitr::include_graphics('01/images/fig1-4.png')
+```{r, echo = TRUE, eval = FALSE}
+treadmill
 ```
 
-## Basic summary statistics, histograms, and boxplots using R {#section1-3}
+This command does display the data for us, however, printing the whole dataset
+in the console is not that useful. One advantage of RStudio is that it comes
+with a built-in data viewer. The *Environment* tab (in the upper right pane) 
+lists the objects in your environment. Clicking on the name `treadmill` will
+open up a *Data Viewer* tab next to your R Markdown file, which provides an
+alternative display of the data set. This display should feel similar to viewing
+data in Excel, where you are able to scroll through the dataset to inspect it.
+However, unlike Excel, you **will not** be able to edit the data in this tab.
+Once you are done viewing the data, You can close this tab by clicking on the 
+`x` in the upper left hand corner.
 
-For the following material, you will need to install and load the ``mosaic`` package [@R-mosaic]. 
+When inspecting the data, you should see eight columns of numbers and 31 rows.
+Each row represents a different subject in the study. The first entry in each
+row is the row number (an index we can use to access the data from individual
+years if we want), the second is the subject number, and the rest of the columns
+are the variables for which data was collected for every subject. You can use
+the scrollbar on the right side of the console window to examine the complete
+data set.
 
-\index{R packages!\textbf{mosaic}}
+Note that the row numbers in the first column are not part of the `treadmill`
+data. `R` adds these row numbers as part of its printout to help you make visual
+comparisons. You can think of them as the index that you see on the left side of
+a spreadsheet. In fact, the comparison of the data to a spreadsheet will
+generally be helpful. `R` has stored the `treadmill` data in an object similar
+to a spreadsheet or a table, which `R` calls a *data frame*.
 
-```r
-> library(mosaic)
+You can see the dimensions of this data frame as well as the names of the
+variables and the first few observations by inserting the name of the dataset
+into the `glimpse()` function, as seen below:
+
+```{r, echo = TRUE, eval = FALSE}
+glimpse(treadmill)
 ```
 
-It provides a suite of enhanced functions to aid our initial explorations. With RStudio running, the ``mosaic`` package loaded, a place to write and
-save code, and the ``treadmill`` data set loaded, we can (finally!) start to
-summarize the results of the study. The ``treadmill`` object is what R calls a 
-***tibble***^[Tibbles are R objects that can contain both 
-categorical and quantitative variables on your $n$ subjects with a name for each
-variable that is also the name of each column in a matrix. \index{tibble} Each subject is a 
-row of the data set. The name (supposedly) is due to the way *table* sounds in the accent of a particularly influential developer at RStudio who is from New Zealand.] and contains columns corresponding to each variable in 
-the spreadsheet. Every
-function in R will involve specifying the variable(s) of interest and how you
-want to use them. To access a particular variable (column) in a tibble, you
-can use a $ between the name of the tibble and the name of the variable of
-interest, generically as ``tibblename$variablename``. You can think of this as *tibblename's variablename* where the *'s* is replaced by the dollar sign. To identify the 
-``RunTime`` variable here it would be ``treadmill$RunTime``. In the command line it would look like:
+Although we previously said that it is best practice to type all of your `R`
+code into the code chunk, it is better practice to type this command into your
+console. Generally, you should type all of the code that is necessary for your
+solution into the code chunk. Because this command is used to explore the data,
+it is not necessary for your solution code and **should not** be included in
+your R Markdown file.
 
-```r
-> treadmill$RunTime
-[1]  8.63  8.17  8.92  8.65 10.33  9.93 10.13 10.08  9.22  8.95 10.85  9.40 11.50 10.50
-[15] 10.60 10.25 10.00 11.17 10.47 11.95  9.63 10.07 11.08 11.63 11.12 11.37 10.95 13.08
-[29] 12.63 12.88 14.03
+This command should output the following:
+
+```{r}
+glimpse(treadmill)
 ```
 
-\indent Just as in the previous section, we can generate summary statistics using functions like ``mean`` and ``sd`` by running them on a specific variable:
+At this point, you might notice that many of the commands in `R` look a lot like
+functions from math class; that is, invoking `R` commands means supplying a
+function with some number of inputs (what are called arguments) which the
+function uses to produce an output. The `glimpse()` command, for example, took a
+single argument, the name of a data frame and produced a display of the dataset
+as an output.
+
+\index{\texttt{glimpse()}}
+
+## Introduction to Data Summarization {#section1-3}
+
+The ``treadmill`` object is what `R` calls a ***tibble***^[Tibbles are an 
+`R` object that behaves slightly different from a dataframe, but can be used in
+the same way, e.g. a tibble can contain both categorical and quantitative
+variables on your  $n$ subjects with a name for each variable that is also the
+name of each column in a matrix, like what we saw with dataframes. 
+\index{tibble} Each subject is a row of the data set. The name (supposedly)
+is due to the way *table* sounds in the accent of a particularly influential
+developer at RStudio who is from New Zealand.] and contains columns
+corresponding to each variable in the spreadsheet. Every function in `R` will
+involve specifying the variable(s) of interest and how you want to use them.
+To access a particular variable (column) in a tibble, you can use a `$` between
+the name of the tibble and the name of the variable of interest. Generically, 
+this looks something like: `tibblename$variablename`. You can think of this as
+*tibblename's variablename* where the *'s* is replaced by the dollar sign (`$`).
+To access the ``RunTime`` variable here it would be ``treadmill$RunTime``. 
+
+```{r, echo = TRUE}
+treadmill$RunTime
+```
+
+When we looked at the complete data frame, we saw 31 rows, one on each line of
+the display. These data have been extracted from the data frame, so they are no
+longer structured in a table with other variables. Instead, these data are
+displayed one right after another. Objects that print out in this way are called
+*vectors*; similar to the vectors you have seen in mathematics courses, vectors
+represent a list of numbers. `R` has added numbers displayed in [brackets] along
+the left side of the printout to indicate each entry's location within the
+vector. For example, 8.63 follows `[1]`, indicating that `8.63` is the first
+entry in the vector. If `[43]` was displayed at the beginning of a line, that
+indicate that the first number displayed on that line would correspond to the
+43<sup>rd</sup> entry in that vector.
+
+\indent Just as in the previous section, we can generate summary statistics for 
+a particular variable using functions like ``mean()`` and ``sd()``:
 \index{mean}
 \index{standard deviation}
 
-```r
-> mean(treadmill$RunTime)
-[1] 10.58613
-> sd(treadmill$RunTime)
-[1] 1.387414
+```{r, echo = TRUE}
+mean(treadmill$RunTime)
+sd(treadmill$RunTime)
 ```
-And now we know that the average running time for 1.5 miles for the subjects in the study was 10.6 minutes with a standard deviation (SD) of 1.39 minutes. But you should remember that the
-mean and SD are only appropriate summaries if the distribution is roughly
-***symmetric*** (both sides of the distribution are approximately the same shape and length). The 
-``mosaic``  package provides a useful function called ``favstats`` that provides 
-the mean and SD as well as the ***5 number summary***: \index{5 number summary}
+
+And now we know that the average running time for 1.5 miles for the subjects
+in the study was `r mean(treadmill$RunTime)` minutes with a standard
+deviation of `r sd(treadmill$RunTime)` minutes. But you should remember that
+the mean and SD are only appropriate summaries if the distribution is roughly
+***symmetric*** (both sides of the distribution are approximately the same shape
+and length). 
+
+<!-- (Note: answers to all Guided Practice exercises are provided in footnotes!) -->
+
+::: {.guidedpractice} 
+But how can we determine if the distribution of a variable is symmetric?^[We can
+assess the distribution of a variable most easily from a graph, or we could use 
+a five number summary to asses how different the mean and the median are.]
+:::
+
+The __dplyr__ package (included in the tidyverse) provides a useful function
+called `summarize()` that allows 
+for us to calculate many different summary statistics all at the same time. A 
+***5 number summary*** is a common calculation people use to assess the 
+distribution of a variable, where the summaries are \index{5 number summary}
 the minimum (``min``), the first quartile (``Q1``, the 25^th^ percentile), 
-the median (50^th^ percentile), the third quartile (``Q3``, the 75^th^
-percentile), and the maximum (``max``). It also provides the number of 
-observations (``n``) which was 31, as noted above, and a count of whether any 
-missing values were encountered (``missing``), which was 0 here since all 
-subjects had measurements available on this variable. 
-\index{favstats}
+the `median` (50^th^ percentile), the third quartile (``Q3``, the 75^th^
+percentile), and the maximum (``max``). 
+\index{summarize}
 
-```r
-> favstats(treadmill$RunTime)
-  min   Q1 median    Q3   max     mean       sd  n missing
- 8.17 9.78  10.47 11.27 14.03 10.58613 1.387414 31       0
+Let's use the `summarize()` function to calculate a five number summary of the 
+running times, including the mean:
+
+```{r, echo = TRUE}
+summarize(treadmill, 
+          min = min(RunTime), 
+          Q1 = quantile(RunTime, probs = 0.25),
+          mean = mean(RunTime), 
+          median = median(RunTime), 
+          Q3 = quantile(RunTime, probs = 0.75), 
+          max = max(RunTime), 
+)
 ```
 
-\indent We are starting to get somewhere with understanding that the runners were 
-somewhat fit with the worst runner covering 1.5 miles in 14 minutes 
-(the equivalent of a 9.3 minute mile)
-and the best running at a 5.4 minute mile pace. The limited variation in the
-results suggests that the sample was obtained from a restricted group with
-somewhat common characteristics. When you explore the ages and weights of the
-subjects in the Practice Problems in Section \@ref(section1-6), you will get even more
-information about how similar all the subjects in this study were. Researchers often publish numerical summaries of this sort of demographic information to help readers understand the subjects that they studied and that their results might apply to.
+This code may look overwhelming, so let's break it down! The first argument 
+(input) into the `summarize()` function is the name of the dataset you would 
+like to summarize. Next, you tell the function all of the summaries you would 
+like, giving names to each summary. Here, we give simple names to the summaries, 
+e.g. `min` or `median` or `Q3`, which are indicated on the left-hand side of the 
+`=` sign. On the right-hand side of the `=` sign is the calculation you want 
+`R` to do for you. `R` has built-in functions for calculating the `min()`, 
+`max()`, `median()`, and percentiles of a distribution. 
 
-\indent A graphical display of these results will help us to assess the shape 
-of the distribution of run times -- including considering the potential for the presence of a ***skew*** (whether the right or left tail of the distribution 
+The `quantile()` function may look a little confusing, so let's look at what is 
+going on. There are two arguments to `quantile()`, the a numeric vector, and 
+a percentage. The percentage tells the function what percent of the data you 
+want to be below. For example, in the below picture, we can see that the first 
+quantile corresponds to the number where approximately 25% of the data is below 
+that number and 75% is above that number. This should make a bit more sense if 
+you think about the median being the center of the distribution, where 50% of 
+the data is below the median and 50% is above. 
+
+(ref:fig1-6) Quantiles of a distribution. 
+
+```{r Figure1-6,echo=FALSE,fig.cap="(ref:fig1-6)",out.width="100%",fig.align="center"}
+knitr::include_graphics('01/images/quantile.jpg')
+```
+
+Alternatively, we could have used the following code to obtain the same 
+five number summary:
+
+```{r, echo = TRUE, eval = FALSE}
+treadmill %>% 
+  summarize(min = min(RunTime), 
+            Q1 = quantile(RunTime, probs = 0.25),
+            mean = mean(RunTime), 
+            median = median(RunTime), 
+            Q3 = quantile(RunTime, probs = 0.75), 
+            max = max(RunTime), 
+)
+```
+
+The only difference between the previous code and this code is the location of
+the `treadmill` data. Previously, we told the `summarize()` function to use 
+the `treadmill` data by inserting the data as the first argument into the 
+function. Here, we instead "pipe" the `treadmill` data into the `summarize()` 
+function using what is calle the pipe operator (`%>%`). 
+
+You might be wondering what we mean by _"pipe it into the `summarize()` function"_?
+
+### The pipe operator
+
+![](images/pipe-operator.png){width="30%"}
+
+The **pipe operator**, which **is percent greater than percent**, tells `R` to
+pass the object that comes before it into the first argument of the function
+that comes after it. Mathematically, **x pipe f(y)** becomes *f(x, y)*, since x
+is piped into the first argument of the function f().
+
+![](images/pipe-operator2.png){width="30%"}
+
+You may think that it seems kind of silly to use the pipe rather than simply 
+typing the name of the data into the `summarize()` function, but as we progress
+through the textbook, acquiring additional data wrangling skills, you will see
+that the piping operator will allow us to sequentially link together data
+wrangling operations. This can save us a great deal of headache later on, as the
+format of operations that use the pipe are far simpler to read! We'll start with
+short pipes and throughout the tutorial build up to longer pipes that perform
+multiple operations.
+
+## Introduction to Data Visualization in `R` {#section1-4}
+
+\indent We are starting to get somewhere with understanding that the runners
+were somewhat fit with the worst runner covering 1.5 miles in 14 minutes 
+(the equivalent of a 9.3 minute mile) and the best running at a 5.4 minute mile
+pace. The limited variation in the results suggests that the sample was obtained
+from a restricted group with somewhat common characteristics. When you explore
+the ages and weights of the subjects in the Practice Problems in Section
+\@ref(section1-6), you will get even more information about how similar all the
+subjects in this study were. Researchers often publish numerical summaries of 
+this sort of demographic information to help readers understand the subjects
+that they studied and that their results might apply to.
+
+\indent A graphical display of the variable is a simpler method to help us to
+assess the shape of its distribution -- including considering the potential for
+the presence of a ***skew*** (whether the right or left tail of the distribution 
 is noticeably more spread out, with left skew meaning that the left tail 
-is more spread out than the right tail) \index{skew} and ***outliers*** \index{outlier}
-(unusual observations). A ***histogram*** \index{histogram} is a good place to start.
-Histograms display connected bars with counts of observations defining
-the height of bars based on a set of bins of values of the quantitative variable. 
-We will apply the ``hist`` function to the ``RunTime`` variable, which produces 
-Figure \@ref(fig:Figure1-6). 
+is more spread out than the right tail) \index{skew} and ***outliers*** 
+\index{outlier} (unusual observations). A ***histogram*** \index{histogram} is a
+good place to start. Histograms display connected bars with counts of
+observations defining the height of bars based on a set of bins of values of the
+quantitative variable. 
 
-```r
-> hist(treadmill$RunTime)
+`R` has some powerful functions for making graphics. We can create a simple plot
+of the distribution of the running times with the following code:
+
+<!-- HISTOGRAM  -->
+
+```{r, echo = TRUE, warning = FALSE}
+ggplot(data = treadmill, aes(x = RunTime)) + 
+  geom_histogram()
 ```
 
-(ref:fig1-6) Histogram of Run Times (minutes) of $n$=31 subjects in Treadmill study, bar heights are counts.
+In this code, we use the `ggplot()` function to build a plot. If you run this
+code chunk, a plot will appear below the code chunk. The R Markdown document
+displays the plot below the code that was used to generate it, to give you an
+idea of what the plot would look like in a final report.
 
-```{r Figure1-6, fig.cap='(ref:fig1-5)',echo=F,fig.width = 5, fig.height = 3.5}
-old.par <- par(mai=c(0.5,0.5,0.5,0.5))
-hist(treadmill$RunTime)
-```
+The command above also looks like a mathematical function.
+This time, however, the function requires multiple inputs (arguments), which are
+separated by commas.
 
-(ref:fig1-7) RStudio while in the process of copying the histogram.
+With `ggplot()`:
 
-```{r Figure1-7,echo=FALSE,fig.cap="(ref:fig1-6)",out.width="100%",fig.align="center"}
-knitr::include_graphics('01/images/Fig1-6.png')
-```
+-   The first argument is always the name of the dataset you wish to use for
+    plotting.
+-   Next, you provide the variables from the dataset to be assigned to different
+    `aes`thetic elements of the plot, such as the x and the y axes.
 
-\indent You can save this plot by clicking on the **Export** button found above 
-the plot, followed by **Copy to Clipboard** and clicking on the 
-**Copy Plot** button. Then if you open your
-favorite word-processing program, you should be able to paste it into a
-document for writing reports that include the figures. You can see the first
-parts of this process in the screen grab in Figure \@ref(fig:Figure1-6). You can also directly save the figures as separate files using 
-**Save as Image** or **Save as PDF** and then insert them into your word 
-processing documents. 
+These commands will build a blank plot, with the variables you assigned to the x
+and y axes. Next, you need to tell `ggplot()` what type of visualization you
+would like to add to the blank template. You add another layer to the `ggplot()`
+by:
 
-\indent The function ``hist`` defaults into providing a histogram on the ***frequency***
-(count) scale. In most R functions, there are the default options that will 
-occur if we don't make any specific choices but we
-can override the default options if we desire. One option we can modify here is
-to add labels to the bars to be able to see exactly how many observations fell
-into each bar. Specifically, we can turn the ``labels`` option "on" by making it true ("T") by adding ``labels=T`` to the previous call to the ``hist`` function, separated by a comma. Note that we will use the ``=`` sign only for changing options within functions.  
+-   adding a `+` at the end of the line, to indicate that you are adding a layer
+-   then specify the `geom`etric object to be used to create the plot.
 
-```r
-> hist(treadmill$RunTime, labels=T)
-```
+Since we want to creat a histogram, we use `geom_histogram()`. This tells
+`ggplot()` to take the data values and bin them up, so that the height of each 
+bin reflects the number of observations included in that bin.
 
-(ref:fig1-8) Histogram of Run Times with counts in bars labeled.
+\indent Based on this histogram, it does not
+appear that there any outliers in the responses since there are no bars that are
+separated from the other observations. However, the distribution does not look
+symmetric and there might be a skew to the distribution. Specifically, it
+appears to be ***skewed right*** (the right tail is longer than the left).
+Histograms can sometimes mask features of the data set by binning observations, 
+making it difficult to find the percentiles accurately from the plot. 
+Alternative visualizations for these data would be a boxplot or a density plot, 
+which we will explore next. 
 
-```{r Figure1-8, fig.cap="(ref:fig1-7)",echo=F,fig.width = 5, fig.height = 3.5}
-hist(treadmill$RunTime, labels=T)
-```
-
-
-\indent Based on this histogram (Figure \@ref(fig:Figure1-8)), it does not appear that there any outliers in the responses
-since there are no bars that are separated from the other observations. However, 
-the distribution does not look symmetric and there might be a skew to the
-distribution. Specifically, it appears to be ***skewed right*** (the right tail is longer than the left). But histograms can sometimes mask features of
-the data set by binning observations and it is hard to find the percentiles
-accurately from the plot. 
+<!-- BOXPLOT -->
 
 \indent When assessing outliers and skew, the ***boxplot*** 
-(or *Box and Whiskers* plot) can also be helpful (Figure \@ref(fig:Figure1-8)) to describe the 
-shape of the distribution as it displays the 5-number summary and will also indicate
-observations that are "far" above the middle of the observations. 
+(or *Box and Whiskers* plot) can also be helpful to describe the 
+shape of the distribution as it displays the 5-number summary and will also
+indicate observations that are "far" above the middle of the observations. 
 \index{boxplot}
-R's ``boxplot`` function uses the standard rule to indicate an observation as a
+
+As you may have expected, to create a boxplot in ggplot you change the 
+geometric representation of your data, in the `geom` function. Here, we will 
+use the `geom_boxplot()` to create a boxplot of the running times. The 
+`geom_boxplot()` function uses the standard rule to indicate an observation as a
 ***potential outlier*** if it falls more than 1.5 times the ***IQR*** 
 (Inter-Quartile Range, calculated as Q3 -- Q1) below Q1 or above Q3. 
 \index{outlier}
-The potential outliers 
-are plotted with circles and the *Whiskers* (lines that extend from Q1 and Q3 typically to 
-the minimum and maximum) are shortened to only go as far as
-observations that are within $1.5*$IQR of the upper and lower quartiles. The *box*
-part of the boxplot is a box that goes from Q1 to Q3 and the median is displayed as a line 
-somewhere inside the box.^[The median, quartiles and whiskers sometimes occur at the same 
-values when there are many tied observations. If you can't see all the 
-components of the boxplot, produce the numerical summary to help you understand 
-what happened.] Looking back at the summary statistics above, Q1=9.78 and Q3=11.27, providing an IQR of:
 
-```r
-> IQR <- 11.27 - 9.78
-> IQR
-[1] 1.49
+The potential outliers are plotted with circles and the *Whiskers* (lines that
+extend from Q1 and Q3 typically to the minimum and maximum) are shortened to
+only go as far as observations that are within $1.5*$IQR of the upper and lower
+quartiles. The *box* part of the boxplot is a box that goes from Q1 to Q3 and
+the median is displayed as a line somewhere inside the box.^[The median,
+quartiles and whiskers sometimes occur at the same values when there are many
+tied observations. If you can't see all the components of the boxplot, produce
+the numerical summary to help you understand what happened.] 
+
+```{r, echo = TRUE, warning = FALSE}
+ggplot(data = treadmill, aes(y = RunTime, x = "")) + 
+  geom_boxplot()
 ```
 
-One observation (the maximum value of 14.03) is indicated as a potential outlier 
-based on this result by being larger than Q3 $+1.5*$IQR, which was 13.505:
+You'll notice there are a few additional changes in the code above. First, the 
+running times are now the y variable instead of the x variable. This is because 
+it is more "standard" for a boxplot to appear vertically rather than
+horizontally. Thus, plotting `RunTime` as the y variable, creates a vertical 
+boxplot. Second, there are empty quotations next to the x variable. This is 
+because `ggplot()` expects for us to be creating multiple boxplots 
+(side-by-side boxplots) when we use `geom_boxplot()`. To create a boxplot of 
+only one group, you need to insert an empty variable (`" "`) as the x variable. 
 
-```r
-> 11.27 + 1.5*IQR
-[1] 13.505
+Looking at the boxplot, one observation, the maximum, was flagged as an
+"outlier" and plotted as a point. In the summary statistics we calculated 
+before, Q1 was `r quantile(treadmill$RunTime, probs = 0.25)` and Q3 was 
+`r quantile(treadmill$RunTime, probs = 0.75)`, providing an IQR of:
+
+```{r, echo = TRUE}
+treadmill %>% 
+  summarize(IQR = quantile(RunTime, probs = 0.75) - 
+              quantile(RunTime, probs = 0.25)
+            )
 ```
+
+Based on this result the maximum (`r max(treadmill$RunTime)`) was flagged as a
+potential outlier, because it was larger than than Q3 $+1.5*$IQR, which was 
+`r quantile(treadmill$RunTime, probs = 0.75) + 1.5*IQR(treadmill$RunTime)`. 
 
 \indent The boxplot also shows a slight indication of a right skew (skew towards
-larger values) with the distance from the minimum to the median being smaller than the
-distance from the median to the maximum. Additionally, the distance from Q1 to
-the median is smaller than the distance from the median to Q3. It is modest skew,
-but worth noting. 
+larger values) with the distance from the minimum to the median being smaller
+than the distance from the median to the maximum. Additionally, the distance
+from Q1 to the median is smaller than the distance from the median to Q3. It is
+modest skew, but worth noting. 
 
-(ref:fig1-9) Boxplot of 1.5 mile Run Times.
-
-```{r Figure1-9, fig.cap="(ref:fig1-8)",echo=F,fig.width = 5, fig.height = 3.5}
-old.par <- par(mai=c(0.5,0.5,0.5,0.5))
-boxplot(treadmill$RunTime)
-```
-
-```r
-> boxplot(treadmill$RunTime)
-```
-
-\indent While the default boxplot is fine, it fails to provide good graphical labels, 
-especially on the y-axis. Additionally, there is no title on the plot. The
-following code provides some enhancements to the plot by using the ``ylab`` and 
-``main`` options in the call to ``boxplot``, with the results displayed in
-Figure \@ref(fig:Figure1-9). When we add text to plots, it will be contained within quotes and
-be assigned into the options ``ylab`` (for y-axis) or ``main``
-(for the title) here to put it into those locations. 
-
-(ref:fig1-10) Boxplot of Run Times with improved labels.
+\indent While the default boxplot is okay, it fails to provide good graphical
+labels, especially on the y-axis. Additionally, there is no title on the plot.
+The following code provides some enhancements to the plot by using the `labs()`
+function to add labels to the plot. When we add text to plots, it must be
+contained within quotes and be assigned into the options ``ylab`` (for y-axis)
+or ``title`` (for the title) here to put it into those locations. 
 
 ```{r Figure1-10, fig.cap="(ref:fig1-9)",echo=F,fig.width = 5, fig.height = 3.5}
-old.par <- par(mai=c(0.5,1,0.75,0.5))
-boxplot(treadmill$RunTime, ylab="1.5 Mile Run Time (minutes)",cex.main=0.75,
-        main="Boxplot of the Run Times of n=31 participants")
+ggplot(data = treadmill, aes(y = RunTime, x = "")) + 
+  geom_boxplot() + 
+  labs(ylab = "1.5 Mile Run Time (minutes)",
+       title = "Boxplot of the Run Times of 31 participants")
 ```
 
-```r
-> boxplot(treadmill$RunTime, ylab="1.5 Mile Run Time (minutes)", 
-          main="Boxplot of the Run Times of n=31 participants")
+Unfortunately, boxplots can be misleading. They are not affected by data’s
+distribution, which allows for the data to "morph" but maintain their stat
+summaries (medians and ranges), their box plots stay the same. One of the ways 
+this "morphing" becomes extrememly problematic, is if a distribution looks okay 
+on a boxplot, but actually has multiple peaks (called modes). Density plots 
+allow for us to detect these small changes in the distribution of a variable 
+far more easily. 
+
+<!-- DENSITY PLOT -->
+
+To create a density plot instead of a histogram or boxplot, (as expected) you
+would use `geom_density()`. This would tell `ggplot()` to
+draw a continuous line around the outside of the histogram, where the height of
+the density curve reflects the number of observations at that run time. Another, 
+potentially less noticable difference, is that a density plot has different 
+values on the y-axis. A histogram has counts on the y-axis, representing the 
+number of observations in each bin. A density plot, however, has density on the 
+y-axis, with values between 0 and 1. If you remember from your introductory 
+statistics course, the total area under a a density plot adds up to 100%, so 
+the values on the side represent the percentage of the data that 
+took on values in that data range. For example, it appears that nearly 30% of 
+the runners in this study had running times around 11 minutes for the 1.5 miles. 
+
+```{r plot-girls-vs-year-line}
+ggplot(data = treadmill, aes(x = RunTime)) + 
+  geom_density()
 ```
+
+::: {.protip}
+
+Many people would prefer for their density plot to be filled in (shaded) below
+the density line. To do this you need to add a color to the `fill` argument, 
+inside the `geom_density()` function. This tells `ggplot()` that you want for 
+your density curvey to be filled with whatever color you tell it. Here, I've 
+selected blue, although tomato is another favorite of mine. 
+
+```{r, echo = TRUE}
+ggplot(data = treadmill, aes(x = RunTime)) + 
+  geom_density(fill = "blue")
+```
+:::
+
+You might wonder how you are supposed to know the syntax for the `ggplot()`
+function. Thankfully, `R` documents all of its functions extensively. To learn
+what a function does and how to use it (e.g. the function's arguments), just
+type in a question mark followed by the name of the function that you're
+interested in into the console. Type the following in your console:
+
+```{r plot-help, tidy = FALSE}
+?ggplot
+```
+
+Notice that the help file comes to the forefront, replacing the plot in the
+lower right panel. You can toggle between the tabs by clicking on their names.
+
 
 \indent Throughout the book, we will often use extra options to make figures that
-are easier for you to understand. There
-are often simpler versions of the functions that will suffice but the extra
-work to get better labeled figures is often worth it. I guess the point is that
-"a picture is worth a thousand words" but in data visualization, that is only
-true if the reader can understand what is being displayed. It is also important
-to think about the quality of the information that is being displayed, 
-regardless of how pretty the graphic might be. So maybe it is better to say 
-"a picture can be worth a thousand words" if it is well-labeled?
-
-\indent All the previous results were created by running the R code and then copying the
-results from either the console or by copying the figure and then pasting the results 
-into the typesetting program. There is another way
-to use RStudio where you can have it compile the results (both output and
-figures) directly into a document together with other writing and the code that generated it, 
-using what is called R Markdown (http://shiny.rstudio.com/articles/rmarkdown.html). 
-It is basically what we used to prepare this book and what you should learn to use to do your work. 
-From here forward, you will see a
-change in formatting of the R code and output as you will no
-longer see the command prompt (">") with the code. The output will be
-flagged by having two "##"'s before it. For example, the summary statistics for
-the *RunTime* variable from ``favstats`` function would look like when run using R Markdown:
-
-```{r}
-favstats(treadmill$RunTime)
-```
-
-\indent Statisticians (and other scientists) are starting to use R Markdown and similar methods 
-because they provide what is called "Reproducible
-research" [@Gandrud2015] where all the code and output it produced are
-available in a single place. This allows different researchers to run and verify
-results (so "reproducible results") or the original researchers to revisit their earlier work at a later
-date and recreate all their results exactly. Scientific publications are currently
-encouraging researchers to work in this way and may someday require it. The term ***reproducible*** can also be related to whether repeated studies get the same result (also called ***replication***) -- further discussion of these terms and the implications for scientific research are discussed in Chapter \@ref(chapter2).
-
-\indent In order to get some practice using R Markdown, create a sample document in this format using File -> New File -> R Markdown... Choose a title for your file and select the "Word" option. This will create a new file in the upper left window where we stored our .R script. Save that file to your computer. Then you can use the "Knit" button to have RStudio run the code and create a word document with the results. R Markdown documents contain basically two components, "code chunks" that contain your code and the rest of the document where you can write descriptions and interpretations of the results that code generates. The code chunks can be inserted using the "Insert" button by selecting the "R" option. Then write your code in between the `` ```{r} `` and `` ``` `` lines (it should have grey highlights for those lines and white for the rest of the portions of the .Rmd document). Once you write some code inside a code chunk, you can test your code using the triangle on the upper right side of it to run all the code that resides in that chunk. Keep your write up outside of these code chunks to avoid code errors and failures to compile. Once you think your code and writing is done, you can use the "Knit" button to try to compile the file. As you are learning, you may find this challenging, so start with trying to review the sample document and knit each time you get a line of code written so you know when you broke the file. Also look around for posted examples of .Rmd files to learn how others have incorporated code with write-ups. You might even be given a template of homework or projects as .Rmd files from your instructor. After you do this a couple of times, you will find that the challenge of working with markdown files is more than matched by the simplicity of the final product and, at least to researchers, the reproducibility and documentation of work that this method provides.
-
-
-
-
-\indent Finally, when you are done with your work and attempt to exit out of RStudio, 
-it will
-ask you to save your workspace. ***DO NOT DO THIS!*** It will just create a cluttered 
-workspace and could even cause you to get incorrect results.  In fact, you should go into the Tools -> Global Options and then make sure that "Save workspace to .RData on exit" option on the first screen you will see is set to ***Never***. If you
-save your R code either as a .R or (better) an R Markdown (.Rmd) file, you can re-create any results by simply
-re-running that code or re-knitting the file. If you find that you have lots of "stuff" in your
-workspace because you accidentally saved your workspace, just run ``rm(list = ls())``. 
-It will delete all the data sets from your workspace. 
+are easier for you to understand. There are often ways to create the same plots 
+using base `R` functions, but we feel that ggplot2 makes it simple for you to 
+create complex plots from data stored in a data frame. Additionally, ggplot2 
+provides a programmatic interface for specifying what variables to plot, how
+they are displayed, and general visual properties. Therefore, we only need
+minimal changes if the underlying data change or if we decide to change from a
+bar plot to a scatterplot. This helps in creating high quality plots with
+minimal amounts of adjustments and tweaking.
 
 ## Chapter summary {#section1-4}
 
@@ -1068,17 +1274,16 @@ from your previous statistics experience(s).
 
 \newpage
 
-## Summary of important R code {#section1-5}
+## Summary of Important R code {#section1-5}
 
-To help you learn and use R, there is a section highlighting the most important 
-R code used near the end of each
-chapter. The bold text will never change but the 
-lighter and/or ALL CAPS  text (red in the online or digital version) will need
-to be customized to your particular application. The sub-bullet for each
-function will discuss the use of the function and pertinent options or packages
-required. You can use this as a guide to finding the function names and some
-hints about options that will help you to get the code to work. You can also
-revisit the worked examples using each of the functions. 
+To help you learn and use `R`, there is a section highlighting the most
+important `R` code used near the end of each chapter. The bold text will never
+change but the lighter and/or ALL CAPS  text (red in the online or digital
+version) will need to be customized to your particular application. The
+sub-bullet for each function will discuss the use of the function and pertinent
+options or packages required. You can use this as a guide to finding the
+function names and some hints about options that will help you to get the code
+to work. You can also revisit the worked examples using each of the functions. 
 
 * `r colFmt("FILENAME","red")` ``<-`` **read_csv(**`r colFmt('"path to csv file/FILENAME.csv"','red')`**)**
 

@@ -1466,7 +1466,6 @@ to work. You can also revisit the worked examples using each of the functions.
     
     * Allows for you to link together data wrangling processes, promoting the 
     readability of each step. 
-    \index{\texttt{%>%}|textbf}
 
 * **ggplot(data =** <font color='red'>DATASET_NAME</font>, 
            **aes(x =** <font color='red'>VARIABLE</font>, 
@@ -1561,7 +1560,7 @@ existing variable. In the example below, we use the `mutate()` function to add a
 new variable to the dataset, that is the difference between runner's running
 pulse and resting pulse. We add the variable to the original dataframe, by 
 assigning the new dataframe into the name of the old dataframe
-(`treadmill <- `). 
+(`treadmill <-`). 
 
 
 ```r

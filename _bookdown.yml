@@ -8,13 +8,14 @@ rmd_files: [
   "00b-copyright.rmd",
   "01-preface.rmd",
   "02-reintroductionToStatistics.rmd", 
-  "03-oneWayAnova.rmd", 
+  "03-oneWayAnova.rmd" 
   #"04-twoWayAnova.rmd", 
+  #"05-chiSquaredTests.rmd",
   #"06-correlationAndSimpleLinearRegression.rmd", 
   #"07-simpleLinearRegressionInference.rmd", 
   #"08-multipleLinearRegression.rmd", 
   #"09-caseStudies.rmd", 
-  "10-references.rmd"
+  #"10-references.rmd"
   ]
 output: bookdown::gitbook
 site: bookdown::bookdown_site

@@ -61,7 +61,7 @@ variables), while also providing tools for data wrangling and data visualization
 complementing the more sophisticated statistical models required to handle these
 situations. 
 
-## Overview of methods {#section1-1}
+## Overview of Methods {#section1-1}
 
 After you are introduced to basic statistical ideas, a wide array of statistical
 methods become available. The methods explored here focus on assessing 
@@ -212,7 +212,7 @@ mean response
 varies across different levels of the categorical variable. In Chapter 
 \@ref(chapter9), connections among all the methods used for quantitative
 responses are discussed, showing that they all have the same foundation,
-beacause they are all linear models \index{model!linear}. We also show how the
+because they are all linear models \index{model!linear}. We also show how the
 methods discussed can be applied to a suite of new problems using a set of case
 studies and how that relates to further extensions of the methods.
 
@@ -273,7 +273,7 @@ situations where you are expected to be able to identify an appropriate
 analysis, do the calculations and required graphics using the data set, and then
 effectively communicate interpretations for the methods discussed here. 
 
-## Getting started in `R` {#section1-2}
+## Getting Started in `R` {#section1-2}
 
 You will need to download the statistical software package called `R` and an
 enhanced interface to R called RStudio [@RStudio]. These are both open source
@@ -307,9 +307,9 @@ https://rstudio.cloud/ that is free for limited usage. We recommend following
 the steps to be able to work locally but try this option if you have issues with 
 the installation process and need to complete an assignment or two until you get
 the installation sorted out.] downloading activities to complete before
-you can do anything more than read this book^[I created this interactive website (https://greenwood-stat.shinyapps.io/InstallDemo/) that contains discussions and
-activities related to installing and using R and RStudio.]. First, you need to
-download `R`. It is the engine that will do all the computing
+you can do anything more than read this book^[I created this interactive website (https://allisontheobold.shinyapps.io/R_RStudio_Setup/) that contains
+discussions and activities related to installing and using R and RStudio.].
+First, you need to download `R`. It is the engine that will do all the computing
 for us, but you will only interact with it once. Go to http://cran.rstudio.com
 and click on the "**Download R for...**" button that
 corresponds to your operating system. On the next page, click on "**base**" and
@@ -322,7 +322,7 @@ and install the program (all the base settings will be fine). After you hit
 "**Finish**" you will not do anything further with `R` directly. 
 
 \indent Second, you need to download RStudio. RStudio is an integrated 
-development enviroment (IDE), which means it provides an enhanced interface that
+development environment (IDE), which means it provides an enhanced interface that
 will make interacting with `R` less frustrating and allow you to directly create
 reports that include the code and output. To download RStudio, go near the
 bottom of <https://www.rstudio.com/products/rstudio/download/> and select the
@@ -405,7 +405,7 @@ calculator. To do this, click near the command prompt (`>`) in the lower left
 
 
 ```r
-3+4
+3 + 4
 ```
 
 ```
@@ -418,7 +418,7 @@ dividing by 4:
 
 
 ```r
-(-3+5+7+8)/4
+(-3 + 5 + 7 + 8) / 4
 ```
 
 ```
@@ -431,7 +431,7 @@ result:
 
 
 ```r
--3+5+7+8/4
+-3 + 5 + 7 + 8 / 4
 ```
 
 ```
@@ -453,11 +453,11 @@ are vectors, each column must contain a single type of data (e.g., characters,
 integers, factors). For example, here is a figure depicting a data frame
 comprising a numeric, a character, and a logical vector.
 
-(ref:fig1-3) Dataframe structure.
+(ref:fig1-3) Dataframe structure, from _Starting with Data_ in Data Carpentry's Social Science curriculum.
 
 <div class="figure" style="text-align: center">
-<img src="01/images/data-frame.svg" alt="(ref:fig1-2)" width="100%" />
-<p class="caption">(\#fig:Figure1-3)(ref:fig1-2)</p>
+<img src="01/images/data-frame.svg" alt="(ref:fig1-3)" width="100%" />
+<p class="caption">(\#fig:Figure1-3)(ref:fig1-3)</p>
 </div>
 
 What we will call "tidy" dataframes, are dictated by three main rules:
@@ -512,7 +512,7 @@ variable1
 ## [1] -3  5  7  8
 ```
 
-::: {.protip}
+::: {.important}
 `R` is case sensitive! `Variable1` is not the same as `variable1`!
 :::
 
@@ -535,12 +535,14 @@ value (in fact, the output) is the mean of those numbers. Executing a function
 is:
 
 
+```r
+mean_var1 <- mean(variable1)
+```
 
 Here, the `variable1` is the input to the `mean()` function, which the 
 `mean()` function uses to calculates the mean of that input, and then returns
 the value which is then assigned to the object `mean_var1`. This function is
 very simple, because it only has one required argument.
-
 \index{mean}
 
 The return 'value' of a function need not be numerical (like that of `mean()`),
@@ -578,7 +580,7 @@ you are working with include missing values. This feature makes it harder to
 overlook missing data.
 
 If we want to know if we can omit the missing values when finding the mean, we 
-can look at the help file for the `mean()` function using `?round`.
+can look at the help file for the `mean()` function using `?mean`.
 
 
 
@@ -683,12 +685,18 @@ Potentially the most important feature of R Markdown files is that
 they allow for us to nest our `R` code within a written report. In an R Markdown
 file, `R` code appears in a gray box, which we call "code chunks." The R
 Markdown file knows that the gray box contains `R` code because it begins with
-three tick marks (\`\`\`), followed by two curly braces that contain a lowercase
-letter r ({r}). You can insert a code chunk using the "Insert" button in the 
-upper right-hand corner of the R Markdown document, and selecting the "R"
-option. Then write your code in between the `` ```{r} `` and `` ``` `` lines
-(it should have grey highlights for those lines and white for the rest of the
-portions of the .Rmd document).
+three tick marks (` ``` `), followed by two curly braces that contain a
+lowercase letter r (`{r}`). You can insert a code chunk using the "Insert"
+button in the upper right-hand corner of the R Markdown document, and selecting
+the "R" option. Then write your code in between the `` ```{r} `` and `` ``` ``
+lines (it should have gray highlights for those lines and white for the rest of
+the portions of the .Rmd document).
+
+Going forward you should refrain from typing your code directly in the console,
+as this makes it very difficult to remember and reproduce the output you want to
+reference. Instead of typing our `R` code into the console, we encourage you to
+type any code you produce (final correct answer, or anything you're just trying
+out) in the `R` code chunk associated with each problem.
 
 Once you write some code inside a code chunk, you can execute the `R` code you
 typed in the code chunk similar to how you typed code into the console and
@@ -697,7 +705,6 @@ there are two ways to execute a line of `R` code: (1) place your cursor on the
 line on code and press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> or <kbd>Cmd</kbd> + 
 <kbd>Enter</kbd> at the same time, or (2) place your cursor on the line and
 press the "Run" button in the upper right hand corner of the R Markdown file.
-
 Alternatively, if you wanted to run all of the `R` code in a given code chunk,
 you can click on the "Play" button in the upper right hand corner of the code
 chunk (green sideways triangle).
@@ -713,17 +720,10 @@ failures to compile. Once you think your code and writing is done, you can use
 the "Knit" button to try to compile the file. As you are learning, you may find
 this challenging, so start with trying to review the sample document and knit
 each time you get a line of code written so you know when you broke the file. 
-
 After you do this a couple of times, you will find that the challenge of working
 with markdown files is more than matched by the simplicity of the final product
 and, at least to researchers, the reproducibility and documentation of work that
 this method provides.
-
-Going forward you should refrain from typing your code directly in the console,
-as this makes it very difficult to remember and reproduce the output you want to
-reference. Instead of typing our `R` code into the console, we encourage you to
-type any code you produce (final correct answer, or anything you're just trying
-out) in the `R` code chunk associated with each problem.
 
 \indent Finally, when you are done with your work and attempt to exit out of
 RStudio, it will ask you to save your workspace. ***DO NOT DO THIS!*** It will
@@ -801,32 +801,30 @@ treadmill <- read_csv("https://raw.githubusercontent.com/atheobold/stat-313/mast
 ```
 
 Using either method, you should notice that the location of the file is enclosed 
-in ``" "``.  The ``read_csv()`` funciton takes a file path as an argument. These
+in ``" "``.  The ``read_csv()`` function takes a file path as an argument. These
 quotation marks indicate to `R` that the contents between them 
 are a name, not an object. For example, running the following code would 
 produce an error, because `R` would believe that the name between the 
 parentheses is an object (like `variable1`), rather than the name of the location
 the data are stored. 
 
-
-```r
-treadmill <- read_csv(stat 313/week 2/data/treadmill.csv) 
-```
+``treadmill <- read_csv(stat 313/week 2/data/treadmill.csv)``
+``Error: unexpected numeric constant in "treadmill <- read_csv(stat 313"``
 
 Using either method, `R` will store the data set as an object with the name 
 of the object that you put it into. Here, we named the data object `treadmill`, 
 the same name as the .csv file. You could use another name as well, but it is 
 often easiest just to keep the data set name in `R` related to the original file
 name. When you run this code, you should see some text appear in the console
-(lower left panel) like in Figure \@ref(fig:Figure1-3). The text that is created
+(lower left panel) like in Figure \@ref(fig:Figure1-4). The text that is created
 will look something like the following -- if you had imported the data 
-direcly from GitHub, it would look something like:
+directly from GitHub, it would look something like:
 
 (ref:fig1-4) RStudio with initial data set loaded.
 
 <div class="figure" style="text-align: center">
-<img src="01/images/alt_fig 1-3.png" alt="(ref:fig1-3)" width="100%" />
-<p class="caption">(\#fig:Figure1-4)(ref:fig1-3)</p>
+<img src="01/images/alt_fig 1-3.png" alt="(ref:fig1-4)" width="100%" />
+<p class="caption">(\#fig:Figure1-4)(ref:fig1-4)</p>
 </div>
 
 ### Inspecting Data
@@ -907,14 +905,14 @@ This command should output the following:
 ## $ Age               <dbl> 38, 42, 50, 44, 54, 57, 44, 49, 38, 49, 43, 49, 48,…
 ```
 
+\index{\texttt{glimpse()}}
+
 At this point, you might notice that many of the commands in `R` look a lot like
 functions from math class; that is, invoking `R` commands means supplying a
 function with some number of inputs (what are called arguments) which the
 function uses to produce an output. The `glimpse()` command, for example, took a
 single argument, the name of a data frame and produced a display of the dataset
 as an output.
-
-\index{\texttt{glimpse()}}
 
 ## Introduction to Data Summarization {#section1-3}
 
@@ -990,15 +988,16 @@ and length).
 
 ::: {.guidedpractice} 
 But how can we determine if the distribution of a variable is symmetric?^[We can
-assess the distribution of a variable most easily from a graph, or we could use 
-a five number summary to asses how different the mean and the median are.]
+assess the shape of the distribution of a variable most easily from a graph, or
+we could use a five number summary to asses how different the mean and the
+median are.]
 :::
 
 The __dplyr__ package (included in the tidyverse) provides a useful function
 called `summarize()` that allows 
 for us to calculate many different summary statistics all at the same time. A 
-***5 number summary*** is a common calculation people use to assess the 
-distribution of a variable, where the summaries are \index{5 number summary}
+***five number summary*** is a common calculation people use to assess the 
+distribution of a variable, where the summaries are \index{five number summary}
 the minimum (``min``), the first quartile (``Q1``, the 25^th^ percentile), 
 the `median` (50^th^ percentile), the third quartile (``Q3``, the 75^th^
 percentile), and the maximum (``max``). 
@@ -1038,17 +1037,17 @@ e.g. `min` or `median` or `Q3`, which are indicated on the left-hand side of the
 The `quantile()` function may look a little confusing, so let's look at what is 
 going on. There are two arguments to `quantile()`, the a numeric vector, and 
 a percentage. The percentage tells the function what percent of the data you 
-want to be below. For example, in the below picture, we can see that the first 
-quantile corresponds to the number where approximately 25% of the data is below 
-that number and 75% is above that number. This should make a bit more sense if 
-you think about the median being the center of the distribution, where 50% of 
-the data is below the median and 50% is above. 
+want to be below. For example, in Figure \@ref(fig:Figure1-5) we can see that
+the first quantile corresponds to the number where approximately 25% of the data
+is below that number and 75% is above that number. This should make a bit more
+sense if you think about the median being the center of the distribution, where
+50% of the data is below the median and 50% is above. 
 
-(ref:fig1-6) Quantiles of a distribution. 
+(ref:fig1-5) Quantiles of a distribution. 
 
 <div class="figure" style="text-align: center">
-<img src="01/images/quantile.jpg" alt="(ref:fig1-6)" width="100%" />
-<p class="caption">(\#fig:Figure1-6)(ref:fig1-6)</p>
+<img src="01/images/quantile.jpg" alt="(ref:fig1-5)" width="100%" />
+<p class="caption">(\#fig:Figure1-5)(ref:fig1-5)</p>
 </div>
 
 Alternatively, we could have used the following code to obtain the same 
@@ -1070,20 +1069,20 @@ The only difference between the previous code and this code is the location of
 the `treadmill` data. Previously, we told the `summarize()` function to use 
 the `treadmill` data by inserting the data as the first argument into the 
 function. Here, we instead "pipe" the `treadmill` data into the `summarize()` 
-function using what is calle the pipe operator (`%>%`). 
+function using what is called the pipe operator (`%>%`). 
 
 You might be wondering what we mean by _"pipe it into the `summarize()` function"_?
 
-### The pipe operator
+### The Pipe Operator
 
-![](images/pipe-operator.png){width="30%"}
+<img src="01/images/pipe-operator.png" width="50%" style="display: block; margin: auto;" />
 
 The **pipe operator**, which **is percent greater than percent**, tells `R` to
 pass the object that comes before it into the first argument of the function
 that comes after it. Mathematically, **x pipe f(y)** becomes *f(x, y)*, since x
-is piped into the first argument of the function f().
+is piped into the first argument of the function f( ).
 
-![](images/pipe-operator2.png){width="30%"}
+<img src="01/images/pipe-operator2.png" width="50%" style="display: block; margin: auto;" />
 
 You may think that it seems kind of silly to use the pipe rather than simply 
 typing the name of the data into the `summarize()` function, but as we progress
@@ -1102,7 +1101,7 @@ were somewhat fit with the worst runner covering 1.5 miles in 14 minutes
 pace. The limited variation in the results suggests that the sample was obtained
 from a restricted group with somewhat common characteristics. When you explore
 the ages and weights of the subjects in the Practice Problems in Section
-\@ref(section1-6), you will get even more information about how similar all the
+\@ref(section1-7), you will get even more information about how similar all the
 subjects in this study were. Researchers often publish numerical summaries of 
 this sort of demographic information to help readers understand the subjects
 that they studied and that their results might apply to.
@@ -1117,18 +1116,25 @@ good place to start. Histograms display connected bars with counts of
 observations defining the height of bars based on a set of bins of values of the
 quantitative variable. 
 
-`R` has some powerful functions for making graphics. We can create a simple plot
-of the distribution of the running times with the following code:
+`R` has some powerful functions for making graphics. We chose ggplot2 because
+this package makes modern looking hassle-free plots that take care of fiddly
+details like drawing legends. Additionally, once you learn how to make simple
+bivariate plots, with ggplot2 it is easy to extend your code to create a
+visualization that displays the relationship between many variables at once
+without having to learn too much more syntax.
 
-<!-- HISTOGRAM  -->
+### Histogram 
+
+We can create a simple plot of the distribution of the running times with the
+following code:
 
 
 ```r
 ggplot(data = treadmill, aes(x = RunTime)) + 
-  geom_histogram()
+  geom_histogram(bins = 10)
 ```
 
-<img src="01-preface_files/figure-html/unnamed-chunk-24-1.png" width="480" />
+<img src="01-preface_files/figure-html/unnamed-chunk-25-1.png" width="480" />
 
 In this code, we use the `ggplot()` function to build a plot. If you run this
 code chunk, a plot will appear below the code chunk. The R Markdown document
@@ -1147,16 +1153,27 @@ With `ggplot()`:
     `aes`thetic elements of the plot, such as the x and the y axes.
 
 These commands will build a blank plot, with the variables you assigned to the x
-and y axes. Next, you need to tell `ggplot()` what type of visualization you
+and y axes, as seen below.
+
+
+```r
+ggplot(data = treadmill, aes(x = RunTime))
+```
+
+<img src="01-preface_files/figure-html/unnamed-chunk-26-1.png" width="480" />
+
+Next, you need to tell `ggplot()` what type of visualization you
 would like to add to the blank template. You add another layer to the `ggplot()`
 by:
 
 -   adding a `+` at the end of the line, to indicate that you are adding a layer
 -   then specify the `geom`etric object to be used to create the plot.
 
-Since we want to creat a histogram, we use `geom_histogram()`. This tells
+Since we want to create a histogram, we use `geom_histogram()`. This tells
 `ggplot()` to take the data values and bin them up, so that the height of each 
-bin reflects the number of observations included in that bin.
+bin reflects the number of observations included in that bin. We then specify 
+the number of bins we want `geom_histogram()` to make, by providing a number 
+to the `bins` argument. 
 
 \indent Based on this histogram, it does not
 appear that there any outliers in the responses since there are no bars that are
@@ -1168,7 +1185,7 @@ making it difficult to find the percentiles accurately from the plot.
 Alternative visualizations for these data would be a boxplot or a density plot, 
 which we will explore next. 
 
-<!-- BOXPLOT -->
+### Boxplot 
 
 \indent When assessing outliers and skew, the ***boxplot*** 
 (or *Box and Whiskers* plot) can also be helpful to describe the 
@@ -1186,29 +1203,31 @@ use the `geom_boxplot()` to create a boxplot of the running times. The
 
 The potential outliers are plotted with circles and the *Whiskers* (lines that
 extend from Q1 and Q3 typically to the minimum and maximum) are shortened to
-only go as far as observations that are within $1.5*$IQR of the upper and lower
-quartiles. The *box* part of the boxplot is a box that goes from Q1 to Q3 and
-the median is displayed as a line somewhere inside the box.^[The median,
-quartiles and whiskers sometimes occur at the same values when there are many
-tied observations. If you can't see all the components of the boxplot, produce
-the numerical summary to help you understand what happened.] 
+only go as far as observations that are within $1.5 \times \text{IQR}$ of the
+upper and lower quartiles. The *box* part of the boxplot is a box that goes from
+Q1 to Q3 and the median is displayed as a line somewhere inside the box.^[The
+median, quartiles and whiskers sometimes occur at the same values when there are
+many tied observations. If you can't see all the components of the boxplot,
+produce the numerical summary to help you understand what happened.] 
 
 
 ```r
-ggplot(data = treadmill, aes(y = RunTime, x = "")) + 
+ggplot(data = treadmill, aes(y = RunTime)) + 
   geom_boxplot()
 ```
 
-<img src="01-preface_files/figure-html/unnamed-chunk-25-1.png" width="480" />
+<img src="01-preface_files/figure-html/unnamed-chunk-27-1.png" width="480" />
 
-You'll notice there are a few additional changes in the code above. First, the 
+You'll notice there is one additional change in the code above -- the 
 running times are now the y variable instead of the x variable. This is because 
 it is more "standard" for a boxplot to appear vertically rather than
 horizontally. Thus, plotting `RunTime` as the y variable, creates a vertical 
-boxplot. Second, there are empty quotations next to the x variable. This is 
-because `ggplot()` expects for us to be creating multiple boxplots 
-(side-by-side boxplots) when we use `geom_boxplot()`. To create a boxplot of 
-only one group, you need to insert an empty variable (`" "`) as the x variable. 
+boxplot. 
+
+<!-- Second, there are empty quotations next to the x variable. This is  -->
+<!-- because `ggplot()` expects for us to be creating multiple boxplots  -->
+<!-- (side-by-side boxplots) when we use `geom_boxplot()`. To create a boxplot of  -->
+<!-- only one group, you need to insert an empty variable (`" "`) as the x variable.  -->
 
 Looking at the boxplot, one observation, the maximum, was flagged as an
 "outlier" and plotted as a point. In the summary statistics we calculated 
@@ -1244,29 +1263,35 @@ modest skew, but worth noting.
 labels, especially on the y-axis. Additionally, there is no title on the plot.
 The following code provides some enhancements to the plot by using the `labs()`
 function to add labels to the plot. When we add text to plots, it must be
-contained within quotes and be assigned into the options ``ylab`` (for y-axis)
-or ``title`` (for the title) here to put it into those locations. 
+contained within quotes and be assigned into the options ``y`` (for y-axis), 
+``x`` (for x-axis), or ``title`` (for the title) here to put it into those
+locations. 
 
-<div class="figure">
-<img src="01-preface_files/figure-html/Figure1-10-1.png" alt="(ref:fig1-9)" width="480" />
-<p class="caption">(\#fig:Figure1-10)(ref:fig1-9)</p>
-</div>
+
+```r
+ggplot(data = treadmill, aes(y = RunTime)) + 
+  geom_boxplot() + 
+  labs(y = "1.5 Mile Run Time (minutes)",
+       title = "Boxplot of the Run Times of 31 participants")
+```
+
+<img src="01-preface_files/figure-html/unnamed-chunk-29-1.png" width="480" />
 
 Unfortunately, boxplots can be misleading. They are not affected by data’s
 distribution, which allows for the data to "morph" but maintain their stat
 summaries (medians and ranges), their box plots stay the same. One of the ways 
-this "morphing" becomes extrememly problematic, is if a distribution looks okay 
+this "morphing" becomes extremely problematic, is if a distribution looks okay 
 on a boxplot, but actually has multiple peaks (called modes). Density plots 
 allow for us to detect these small changes in the distribution of a variable 
 far more easily. 
 
-<!-- DENSITY PLOT -->
+### Density Plot
 
 To create a density plot instead of a histogram or boxplot, (as expected) you
 would use `geom_density()`. This would tell `ggplot()` to
 draw a continuous line around the outside of the histogram, where the height of
 the density curve reflects the number of observations at that run time. Another, 
-potentially less noticable difference, is that a density plot has different 
+potentially less noticeable difference, is that a density plot has different 
 values on the y-axis. A histogram has counts on the y-axis, representing the 
 number of observations in each bin. A density plot, however, has density on the 
 y-axis, with values between 0 and 1. If you remember from your introductory 
@@ -1275,14 +1300,19 @@ the values on the side represent the percentage of the data that
 took on values in that data range. For example, it appears that nearly 30% of 
 the runners in this study had running times around 11 minutes for the 1.5 miles. 
 
-<img src="01-preface_files/figure-html/plot-girls-vs-year-line-1.png" width="480" />
+
+```r
+ggplot(data = treadmill, aes(x = RunTime)) + 
+  geom_density()
+```
+
+<img src="01-preface_files/figure-html/unnamed-chunk-30-1.png" width="480" />
 
 ::: {.protip}
-
 Many people would prefer for their density plot to be filled in (shaded) below
 the density line. To do this you need to add a color to the `fill` argument, 
 inside the `geom_density()` function. This tells `ggplot()` that you want for 
-your density curvey to be filled with whatever color you tell it. Here, I've 
+your density curvy to be filled with whatever color you tell it. Here, I've 
 selected blue, although tomato is another favorite of mine. 
 
 
@@ -1291,8 +1321,10 @@ ggplot(data = treadmill, aes(x = RunTime)) +
   geom_density(fill = "blue")
 ```
 
-<img src="01-preface_files/figure-html/unnamed-chunk-27-1.png" width="480" />
+<img src="01-preface_files/figure-html/unnamed-chunk-31-1.png" width="480" />
 :::
+
+### Recap 
 
 You might wonder how you are supposed to know the syntax for the `ggplot()`
 function. Thankfully, `R` documents all of its functions extensively. To learn
@@ -1301,10 +1333,12 @@ type in a question mark followed by the name of the function that you're
 interested in into the console. Type the following in your console:
 
 
+```r
+?ggplot
+```
 
 Notice that the help file comes to the forefront, replacing the plot in the
 lower right panel. You can toggle between the tabs by clicking on their names.
-
 
 \indent Throughout the book, we will often use extra options to make figures that
 are easier for you to understand. There are often ways to create the same plots 
@@ -1316,29 +1350,33 @@ minimal changes if the underlying data change or if we decide to change from a
 bar plot to a scatterplot. This helps in creating high quality plots with
 minimal amounts of adjustments and tweaking.
 
-## Chapter summary {#section1-4}
+## Chapter Summary {#section1-5}
 
-This chapter covered getting R and RStudio downloaded and some basics of working with
-R via RStudio. You should be able to read a data set into R and run some basic
-functions, all done using the RStudio interface. If you are struggling with
-this, you should seek additional help with these technical issues so that you
-are ready for more complicated statistical methods that are going to be
-encountered in the following chapters. The way everyone learns R is
-by starting with some example code that does most of what you want to do and
-then you modify it. If you can complete the Practice Problems that follow, you
-are well on your way to learning to use R. 
+This chapter covered getting R and RStudio downloaded and some basics of working
+with `R` via RStudio. After reading this chapter, you should have an
+understanding of reading a data set into `R`, making simple data summaries, and 
+creating visualizations for a single quantitative variable, all done in RStudio.
+If you are struggling with this, you should seek additional help with these
+technical issues so that you are ready for more complicated statistical methods
+that are going to be encountered in the following chapters. The way everyone
+learns `R` is by starting with some example code that does (most) of what you
+want to accomplish and then you modifying it to meet your needs. If you can
+complete the Practice Problems that follow, you are well on your way to learning
+to use `R`. 
 
-\indent The statistical methods in this chapter were minimal and all should have been
-review. They involved a quick reminder of summarizing the center, spread, and
-shape of distributions using numerical summaries of the mean and SD and/or the
-min, Q1, median, Q3, and max and the histogram and boxplot as graphical
-summaries. We revisited the ideas of symmetry and skew. But the main point was
-really to get a start on using R via RStudio to provide results you should be familiar with
-from your previous statistics experience(s). 
+\indent The statistical methods in this chapter were minimal and all should have
+been review. They involved a quick reminder of summarizing the center, spread,
+and shape of distributions using numerical summaries of the mean and standard 
+deviation and/or a five number summary (min, Q1, median, Q3, max). We also 
+reviewed histograms, boxplots, and density plots as visualizations for the 
+distribution for a quantitative variable, and the benefits/deficiencies of each 
+type of plot. We connected these visualizations to the ideas of symmetry and
+skew. But the main focus of the chapter was on introducing you to using `R` via
+RStudio, so you are prepared for future statistical investigations! 
 
 \newpage
 
-## Summary of Important R code {#section1-5}
+## Summary of Important R code {#section1-6}
 
 To help you learn and use `R`, there is a section highlighting the most
 important `R` code used near the end of each chapter. The bold text will never
@@ -1349,104 +1387,198 @@ options or packages required. You can use this as a guide to finding the
 function names and some hints about options that will help you to get the code
 to work. You can also revisit the worked examples using each of the functions. 
 
-* <font color='red'>FILENAME</font> ``<-`` **read_csv(**<font color='red'>"path to csv file/FILENAME.csv"</font>**)**
+* <font color='red'>OBEJECT_NAME</font> ``<-`` **read_csv(**<font color='red'>"path_to_csv_file/FILE_NAME.csv"</font>**)**
 
-    * Can be generated using "Import Dataset" button or by modifying this text. 
+    * Requires the `tidyverse` package to be loaded (`library(tidyverse)` after 
+    installing the package). 
     
-    * Requires the ``readr`` package to be loaded (``library(readr)``) when using 
-    the code directly.
+    * Imports a data file saved in the CSV format, and assigns it to 
+    <font color='red'>OBJECT_NAME</font>.
     
-    * Imports a text file saved in the CSV format.
+* **`<-`**    
 
-* <font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>
-
-    * To access a particular variable in a tibble called DATASETNAME, use 
-    a $ and then the VARIABLENAME. 
-
-* **head(**<font color='red'>DATASETNAME</font>**)**
-
-    * Provides a list of the first few rows of the data set for all the 
-    variables in it. \index{\texttt{head()}|textbf}
-
-* **tail(**<font color='red'>DATASETNAME</font>**)**
-
-    * Provides a list of the last few rows of the data set for all the 
-    variables in it. \index{\texttt{tail()}|textbf}
+    * Called the "assignment operator." 
     
-* **mean(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+    * Assigns the value on the right-hand side into the name of the object 
+    on the left-hand side (e.g. `variable1 <- c(1, 2, 3, 4)`). 
 
-    * Calculates the mean of the observations in a variable. 
+* <font color='red'>DATASET_NAME</font>**$**<font color='red'>VARIABLE_NAME</font>
+
+    * To access a particular variable in a tibble called 
+    <font color='red'>DATASET_NAME</font>, use a $ and then the
+    <font color='red'>VARIABLE_NAME</font>. 
+
+* **glimpse(**<font color='red'>DATASET_NAME</font>**)**
+
+    * Provides a preview of your dataset, listing the name and data type of 
+    every column, and providing the first few rows (entries) of each variable.
+    \index{\texttt{glimpse()}|textbf}
+
+* **mean(**<font color='red'>VARIABLE_NAME</font>**)**
+
+    * Calculates the mean of the observations in a variable, where the variable
+    is required to be numerical. 
     \index{\texttt{mean()}|textbf}
 
-* **sd(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **sd(**<font color='red'>VARIABLE_NAME</font>**)**
 
-    * Calculates the standard deviation of the observations in a variable. 
+    * Calculates the standard deviation of the observations in a variable, 
+    where the variable is required to be numerical. 
     \index{\texttt{sd()}|textbf}
+    
+* **min(**<font color='red'>VARIABLE_NAME</font>**)**
 
-* **favstats(**<font color='red'>DATASETNAME</font>$<font color='red'>VARIABLENAME</font>**)** 
+    * Calculates the minimum of the observations in a variable, where the 
+    variable is required to be numerical. 
+    \index{\texttt{min()}|textbf}
 
-    * Requires the ``mosaic`` package to be loaded (``library(mosaic)``) after
+* **max(**<font color='red'>VARIABLE_NAME</font>**)**
+
+    * Calculates the maximum of the observations in a variable, where the 
+    variable is required to be numerical. 
+    \index{\texttt{max()}|textbf}
+    
+* **quantile(**<font color='red'>VARIABLE_NAME</font>, 
+              **probs =** <font color='red'>PERCENT_OF_DATA_BELOW</font>**)**
+
+    * Calculates the quantile of a numerical variable, where the quantile is 
+    based on the of input to the `probs` argument. `probs = 0.5` calculates the 
+    median, `probs = 0.25` calculates the first quartile (Q1), and 
+    `probs = 0.75` calculates the third quartile (Q3).
+    \index{\texttt{quantile()}|textbf}
+
+* **summarize(**<font color='red'>DATASET_NAME</font>, 
+              <font color='red'>DATA_SUMMARIES</font>**)** 
+
+    * Requires the `tidyvere` package to be loaded (`library(tidyverse)` after
     installing the package). 
 
-    * Provides a suite of numerical summaries of the observations in a variable.
-    \index{\texttt{favstats()}|textbf}
+    * Allows for you to create summaries of variables in a dataset, where 
+    each summary has an assigned name (e.g. `mean = `) and a method to calculate
+    the summary (e.g. `mean(VARIABLE_NAME)`). \index{\texttt{summarize()}|textbf}
 
-* **hist(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
-
-    * Makes a histogram. \index{\texttt{hist()}|textbf}
+* **`%>%`** 
     
-* **boxplot(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+    * Called the "pipe operator". 
+    
+    * Pipes data from the previous line (above) into the next function (i.e. 
+    the previous data becomes the first argument in the subsequent function). 
+    
+    * Allows for you to link together data wrangling processes, promoting the 
+    readability of each step. 
+    \index{\texttt{%>%}|textbf}
 
-    * Makes a boxplot. \index{\texttt{boxplot()}|textbf}
+* **ggplot(data =** <font color='red'>DATASET_NAME</font>, 
+           **aes(x =** <font color='red'>VARIABLE</font>, 
+               **y =** <font color='red'>VARIABLE_NAME</font>**))** 
 
+    * The function we use to create different types of plots. 
+    
+    * The first argument is the dataframe containing the data we wish to plot. 
+    
+    * In the aesthetics argument (`aes()`), we map variables from the dataframe
+    to certain components of the plot (e.g. the variables that should go on 
+    the x- and y-axis). 
+    \index{\texttt{ggplot()}|textbf}
+    
+* **geom_histogram( )**
+
+    * Specifies what geometric shapes should be used to represent the 
+    observations. In this case, a histogram of the observations is created, 
+    where the observations are binned into ranges of values and then frequencies
+    of observations are plotted on the y-axis. 
+    \index{\texttt{geom_histogram()}|textbf}
+    
+* **geom_boxplot( )**
+
+    * Specifies observations should be aggregated (summarized) into a boxplot, 
+    where the min, Q1, median, Q3, and maximum are plotted as the box and 
+    whiskers, and "outliers" are plotted as points. Note: the min and max may 
+    not be included in the whiskers, if they are deemed to be "outliers" based 
+    on the $1.5 \times \text{IQR}$ rule. 
+    \index{\texttt{geom_boxplot()}|textbf}
+
+* **geom_density(fill =** "<font color='red'>COLOR_OF_CHOICE</font>"**)**
+
+    * Specifies observations should be plotted as a density curve, where 
+    the probability density is plotted on the y-axis (so the density curve
+    has a total area of one). 
+    
+    * By default this creates a density curve without shading. By specifying a 
+    color in the `fill` argument, the density curve is shaded, making it easier
+    to detect changes in the distribution. 
+    \index{\texttt{geom_density()}|textbf}
+
+* **+** 
+
+    * An important aspect creating a `ggplot()` is to note that the 
+    `geom_XXX()` function is separated from the `ggplot()` function with a plus,
+    `+`.
+    
+    * ggplot2 plots are constructed in series of layers, where the plus sign
+    separates these layers.
+    
+    * Generally, the `+` sign can be thought of as the end of a line, so you
+    should always hit enter/return after it. While it is not mandatory to move
+    to the next line for each layer, doing so makes the code a lot easier to
+    organize and read. 
 
 \newpage
 
-## Practice problems {#section1-6}
+## Practice Problems {#section1-7}
 
 In each chapter, the last section contains some questions for you to complete
-to make sure you understood the
-material. You can download the code to answer questions 1.1 to 1.5 below at 
-http://www.math.montana.edu/courses/s217/documents/Ch1.Rmd. But to practice 
-learning R, it would be most useful for you to try to accomplish the requested tasks 
-yourself and then only refer to the provided `R` code if/when you struggle. 
-These questions provide a great venue to check your learning, often to see the
-methods applied to another data set, and for something to discuss in study groups,
-with your instructor, and at the Math Learning Center. 
+to make sure you understood the material. You can download the code to answer
+questions 1.1 to 1.5 below at [Course GitHub Page](https://raw.githubusercontent.com/atheobold/stat-313/master/Week%202/Reading/Chapter%20One%20Practice%20Problem%20Solutions/Chapter%20One%3A%20Introduction%20to%20R%20and%20RStudio.Rmd). 
+But to practice learning `R`, it would be most useful for you to try
+to accomplish the requested tasks yourself and then only refer to the provided
+`R` code if/when you struggle. These questions provide a great venue to check
+your learning, often to see the methods applied to another data set, and for
+something to discuss in study groups, with your instructor, and at the campus
+tutoring center. 
 
-1.1. Read in the treadmill data set
-discussed previously and find the mean and SD of the Ages (``Age`` variable) and Body
-Weights (``BodyWeight`` variable). In studies involving human subjects, it is 
-common to report a
+1.1. Read in the treadmill data set discussed previously and use the 
+`summarize()` function to find the mean and standard deviation of the Ages
+(``Age`` variable) and Body Weights (``BodyWeight`` variable). In studies
+involving human subjects, it is common to report a
 summary of characteristics of the subjects. Why does this matter? Think about
 how your interpretation of any study of the fitness of subjects would change if
 the mean age (same spread) had been 20 years older or 35 years younger. 
 
-1.2. How does knowing about the
-distribution of results for *Age* and *BodyWeight* help you understand the 
-results for the Run Times discussed previously?
+1.2. How does knowing about the distribution of results for `Age` and
+`BodyWeight` variables help you understand the results for the run times
+discussed previously?
 
-1.3. The mean and SD are most useful
-as summary statistics only if the distribution is relatively symmetric. Make a
-histogram of *Age* responses and 
-discuss the shape of the distribution (is it skewed right, skewed left, 
-approximately symmetric?; are there outliers?). Approximately what range of
+1.3. The mean and standard deviation are useful as summary statistics __if__ 
+the distribution is relatively symmetric. Make a density plot of `Age` responses
+and discuss the shape of the distribution. Is it skewed right, skewed left, 
+approximately symmetric? Are there outliers? Approximately what range of
 ages does this study pertain to?
 
-1.4. The weight responses are in
-kilograms and you might prefer to see them in pounds. The conversion is
-``lbs=2.205*kgs``. Create a new variable in the ``treadmill``
-tibble called *BWlb* using this code:
+1.4. The weight responses are in kilograms and you might prefer to see them in
+pounds. We can use the `mutate()` function to create a new variable from an 
+existing variable. In the example below, we use the `mutate()` function to add a
+new variable to the dataset, that is the difference between runner's running
+pulse and resting pulse. We add the variable to the original dataframe, by 
+assigning the new dataframe into the name of the old dataframe
+(`treadmill <- `). 
+
 
 ```r
-treadmill$BWlb <- 2.205*treadmill$BodyWeight
+treadmill <- treadmill %>% 
+  mutate(diff_pulse = RunPulse - RestPulse)
 ```
- 
-and find the mean and SD of the new variable (*BWlb*). 
 
-1.5. Make histograms and boxplots of
-the original *BodyWeight* and new *BWlb* variables. Discuss aspects of the
-distributions that changed and those that remained the same with the
-transformation from kilograms to pounds. What does this tell you about changing the units of a variable in terms of its distribution?
+Use the above code example to create a new column named `BodyWeight_lb` in the
+treadmill dataframe. The conversion from kg to lb is $\text{lbs} = 2.205 \times
+\text{kgs}$. 
 
+After you create the new variable, use `summarize()` to find the mean and 
+standard deviation of the new variable (`BodyWeight_lb`). 
+
+1.5. Make boxplots and density plots of the original `BodyWeight` and new 
+`BodyWeight_lb` variables. Discuss aspects of the distributions that changed and
+those that remained the same with the transformation from kilograms to pounds.
+What does this tell you about changing the units of a variable in terms of its
+distribution?
 

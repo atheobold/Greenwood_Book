@@ -12,6 +12,14 @@ tablenos-plus-name: Tab.
 
 # (R)e-Introduction to statistics {#chapter2}
 
+::: {.underconstruction}
+This chapter is currently under construction! Do not advance!
+:::
+
+::: {.guidedpractice}
+This chapter explores...
+:::
+
 
 
 

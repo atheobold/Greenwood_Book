@@ -8,7 +8,7 @@ output:
 # One-Way ANOVA {#chapter3}
 
 ::: {.underconstruction}
-This chapter is currently under construction!
+This chapter is currently under construction! Do not advance!
 :::
 
 ::: {.guidedpractice}

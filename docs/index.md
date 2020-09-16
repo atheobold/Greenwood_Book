@@ -36,8 +36,8 @@ the curriculum for STAT 313: Applied Experimental Design and Regression Models,
 at Cal Poly -- San Luis Obispo. 
 
 The syllabus, learning objectives, and other course information can be found
-on the [course webpage](https://github.com/atheobold/stat-313). Detailed
-learning outcomes for the course can be found [here](https://github.com/atheobold/stat-313/blob/master/Fall%202020%20Details/Syllabus/learning_outcomes.md).
+on the [course syllabus](https://rstudio.csm.calpoly.edu/content/187/Syllabus.html).
+Detailed learning outcomes for the course can be found [here](https://github.com/atheobold/stat-313/blob/master/Fall%202020%20Details/Syllabus/learning_outcomes.md).
 
 1. **Introduction to R and RStudio.**
 2. **Re-Introduction to Statistics.** Data visualization and summarization for
@@ -86,9 +86,10 @@ Cal Poly's
 [Virtual Computer Labs](https://tech.calpoly.edu/virtual-computer-labs-appstream).
 RStudio is available in the "Computational" labs. You will need to use a
 two-factor log-in (Cal Poly + Duo Mobile), which will then take you to a list of 
-applications. When you select RStudio, the page will load for 2-4 minutes. Once
-you are in, you can work in RStudio the same way you would on your laptop,
-*except* everything you make during a session __cannot be accessed later__. 
+applications. When you select RStudio, the page will load for 2-4 minutes 
+(😢). Once you are in, you can work in RStudio the same way 
+you would on your laptop, *except* everything you make during a session 
+__cannot be accessed later__. 
 
 
 ## Acknowledgements {-}

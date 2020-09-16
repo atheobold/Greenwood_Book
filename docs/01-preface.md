@@ -418,7 +418,7 @@ dividing by 4:
 
 
 ```r
-(-3 + 5 + 7 + 8)/4
+(-3 + 5 + 7 + 8) / 4
 ```
 
 ```
@@ -431,7 +431,7 @@ result:
 
 
 ```r
--3 + 5 + 7 + 8/4
+-3 + 5 + 7 + 8 / 4
 ```
 
 ```
@@ -895,14 +895,14 @@ This command should output the following:
 ```
 ## Rows: 31
 ## Columns: 8
-## $ Subject           <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15...
-## $ TreadMillOx       <dbl> 60.05, 59.57, 54.62, 54.30, 51.85, 50.55, 50.54, ...
-## $ TreadMillMaxPulse <dbl> 186, 172, 155, 168, 170, 155, 168, 168, 180, 185,...
-## $ RunTime           <dbl> 8.63, 8.17, 8.92, 8.65, 10.33, 9.93, 10.13, 10.08...
-## $ RunPulse          <dbl> 170, 166, 146, 156, 166, 148, 168, 168, 178, 180,...
-## $ RestPulse         <dbl> 48, 40, 48, 45, 50, 49, 45, 67, 55, 44, 64, 56, 5...
-## $ BodyWeight        <dbl> 81.87, 68.15, 70.87, 85.84, 83.12, 59.08, 73.03, ...
-## $ Age               <dbl> 38, 42, 50, 44, 54, 57, 44, 49, 38, 49, 43, 49, 4...
+## $ Subject           <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, …
+## $ TreadMillOx       <dbl> 60.05, 59.57, 54.62, 54.30, 51.85, 50.55, 50.54, 50…
+## $ TreadMillMaxPulse <dbl> 186, 172, 155, 168, 170, 155, 168, 168, 180, 185, 1…
+## $ RunTime           <dbl> 8.63, 8.17, 8.92, 8.65, 10.33, 9.93, 10.13, 10.08, …
+## $ RunPulse          <dbl> 170, 166, 146, 156, 166, 148, 168, 168, 178, 180, 1…
+## $ RestPulse         <dbl> 48, 40, 48, 45, 50, 49, 45, 67, 55, 44, 64, 56, 52,…
+## $ BodyWeight        <dbl> 81.87, 68.15, 70.87, 85.84, 83.12, 59.08, 73.03, 73…
+## $ Age               <dbl> 38, 42, 50, 44, 54, 57, 44, 49, 38, 49, 43, 49, 48,…
 ```
 
 \index{\texttt{glimpse()}}
@@ -1008,9 +1008,14 @@ running times, including the mean:
 
 
 ```r
-summarize(treadmill, min = min(RunTime), Q1 = quantile(RunTime, probs = 0.25), mean = mean(RunTime), 
-    median = median(RunTime), Q3 = quantile(RunTime, probs = 0.75), max = max(RunTime), 
-    )
+summarize(treadmill, 
+          min = min(RunTime), 
+          Q1 = quantile(RunTime, probs = 0.25),
+          mean = mean(RunTime), 
+          median = median(RunTime), 
+          Q3 = quantile(RunTime, probs = 0.75), 
+          max = max(RunTime), 
+)
 ```
 
 ```
@@ -1050,9 +1055,14 @@ five number summary:
 
 
 ```r
-treadmill %>% summarize(min = min(RunTime), Q1 = quantile(RunTime, probs = 0.25), 
-    mean = mean(RunTime), median = median(RunTime), Q3 = quantile(RunTime, probs = 0.75), 
-    max = max(RunTime), )
+treadmill %>% 
+  summarize(min = min(RunTime), 
+            Q1 = quantile(RunTime, probs = 0.25),
+            mean = mean(RunTime), 
+            median = median(RunTime), 
+            Q3 = quantile(RunTime, probs = 0.75), 
+            max = max(RunTime), 
+)
 ```
 
 The only difference between the previous code and this code is the location of
@@ -1120,7 +1130,8 @@ following code:
 
 
 ```r
-ggplot(data = treadmill, aes(x = RunTime)) + geom_histogram(bins = 10)
+ggplot(data = treadmill, aes(x = RunTime)) + 
+  geom_histogram(bins = 10)
 ```
 
 <img src="01-preface_files/figure-html/unnamed-chunk-25-1.png" width="480" />
@@ -1201,7 +1212,8 @@ produce the numerical summary to help you understand what happened.]
 
 
 ```r
-ggplot(data = treadmill, aes(y = RunTime)) + geom_boxplot()
+ggplot(data = treadmill, aes(y = RunTime)) + 
+  geom_boxplot()
 ```
 
 <img src="01-preface_files/figure-html/unnamed-chunk-27-1.png" width="480" />
@@ -1224,8 +1236,10 @@ before, Q1 was 9.78 and Q3 was
 
 
 ```r
-treadmill %>% summarize(IQR = quantile(RunTime, probs = 0.75) - quantile(RunTime, 
-    probs = 0.25))
+treadmill %>% 
+  summarize(IQR = quantile(RunTime, probs = 0.75) - 
+              quantile(RunTime, probs = 0.25)
+            )
 ```
 
 ```
@@ -1255,8 +1269,10 @@ locations.
 
 
 ```r
-ggplot(data = treadmill, aes(y = RunTime)) + geom_boxplot() + labs(y = "1.5 Mile Run Time (minutes)", 
-    title = "Boxplot of the Run Times of 31 participants")
+ggplot(data = treadmill, aes(y = RunTime)) + 
+  geom_boxplot() + 
+  labs(y = "1.5 Mile Run Time (minutes)",
+       title = "Boxplot of the Run Times of 31 participants")
 ```
 
 <img src="01-preface_files/figure-html/unnamed-chunk-29-1.png" width="480" />
@@ -1286,7 +1302,8 @@ the runners in this study had running times around 11 minutes for the 1.5 miles.
 
 
 ```r
-ggplot(data = treadmill, aes(x = RunTime)) + geom_density()
+ggplot(data = treadmill, aes(x = RunTime)) + 
+  geom_density()
 ```
 
 <img src="01-preface_files/figure-html/unnamed-chunk-30-1.png" width="480" />
@@ -1300,7 +1317,8 @@ selected blue, although tomato is another favorite of mine.
 
 
 ```r
-ggplot(data = treadmill, aes(x = RunTime)) + geom_density(fill = "blue")
+ggplot(data = treadmill, aes(x = RunTime)) + 
+  geom_density(fill = "blue")
 ```
 
 <img src="01-preface_files/figure-html/unnamed-chunk-31-1.png" width="480" />
@@ -1316,7 +1334,7 @@ interested in into the console. Type the following in your console:
 
 
 ```r
-`?`(ggplot)
+?ggplot
 ```
 
 Notice that the help file comes to the forefront, replacing the plot in the
@@ -1546,7 +1564,8 @@ assigning the new dataframe into the name of the old dataframe
 
 
 ```r
-treadmill <- treadmill %>% mutate(diff_pulse = RunPulse - RestPulse)
+treadmill <- treadmill %>% 
+  mutate(diff_pulse = RunPulse - RestPulse)
 ```
 
 Use the above code example to create a new column named `BodyWeight_lb` in the

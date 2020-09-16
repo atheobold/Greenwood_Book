@@ -1466,7 +1466,7 @@ to work. You can also revisit the worked examples using each of the functions.
     
     * Allows for you to link together data wrangling processes, promoting the 
     readability of each step. 
-
+    
 * **ggplot(data =** <font color='red'>DATASET_NAME</font>, 
            **aes(x =** <font color='red'>VARIABLE</font>, 
                **y =** <font color='red'>VARIABLE_NAME</font>**))** 

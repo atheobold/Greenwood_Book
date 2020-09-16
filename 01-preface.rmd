@@ -129,7 +129,7 @@ types of conclusions that are appropriate based on the design of the study.
 (ref:fig1-1) Flow chart of data analysis procedures.
 
 ```{r Figure1-1, echo = FALSE, fig.cap = "(ref:fig1-1)", out.width = "100%", fig.align = "center"}
-knitr::include_graphics('01/images/image002.png')
+knitr::include_graphics('01/images/methods_edit.PNG')
 ```
 
 \indent We will be spending most of the semester working on methods for quantitative
@@ -366,7 +366,7 @@ published and that this is the 7^th^ time it has been revised in seven years...]
 (ref:fig1-2) Initial RStudio layout.
 
 ```{r Figure1-2, echo = FALSE, fig.cap = "(ref:fig1-2)", out.width = "100%", fig.align = "center"}
-knitr::include_graphics('01/images/fig1-2.png')
+knitr::include_graphics('01/images/fig1-2_alt.jpg')
 ```
 
 \indent To get started, we can complete some basic tasks in `R` using the
@@ -992,7 +992,7 @@ sense if you think about the median being the center of the distribution, where
 (ref:fig1-5) Quantiles of a distribution. 
 
 ```{r Figure1-5, echo = FALSE, fig.cap = "(ref:fig1-5)", out.width = "100%", fig.align = "center"}
-knitr::include_graphics('01/images/quantile.jpg')
+knitr::include_graphics('01/images/quantile_edits.jpg')
 ```
 
 Alternatively, we could have used the following code to obtain the same 

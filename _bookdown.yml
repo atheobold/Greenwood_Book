@@ -8,7 +8,7 @@ rmd_files: [
   "00b-copyright.rmd",
   "01-preface.rmd",
   "02-reintroductionToStatistics.rmd", 
-  "03-oneWayAnova.rmd" 
+  #"03-oneWayAnova.rmd" 
   #"04-twoWayAnova.rmd", 
   #"05-chiSquaredTests.rmd",
   #"06-correlationAndSimpleLinearRegression.rmd", 
@@ -19,8 +19,8 @@ rmd_files: [
   ]
 output: bookdown::gitbook
 site: bookdown::bookdown_site
-tables: true
 new_session: true
+tables: true
 delete_merged_file: true
-before_chpater_script: "_common.R"
+before_chapter_script: "_common.R"
 output_dir: "docs"

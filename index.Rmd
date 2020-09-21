@@ -14,11 +14,6 @@ header-includes:
 - \usepackage{color}
 ---
 
-```{r echo=F}
-library(knitr)
-library(emo)
-```
-
 # Welcome {-}
  
 We hope readers will take away three ideas from this book in addition to forming

@@ -8,34 +8,11 @@ output:
 # Introduction to `R` and RStudio {#chapter1}
 
 ```{r include=F}
-library(mosaic)
-library(tidyverse)
-library(kableExtra)
-library(knitr)
-library(DT)
-
-knitr::opts_chunk$set(cache = F,
-                      echo = FALSE, 
-                      fig.width = 5,
-                      fig.height = 3.5,
-                      fig.pos = "ht!",
-                      message = F,
-                      warning = F, 
-                      tidy = TRUE)
 options(show.signif.stars = FALSE)
 ```
 
-```{r echo=F}
-#Color Format
-colFmt = function(x, color){
-  outputFormat = opts_knit$get("rmarkdown.pandoc.to")
-  if(outputFormat == 'latex')
-    paste("\\textcolor{",color,"}{",x,"}",sep="")
-  else if(outputFormat == 'html')
-    paste("<font color='",color,"'>",x,"</font>",sep="")
-  else
-    x
-}
+```{r include=FALSE}
+terms_chp_1 <- c("data")
 ```
 
 ::: {.chapterintro}
@@ -68,6 +45,10 @@ and that you have seen all of these concepts in a couple of basic situations. We
 start with a review of these ideas in one and two group situations with a
 quantitative response, something that you likely have seen before. 
 
+```{r}
+terms_chp_1 <- c(terms_chp_1, "hypothesis testing", "confidence interval")
+```
+
 \indent This text covers a wide array of statistical tools that are connected
 through situation, methods used, or both. As we explore various techniques, look
 for the identifying characteristics of each method -- what type of research
@@ -87,6 +68,11 @@ course, we will start to handle more complex situations (many explanatory
 variables), while also providing tools for data wrangling and data visualization, 
 complementing the more sophisticated statistical models required to handle these
 situations. 
+
+```{r}
+terms_chp_1 <- c(terms_chp_1, "quantitative", "categorical", "response", 
+                 "explanatory")
+```
 
 ## Overview of Methods {#section1-1}
 
@@ -125,6 +111,11 @@ the necessary technical steps to get results for a
 given data set, the final step involves assessing the scope of inference 
 \index{scope of inference} and
 types of conclusions that are appropriate based on the design of the study. 
+
+```{r}
+terms_chp_1 <- c(terms_chp_1, "linear model", "Chi-Square Test", 
+                 "scope of inference")
+```
 
 (ref:fig1-1) Flow chart of data analysis procedures.
 
@@ -178,6 +169,12 @@ interaction may or may not actually be present, we will consider two versions
 of the model in Two-Way ANOVAs, \index{model!Two-Way ANOVA} what are called the
 ***additive*** \index{model!additive} (no interaction) and the ***interaction*** \index{model!interaction} models. 
 
+```{r}
+terms_chp_1 <- c(terms_chp_1, "assumptions", "interaction", 
+                 "additive model", "interaction model")
+```
+
+
 \indent Following the methods for two categorical variables and a quantitative 
 response, we explore a method for analyzing data where the response is
 categorical, called the ***Chi-square test***
@@ -216,6 +213,12 @@ quantitative explanatory variable, we would use a **Logistic Regression**.
 This type of data model will be covered in additional statistics classes, but 
 has connections to the linear models discussed in this textbook.
 
+```{r}
+terms_chp_1 <- c(terms_chp_1, "Chi-Square Homogeneity Test", 
+                 "Chi-Square Independence Test", 
+                 "Logistic Regression")
+```
+
 \indent If the predictor and response variables are both quantitative, we start
 with scatterplots, correlation, 
 and ***simple linear regression*** models (Chapters \@ref(chapter6) and
@@ -241,6 +244,10 @@ responses are discussed, showing that they all have the same foundation,
 because they are all linear models \index{model!linear}. We also show how the
 methods discussed can be applied to a suite of new problems using a set of case
 studies and how that relates to further extensions of the methods.
+
+```{r}
+terms_chp_1 <- c(terms_chp_1, "transformation", "multiple linear regression")
+```
 
 \indent By the end of Chapter \@ref(chapter9) you should be able to identify,
 perform using the statistical software `R` [@R-base], and interpret the results 
@@ -289,6 +296,11 @@ tutoring/not but the non-random sample would only lead to conclusions about
 those students that volunteered. The most powerful scope of inference is when
 random assignment is used in a random sample from a population -- conclusions
 would be about causal impacts that we would expect to happen in the population. 
+
+```{r}
+terms_chp_1 <- c(terms_chp_1, "random sampling", "random assignment", 
+                 "causal inference")
+```
 
 \indent By the end of this material, you should have some `R` skills to wrangle 
 data in preparation for analysis, create professional quality data
@@ -655,6 +667,10 @@ to whether repeated studies get the same result (also called ***replication***)
 -- further discussion of these terms and the implications for scientific
 research are discussed in Chapter \@ref(chapter2).
 
+```{r}
+terms_chp_1 <- c(terms_chp_1, "reproducible", "replication")
+```
+
 In this course, will be using R Markdown to create reproducible lab reports.
 See the following videos describing why and how:
 
@@ -938,6 +954,10 @@ the mean and SD are only appropriate summaries if the distribution is roughly
 ***symmetric*** (both sides of the distribution are approximately the same shape
 and length). 
 
+```{r}
+terms_chp_1 <- c(terms_chp_1, "symmetric distribution")
+```
+
 <!-- (Note: answers to all Guided Practice exercises are provided in footnotes!) -->
 
 ::: {.guidedpractice} 
@@ -956,6 +976,11 @@ the minimum (``min``), the first quartile (``Q1``, the 25^th^ percentile),
 the `median` (50^th^ percentile), the third quartile (``Q3``, the 75^th^
 percentile), and the maximum (``max``). 
 \index{summarize}
+
+```{r}
+terms_chp_1 <- c(terms_chp_1, "five number summary")
+```
+
 
 Let's use the `summarize()` function to calculate a five number summary of the 
 running times, including the mean:
@@ -1064,6 +1089,11 @@ good place to start. Histograms display connected bars with counts of
 observations defining the height of bars based on a set of bins of values of the
 quantitative variable. 
 
+```{r}
+terms_chp_1 <- c(terms_chp_1, "skewed distribution", 
+                 "outlier", "histogram")
+```
+
 `R` has some powerful functions for making graphics. We chose ggplot2 because
 this package makes modern looking hassle-free plots that take care of fiddly
 details like drawing legends. Additionally, once you learn how to make simple
@@ -1135,6 +1165,10 @@ shape of the distribution as it displays the 5-number summary and will also
 indicate observations that are "far" above the middle of the observations. 
 \index{boxplot}
 
+```{r}
+terms_chp_1 <- c(terms_chp_1, "boxplot")
+```
+
 As you may have expected, to create a boxplot in ggplot you change the 
 geometric representation of your data, in the `geom` function. Here, we will 
 use the `geom_boxplot()` to create a boxplot of the running times. The 
@@ -1142,6 +1176,10 @@ use the `geom_boxplot()` to create a boxplot of the running times. The
 ***potential outlier*** if it falls more than 1.5 times the ***IQR*** 
 (Inter-Quartile Range, calculated as Q3 -- Q1) below Q1 or above Q3. 
 \index{outlier}
+
+```{r}
+terms_chp_1 <- c(terms_chp_1, "IQR (inter-quartile range)")
+```
 
 The potential outliers are plotted with circles and the *Whiskers* (lines that
 extend from Q1 and Q3 typically to the minimum and maximum) are shortened to
@@ -1444,6 +1482,17 @@ to work. You can also revisit the worked examples using each of the functions.
     organize and read. 
 
 \newpage
+
+## Terms
+
+We introduced the following terms in the chapter.
+If you're not sure what some of these terms mean, we recommend you go back in the text and review their definitions.
+We are purposefully presenting them in alphabetical order, instead of in order of appearance, so they will be a little more challenging to locate.
+However you should be able to easily spot them as **bolded text**.
+
+```{r, echo = FALSE}
+make_terms_table(terms_chp_1)
+```
 
 ## Practice Problems {#section1-7}
 

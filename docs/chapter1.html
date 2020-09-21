@@ -167,7 +167,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#section1-5"><i class="fa fa-check"></i><b>1.5</b> Chapter Summary</a></li>
 <li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#section1-6"><i class="fa fa-check"></i><b>1.6</b> Summary of Important R code</a></li>
-<li class="chapter" data-level="1.7" data-path="chapter1.html"><a href="chapter1.html#section1-7"><i class="fa fa-check"></i><b>1.7</b> Practice Problems</a></li>
+<li class="chapter" data-level="1.7" data-path="chapter1.html"><a href="chapter1.html#terms"><i class="fa fa-check"></i><b>1.7</b> Terms</a></li>
+<li class="chapter" data-level="1.8" data-path="chapter1.html"><a href="chapter1.html#section1-7"><i class="fa fa-check"></i><b>1.8</b> Practice Problems</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter2.html"><a href="chapter2.html"><i class="fa fa-check"></i><b>2</b> (R)e-Introduction to statistics</a><ul>
 <li class="chapter" data-level="2.1" data-path="chapter2.html"><a href="chapter2.html#section2-1"><i class="fa fa-check"></i><b>2.1</b> Histograms, boxplots, and density curves</a></li>
@@ -183,18 +184,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.11" data-path="chapter2.html"><a href="chapter2.html#section2-11"><i class="fa fa-check"></i><b>2.11</b> Chapter summary</a></li>
 <li class="chapter" data-level="2.12" data-path="chapter2.html"><a href="chapter2.html#section2-12"><i class="fa fa-check"></i><b>2.12</b> Summary of important R code</a></li>
 <li class="chapter" data-level="2.13" data-path="chapter2.html"><a href="chapter2.html#section2-13"><i class="fa fa-check"></i><b>2.13</b> Practice problems</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="chapter3.html"><a href="chapter3.html"><i class="fa fa-check"></i><b>3</b> One-Way ANOVA</a><ul>
-<li class="chapter" data-level="3.1" data-path="chapter3.html"><a href="chapter3.html#section3-1"><i class="fa fa-check"></i><b>3.1</b> Situation</a></li>
-<li class="chapter" data-level="3.2" data-path="chapter3.html"><a href="chapter3.html#section3-2"><i class="fa fa-check"></i><b>3.2</b> Linear model for One-Way ANOVA (cell means and reference-coding)</a></li>
-<li class="chapter" data-level="3.3" data-path="chapter3.html"><a href="chapter3.html#section3-3"><i class="fa fa-check"></i><b>3.3</b> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
-<li class="chapter" data-level="3.4" data-path="chapter3.html"><a href="chapter3.html#section3-4"><i class="fa fa-check"></i><b>3.4</b> ANOVA model diagnostics including QQ-plots</a></li>
-<li class="chapter" data-level="3.5" data-path="chapter3.html"><a href="chapter3.html#section3-5"><i class="fa fa-check"></i><b>3.5</b> Guinea pig tooth growth One-Way ANOVA example</a></li>
-<li class="chapter" data-level="3.6" data-path="chapter3.html"><a href="chapter3.html#section3-6"><i class="fa fa-check"></i><b>3.6</b> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
-<li class="chapter" data-level="3.7" data-path="chapter3.html"><a href="chapter3.html#section3-7"><i class="fa fa-check"></i><b>3.7</b> Pair-wise comparisons for the Overtake data</a></li>
-<li class="chapter" data-level="3.8" data-path="chapter3.html"><a href="chapter3.html#section3-8"><i class="fa fa-check"></i><b>3.8</b> Chapter summary</a></li>
-<li class="chapter" data-level="3.9" data-path="chapter3.html"><a href="chapter3.html#section3-9"><i class="fa fa-check"></i><b>3.9</b> Summary of important R code</a></li>
-<li class="chapter" data-level="3.10" data-path="chapter3.html"><a href="chapter3.html#section3-10"><i class="fa fa-check"></i><b>3.10</b> Practice problems</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -311,7 +300,7 @@ Figure 1.1: Flow chart of data analysis procedures.
 <p>We will be spending most of the semester working on methods for quantitative
 response variables (the
 left side of Figure <a href="chapter1.html#fig:Figure1-1">1.1</a> is covered in Chapters <a href="chapter2.html#chapter2">2</a>,
-<a href="chapter3.html#chapter3">3</a>, <a href="#chapter4"><strong>??</strong></a>, <a href="#chapter6"><strong>??</strong></a>, <a href="#chapter7"><strong>??</strong></a>, and
+<a href="#chapter3"><strong>??</strong></a>, <a href="#chapter4"><strong>??</strong></a>, <a href="#chapter6"><strong>??</strong></a>, <a href="#chapter7"><strong>??</strong></a>, and
 <a href="#chapter8"><strong>??</strong></a>), stepping
 over to handle the situation with a categorical response variable in Chapter
 <a href="#chapter5"><strong>??</strong></a> (right side of Figure <a href="chapter1.html#fig:Figure1-1">1.1</a>).
@@ -326,7 +315,7 @@ have seen methods for estimating and quantifying uncertainty for the mean of a
 single group and for differences in the means of two groups. Once we have
 briefly reviewed these methods and introduced the statistical software that we
 will use throughout the course, we will consider the first new statistical
-material in Chapter <a href="chapter3.html#chapter3">3</a>. It involves the situation with a
+material in Chapter <a href="#chapter3"><strong>??</strong></a>. It involves the situation with a
 quantitative response variable where
 there are more than 2 groups to compare – this is what we call the <strong><em>One-Way
 ANOVA</em></strong> situation. It generalizes the 2-independent sample hypothesis
@@ -334,7 +323,7 @@ test to handle situations where more than 2 groups are being studied. When we
 learn this method, we will begin discussing model assumptions
  and methods for assessing those assumptions that will be
 present in every analysis involving a
-quantitative response. The <strong><em>Two-Way ANOVA</em></strong> (Chapter <a href="chapter3.html#chapter3">3</a>)
+quantitative response. The <strong><em>Two-Way ANOVA</em></strong> (Chapter <a href="#chapter3"><strong>??</strong></a>)
 considers situations with two categorical explanatory variables and a
 quantitative response. To make
 this somewhat concrete, suppose we are interested in assessing differences in,
@@ -571,18 +560,18 @@ change your global options.</p>
 <p>As a first interaction with <code>R</code> we can use it as a very powerful
 calculator. To do this, click near the command prompt (<code>&gt;</code>) in the lower left
 “console” panel, type <code>3+4</code>, and then hit enter. It should look like this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="chapter1.html#cb1-1"></a><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span></span></code></pre></div>
-<pre><code>## [1] 7</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="chapter1.html#cb1-1"></a><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span></span>
+<span id="cb1-2"><a href="chapter1.html#cb1-2"></a><span class="co">#&gt; [1] 7</span></span></code></pre></div>
 <p>You can do more interesting calculations, like finding the mean of a set of
 numbers, say -3, 5, 7, and 8, You can do this by adding the numbers up and
 dividing by 4:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="chapter1.html#cb3-1"></a>(<span class="op">-</span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">7</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span>) <span class="op">/</span><span class="st"> </span><span class="dv">4</span></span></code></pre></div>
-<pre><code>## [1] 4.25</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="chapter1.html#cb2-1"></a>(<span class="op">-</span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">7</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span>) <span class="op">/</span><span class="st"> </span><span class="dv">4</span></span>
+<span id="cb2-2"><a href="chapter1.html#cb2-2"></a><span class="co">#&gt; [1] 4.25</span></span></code></pre></div>
 <p>Note that the parentheses help <code>R</code> to figure out your desired order of
 operations. If you drop that grouping, you get a very different (and wrong!)
 result:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="chapter1.html#cb5-1"></a><span class="dv">-3</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">7</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span></span></code></pre></div>
-<pre><code>## [1] 11</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="chapter1.html#cb3-1"></a><span class="dv">-3</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">7</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span></span>
+<span id="cb3-2"><a href="chapter1.html#cb3-2"></a><span class="co">#&gt; [1] 11</span></span></code></pre></div>
 <p>We could the use a formula from introductory statistics to estimate the standard
 deviation of this set of numbers, but that gets us away from the reason we are
 using <code>R</code>. To use the real power of <code>R</code> in this course, we need to work with
@@ -616,14 +605,14 @@ with the building blocks of datafames: vectors.</p>
 vector we use the concatenate function (<code>c()</code>), which binds together a list of
 numbers to form a vector. For example, running the code <code>c(1, 2, 3, 4)</code>, would
 output a vector of four numbers, 1, 2, 3, and 4.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="chapter1.html#cb7-1"></a><span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">8</span>)</span></code></pre></div>
-<pre><code>## [1] -3  5  7  8</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="chapter1.html#cb4-1"></a><span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">8</span>)</span>
+<span id="cb4-2"><a href="chapter1.html#cb4-2"></a><span class="co">#&gt; [1] -3  5  7  8</span></span></code></pre></div>
 <p>If we would like store this vector into a variable, so we can refer back to it,
 we will need to assign it to a variable, like <em><code>variable1</code></em>. To get a vector
 stored in a variable we need to use the assignment operator,
 <code>&lt;-</code> (read as “is defined to contain”) that assigns the object on the right
 into the variable that you are creating on the left.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="chapter1.html#cb9-1"></a>variable1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="chapter1.html#cb5-1"></a>variable1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">8</span>)</span></code></pre></div>
 <p>In <code>R</code>, the assignment operator, <code>&lt;-</code>, is created by typing a “less than”
 symbol <code>&lt;</code> followed by a “minus” sign (<code>-</code>)
 <strong>without a space between them</strong>. If you ever want to see what numbers are
@@ -631,8 +620,8 @@ residing in an object in <code>R</code>, just type its name in the console and h
 You can see how that variable contains the same information that was initially
 generated by <code>c(-3, 5, 7, 8)</code> but is easier to access since we just need the
 text for the variable name representing that vector.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="chapter1.html#cb10-1"></a>variable1</span></code></pre></div>
-<pre><code>## [1] -3  5  7  8</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="chapter1.html#cb6-1"></a>variable1</span>
+<span id="cb6-2"><a href="chapter1.html#cb6-2"></a><span class="co">#&gt; [1] -3  5  7  8</span></span></code></pre></div>
 <div class="important">
 <p><code>R</code> is case sensitive! <code>Variable1</code> is not the same as <code>variable1</code>!</p>
 </div>
@@ -652,7 +641,7 @@ function <code>mean()</code>. The input (the argument) must be numbers, and the 
 value (in fact, the output) is the mean of those numbers. Executing a function
 (‘running it’) is called <em>calling</em> the function. An example of a function call
 is:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="chapter1.html#cb12-1"></a>mean_var1 &lt;-<span class="st"> </span><span class="kw">mean</span>(variable1)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="chapter1.html#cb7-1"></a>mean_var1 &lt;-<span class="st"> </span><span class="kw">mean</span>(variable1)</span></code></pre></div>
 <p>Here, the <code>variable1</code> is the input to the <code>mean()</code> function, which the
 <code>mean()</code> function uses to calculates the mean of that input, and then returns
 the value which is then assigned to the object <code>mean_var1</code>. This function is
@@ -676,9 +665,9 @@ of your choice which will be used instead of the default.</p>
 contained missing values, or <code>NA</code> values. If we use the <code>mean()</code> function as
 we did before, we will no longer obtain a numeric output if our vector contains
 <code>NA</code> values.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="chapter1.html#cb13-1"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="ot">NA</span>)</span>
-<span id="cb13-2"><a href="chapter1.html#cb13-2"></a><span class="kw">mean</span>(a)</span></code></pre></div>
-<pre><code>## [1] NA</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="chapter1.html#cb8-1"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="ot">NA</span>)</span>
+<span id="cb8-2"><a href="chapter1.html#cb8-2"></a><span class="kw">mean</span>(a)</span>
+<span id="cb8-3"><a href="chapter1.html#cb8-3"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
 <p>When doing operations on numbers, most functions will return <code>NA</code> if the data
 you are working with include missing values. This feature makes it harder to
 overlook missing data.</p>
@@ -688,8 +677,8 @@ can look at the help file for the <code>mean()</code> function using <code>?mean
 omit <code>NA</code>s when calculating the mean. Notice, this argument defaults to a value
 of <code>FALSE</code>, meaning the option is turned off. If you want to turn the option on,
 you need to tell <code>R</code> that you wish for <code>na.rm</code> to be <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="chapter1.html#cb15-1"></a><span class="kw">mean</span>(a, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## [1] 4.25</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="chapter1.html#cb9-1"></a><span class="kw">mean</span>(a, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb9-2"><a href="chapter1.html#cb9-2"></a><span class="co">#&gt; [1] 4.25</span></span></code></pre></div>
 </div>
 <div id="packages-in-r" class="section level3">
 <h3><span class="header-section-number">1.2.4</span> Packages in <code>R</code></h3>
@@ -724,7 +713,7 @@ install it.</p>
 <p>You only need to <em>install</em> packages once, but you need to <em>load</em> them each time
 you relaunch RStudio. We load packages with the <code>library()</code> function.
 </p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="chapter1.html#cb17-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="chapter1.html#cb10-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <p>When you load an installed package with <code>library()</code>, you may see a
 warning message about versions of the package and versions of
 <code>R</code> – this is <em>usually</em> something you can ignore. Other warning messages could
@@ -847,7 +836,7 @@ is saved as <em>treadmill.csv</em>!</li>
 </ol>
 <p>Next, in RStudio modify the code below to reflect the location of the downloaded
 data:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="chapter1.html#cb18-1"></a>treadmill &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;stat 313/week 2/data/treadmill.csv&quot;</span>)<span class="st">`</span><span class="dt"> </span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="chapter1.html#cb11-1"></a>treadmill &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;stat 313/week 2/data/treadmill.csv&quot;</span>)<span class="st">`</span><span class="dt"> </span></span></code></pre></div>
 <p></p>
 <p>Here, I’ve saved the treadmill.csv file inside a data folder, which lives inside
 my week 2 folder, which lives inside my stat 313 folder. Notice, my folder
@@ -859,7 +848,7 @@ follow the same instructions as above, but instead of downloading the data, you
 would copy-and-paste the web address of the data directly into RStudio. This
 would look like:</li>
 </ol>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="chapter1.html#cb19-1"></a>treadmill &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/atheobold/stat-313/master/book_data/treadmill.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="chapter1.html#cb12-1"></a>treadmill &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/atheobold/stat-313/master/book_data/treadmill.csv&quot;</span>)</span></code></pre></div>
 <p>Using either method, you should notice that the location of the file is enclosed
 in <code>" "</code>. The <code>read_csv()</code> function takes a file path as an argument. These
 quotation marks indicate to <code>R</code> that the contents between them
@@ -898,7 +887,7 @@ pulse during 1.5 mile run (<code>RunPulse</code>, in beats per minute), resting 
 <p>To verify that you read the data set in correctly, it is always good to
 inspect its contents. We can view the contents of the dataset using the
 following code:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="chapter1.html#cb20-1"></a>treadmill</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="chapter1.html#cb13-1"></a>treadmill</span></code></pre></div>
 <p>This command does display the data for us, however, printing the whole dataset
 in the console is not that useful. One advantage of RStudio is that it comes
 with a built-in data viewer. The <em>Environment</em> tab (in the upper right pane)
@@ -925,7 +914,7 @@ to a spreadsheet or a table, which <code>R</code> calls a <em>data frame</em>.</
 <p>You can see the dimensions of this data frame as well as the names of the
 variables and the first few observations by inserting the name of the dataset
 into the <code>glimpse()</code> function, as seen below:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="chapter1.html#cb21-1"></a><span class="kw">glimpse</span>(treadmill)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter1.html#cb14-1"></a><span class="kw">glimpse</span>(treadmill)</span></code></pre></div>
 <p>Although we previously said that it is best practice to type all of your <code>R</code>
 code into the code chunk, it is better practice to type this command into your
 console. Generally, you should type all of the code that is necessary for your
@@ -933,16 +922,16 @@ solution into the code chunk. Because this command is used to explore the data,
 it is not necessary for your solution code and <strong>should not</strong> be included in
 your R Markdown file.</p>
 <p>This command should output the following:</p>
-<pre><code>## Rows: 31
-## Columns: 8
-## $ Subject           &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, …
-## $ TreadMillOx       &lt;dbl&gt; 60.05, 59.57, 54.62, 54.30, 51.85, 50.55, 50.54, 50…
-## $ TreadMillMaxPulse &lt;dbl&gt; 186, 172, 155, 168, 170, 155, 168, 168, 180, 185, 1…
-## $ RunTime           &lt;dbl&gt; 8.63, 8.17, 8.92, 8.65, 10.33, 9.93, 10.13, 10.08, …
-## $ RunPulse          &lt;dbl&gt; 170, 166, 146, 156, 166, 148, 168, 168, 178, 180, 1…
-## $ RestPulse         &lt;dbl&gt; 48, 40, 48, 45, 50, 49, 45, 67, 55, 44, 64, 56, 52,…
-## $ BodyWeight        &lt;dbl&gt; 81.87, 68.15, 70.87, 85.84, 83.12, 59.08, 73.03, 73…
-## $ Age               &lt;dbl&gt; 38, 42, 50, 44, 54, 57, 44, 49, 38, 49, 43, 49, 48,…</code></pre>
+<pre><code>#&gt; Rows: 31
+#&gt; Columns: 8
+#&gt; $ Subject           &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, …
+#&gt; $ TreadMillOx       &lt;dbl&gt; 60.0, 59.6, 54.6, 54.3, 51.9, 50.5, 50.5, 50.4, 49.…
+#&gt; $ TreadMillMaxPulse &lt;dbl&gt; 186, 172, 155, 168, 170, 155, 168, 168, 180, 185, 1…
+#&gt; $ RunTime           &lt;dbl&gt; 8.63, 8.17, 8.92, 8.65, 10.33, 9.93, 10.13, 10.08, …
+#&gt; $ RunPulse          &lt;dbl&gt; 170, 166, 146, 156, 166, 148, 168, 168, 178, 180, 1…
+#&gt; $ RestPulse         &lt;dbl&gt; 48, 40, 48, 45, 50, 49, 45, 67, 55, 44, 64, 56, 52,…
+#&gt; $ BodyWeight        &lt;dbl&gt; 81.9, 68.2, 70.9, 85.8, 83.1, 59.1, 73.0, 73.4, 89.…
+#&gt; $ Age               &lt;dbl&gt; 38, 42, 50, 44, 54, 57, 44, 49, 38, 49, 43, 49, 48,…</code></pre>
 <p></p>
 <p>At this point, you might notice that many of the commands in <code>R</code> look a lot like
 functions from math class; that is, invoking <code>R</code> commands means supplying a
@@ -962,10 +951,10 @@ the name of the tibble and the name of the variable of interest. Generically,
 this looks something like: <code>tibblename$variablename</code>. You can think of this as
 <em>tibblename’s variablename</em> where the <em>’s</em> is replaced by the dollar sign (<code>$</code>).
 To access the <code>RunTime</code> variable here it would be <code>treadmill$RunTime</code>.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="chapter1.html#cb23-1"></a>treadmill<span class="op">$</span>RunTime</span></code></pre></div>
-<pre><code>##  [1]  8.63  8.17  8.92  8.65 10.33  9.93 10.13 10.08  9.22  8.95 10.85  9.40
-## [13] 11.50 10.50 10.60 10.25 10.00 11.17 10.47 11.95  9.63 10.07 11.08 11.63
-## [25] 11.12 11.37 10.95 13.08 12.63 12.88 14.03</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="chapter1.html#cb16-1"></a>treadmill<span class="op">$</span>RunTime</span>
+<span id="cb16-2"><a href="chapter1.html#cb16-2"></a><span class="co">#&gt;  [1]  8.63  8.17  8.92  8.65 10.33  9.93 10.13 10.08  9.22  8.95 10.85  9.40</span></span>
+<span id="cb16-3"><a href="chapter1.html#cb16-3"></a><span class="co">#&gt; [13] 11.50 10.50 10.60 10.25 10.00 11.17 10.47 11.95  9.63 10.07 11.08 11.63</span></span>
+<span id="cb16-4"><a href="chapter1.html#cb16-4"></a><span class="co">#&gt; [25] 11.12 11.37 10.95 13.08 12.63 12.88 14.03</span></span></code></pre></div>
 <p>When we looked at the complete data frame, we saw 31 rows, one on each line of
 the display. These data have been extracted from the data frame, so they are no
 longer structured in a table with other variables. Instead, these data are
@@ -981,13 +970,13 @@ indicate that the first number displayed on that line would correspond to the
 a particular variable using functions like <code>mean()</code> and <code>sd()</code>:
 
 </p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="chapter1.html#cb25-1"></a><span class="kw">mean</span>(treadmill<span class="op">$</span>RunTime)</span></code></pre></div>
-<pre><code>## [1] 10.58613</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="chapter1.html#cb27-1"></a><span class="kw">sd</span>(treadmill<span class="op">$</span>RunTime)</span></code></pre></div>
-<pre><code>## [1] 1.387414</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="chapter1.html#cb17-1"></a><span class="kw">mean</span>(treadmill<span class="op">$</span>RunTime)</span>
+<span id="cb17-2"><a href="chapter1.html#cb17-2"></a><span class="co">#&gt; [1] 10.6</span></span>
+<span id="cb17-3"><a href="chapter1.html#cb17-3"></a><span class="kw">sd</span>(treadmill<span class="op">$</span>RunTime)</span>
+<span id="cb17-4"><a href="chapter1.html#cb17-4"></a><span class="co">#&gt; [1] 1.39</span></span></code></pre></div>
 <p>And now we know that the average running time for 1.5 miles for the subjects
-in the study was 10.586129 minutes with a standard
-deviation of 1.3874141 minutes. But you should remember that
+in the study was 10.586 minutes with a standard
+deviation of 1.387 minutes. But you should remember that
 the mean and SD are only appropriate summaries if the distribution is roughly
 <strong><em>symmetric</em></strong> (both sides of the distribution are approximately the same shape
 and length).</p>
@@ -1006,18 +995,18 @@ percentile), and the maximum (<code>max</code>).
 </p>
 <p>Let’s use the <code>summarize()</code> function to calculate a five number summary of the
 running times, including the mean:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="chapter1.html#cb29-1"></a><span class="kw">summarize</span>(treadmill, </span>
-<span id="cb29-2"><a href="chapter1.html#cb29-2"></a>          <span class="dt">min =</span> <span class="kw">min</span>(RunTime), </span>
-<span id="cb29-3"><a href="chapter1.html#cb29-3"></a>          <span class="dt">Q1 =</span> <span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.25</span>),</span>
-<span id="cb29-4"><a href="chapter1.html#cb29-4"></a>          <span class="dt">mean =</span> <span class="kw">mean</span>(RunTime), </span>
-<span id="cb29-5"><a href="chapter1.html#cb29-5"></a>          <span class="dt">median =</span> <span class="kw">median</span>(RunTime), </span>
-<span id="cb29-6"><a href="chapter1.html#cb29-6"></a>          <span class="dt">Q3 =</span> <span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.75</span>), </span>
-<span id="cb29-7"><a href="chapter1.html#cb29-7"></a>          <span class="dt">max =</span> <span class="kw">max</span>(RunTime), </span>
-<span id="cb29-8"><a href="chapter1.html#cb29-8"></a>)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 6
-##     min    Q1  mean median    Q3   max
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  8.17  9.78  10.6   10.5  11.3  14.0</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="chapter1.html#cb18-1"></a><span class="kw">summarize</span>(treadmill, </span>
+<span id="cb18-2"><a href="chapter1.html#cb18-2"></a>          <span class="dt">min =</span> <span class="kw">min</span>(RunTime), </span>
+<span id="cb18-3"><a href="chapter1.html#cb18-3"></a>          <span class="dt">Q1 =</span> <span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.25</span>),</span>
+<span id="cb18-4"><a href="chapter1.html#cb18-4"></a>          <span class="dt">mean =</span> <span class="kw">mean</span>(RunTime), </span>
+<span id="cb18-5"><a href="chapter1.html#cb18-5"></a>          <span class="dt">median =</span> <span class="kw">median</span>(RunTime), </span>
+<span id="cb18-6"><a href="chapter1.html#cb18-6"></a>          <span class="dt">Q3 =</span> <span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.75</span>), </span>
+<span id="cb18-7"><a href="chapter1.html#cb18-7"></a>          <span class="dt">max =</span> <span class="kw">max</span>(RunTime), </span>
+<span id="cb18-8"><a href="chapter1.html#cb18-8"></a>)</span>
+<span id="cb18-9"><a href="chapter1.html#cb18-9"></a><span class="co">#&gt; # A tibble: 1 x 6</span></span>
+<span id="cb18-10"><a href="chapter1.html#cb18-10"></a><span class="co">#&gt;     min    Q1  mean median    Q3   max</span></span>
+<span id="cb18-11"><a href="chapter1.html#cb18-11"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb18-12"><a href="chapter1.html#cb18-12"></a><span class="co">#&gt; 1  8.17  9.78  10.6   10.5  11.3  14.0</span></span></code></pre></div>
 <p>This code may look overwhelming, so let’s break it down! The first argument
 (input) into the <code>summarize()</code> function is the name of the dataset you would
 like to summarize. Next, you tell the function all of the summaries you would
@@ -1043,14 +1032,14 @@ Figure 1.5: Quantiles of a distribution.
 </div>
 <p>Alternatively, we could have used the following code to obtain the same
 five number summary:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="chapter1.html#cb31-1"></a>treadmill <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb31-2"><a href="chapter1.html#cb31-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">min =</span> <span class="kw">min</span>(RunTime), </span>
-<span id="cb31-3"><a href="chapter1.html#cb31-3"></a>            <span class="dt">Q1 =</span> <span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.25</span>),</span>
-<span id="cb31-4"><a href="chapter1.html#cb31-4"></a>            <span class="dt">mean =</span> <span class="kw">mean</span>(RunTime), </span>
-<span id="cb31-5"><a href="chapter1.html#cb31-5"></a>            <span class="dt">median =</span> <span class="kw">median</span>(RunTime), </span>
-<span id="cb31-6"><a href="chapter1.html#cb31-6"></a>            <span class="dt">Q3 =</span> <span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.75</span>), </span>
-<span id="cb31-7"><a href="chapter1.html#cb31-7"></a>            <span class="dt">max =</span> <span class="kw">max</span>(RunTime), </span>
-<span id="cb31-8"><a href="chapter1.html#cb31-8"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="chapter1.html#cb19-1"></a>treadmill <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb19-2"><a href="chapter1.html#cb19-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">min =</span> <span class="kw">min</span>(RunTime), </span>
+<span id="cb19-3"><a href="chapter1.html#cb19-3"></a>            <span class="dt">Q1 =</span> <span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.25</span>),</span>
+<span id="cb19-4"><a href="chapter1.html#cb19-4"></a>            <span class="dt">mean =</span> <span class="kw">mean</span>(RunTime), </span>
+<span id="cb19-5"><a href="chapter1.html#cb19-5"></a>            <span class="dt">median =</span> <span class="kw">median</span>(RunTime), </span>
+<span id="cb19-6"><a href="chapter1.html#cb19-6"></a>            <span class="dt">Q3 =</span> <span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.75</span>), </span>
+<span id="cb19-7"><a href="chapter1.html#cb19-7"></a>            <span class="dt">max =</span> <span class="kw">max</span>(RunTime), </span>
+<span id="cb19-8"><a href="chapter1.html#cb19-8"></a>)</span></code></pre></div>
 <p>The only difference between the previous code and this code is the location of
 the <code>treadmill</code> data. Previously, we told the <code>summarize()</code> function to use
 the <code>treadmill</code> data by inserting the data as the first argument into the
@@ -1083,7 +1072,7 @@ were somewhat fit with the worst runner covering 1.5 miles in 14 minutes
 pace. The limited variation in the results suggests that the sample was obtained
 from a restricted group with somewhat common characteristics. When you explore
 the ages and weights of the subjects in the Practice Problems in Section
-<a href="chapter1.html#section1-7">1.7</a>, you will get even more information about how similar all the
+<a href="chapter1.html#section1-7">1.8</a>, you will get even more information about how similar all the
 subjects in this study were. Researchers often publish numerical summaries of
 this sort of demographic information to help readers understand the subjects
 that they studied and that their results might apply to.</p>
@@ -1106,9 +1095,9 @@ without having to learn too much more syntax.</p>
 <h3><span class="header-section-number">1.4.1</span> Histogram</h3>
 <p>We can create a simple plot of the distribution of the running times with the
 following code:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="chapter1.html#cb32-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> treadmill, <span class="kw">aes</span>(<span class="dt">x =</span> RunTime)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb32-2"><a href="chapter1.html#cb32-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">10</span>)</span></code></pre></div>
-<p><img src="01-preface_files/figure-html/unnamed-chunk-25-1.png" width="480" /></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="chapter1.html#cb20-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> treadmill, <span class="kw">aes</span>(<span class="dt">x =</span> RunTime)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb20-2"><a href="chapter1.html#cb20-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="01-preface_files/figure-html/unnamed-chunk-36-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>In this code, we use the <code>ggplot()</code> function to build a plot. If you run this
 code chunk, a plot will appear below the code chunk. The R Markdown document
 displays the plot below the code that was used to generate it, to give you an
@@ -1125,8 +1114,8 @@ plotting.</li>
 </ul>
 <p>These commands will build a blank plot, with the variables you assigned to the x
 and y axes, as seen below.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="chapter1.html#cb33-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> treadmill, <span class="kw">aes</span>(<span class="dt">x =</span> RunTime))</span></code></pre></div>
-<p><img src="01-preface_files/figure-html/unnamed-chunk-26-1.png" width="480" /></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="chapter1.html#cb21-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> treadmill, <span class="kw">aes</span>(<span class="dt">x =</span> RunTime))</span></code></pre></div>
+<p><img src="01-preface_files/figure-html/unnamed-chunk-37-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Next, you need to tell <code>ggplot()</code> what type of visualization you
 would like to add to the blank template. You add another layer to the <code>ggplot()</code>
 by:</p>
@@ -1168,9 +1157,9 @@ extend from Q1 and Q3 typically to the minimum and maximum) are shortened to
 only go as far as observations that are within <span class="math inline">\(1.5 \times \text{IQR}\)</span> of the
 upper and lower quartiles. The <em>box</em> part of the boxplot is a box that goes from
 Q1 to Q3 and the median is displayed as a line somewhere inside the box.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="chapter1.html#cb34-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> treadmill, <span class="kw">aes</span>(<span class="dt">y =</span> RunTime)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb34-2"><a href="chapter1.html#cb34-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="01-preface_files/figure-html/unnamed-chunk-27-1.png" width="480" /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="chapter1.html#cb22-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> treadmill, <span class="kw">aes</span>(<span class="dt">y =</span> RunTime)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb22-2"><a href="chapter1.html#cb22-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="01-preface_files/figure-html/unnamed-chunk-40-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>You’ll notice there is one additional change in the code above – the
 running times are now the y variable instead of the x variable. This is because
 it is more “standard” for a boxplot to appear vertically rather than
@@ -1184,14 +1173,14 @@ boxplot.</p>
 “outlier” and plotted as a point. In the summary statistics we calculated
 before, Q1 was 9.78 and Q3 was
 11.27, providing an IQR of:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="chapter1.html#cb35-1"></a>treadmill <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb35-2"><a href="chapter1.html#cb35-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">IQR =</span> <span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.75</span>) <span class="op">-</span><span class="st"> </span></span>
-<span id="cb35-3"><a href="chapter1.html#cb35-3"></a><span class="st">              </span><span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.25</span>)</span>
-<span id="cb35-4"><a href="chapter1.html#cb35-4"></a>            )</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 1
-##     IQR
-##   &lt;dbl&gt;
-## 1  1.49</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="chapter1.html#cb23-1"></a>treadmill <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb23-2"><a href="chapter1.html#cb23-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">IQR =</span> <span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.75</span>) <span class="op">-</span><span class="st"> </span></span>
+<span id="cb23-3"><a href="chapter1.html#cb23-3"></a><span class="st">              </span><span class="kw">quantile</span>(RunTime, <span class="dt">probs =</span> <span class="fl">0.25</span>)</span>
+<span id="cb23-4"><a href="chapter1.html#cb23-4"></a>            )</span>
+<span id="cb23-5"><a href="chapter1.html#cb23-5"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
+<span id="cb23-6"><a href="chapter1.html#cb23-6"></a><span class="co">#&gt;     IQR</span></span>
+<span id="cb23-7"><a href="chapter1.html#cb23-7"></a><span class="co">#&gt;   &lt;dbl&gt;</span></span>
+<span id="cb23-8"><a href="chapter1.html#cb23-8"></a><span class="co">#&gt; 1  1.49</span></span></code></pre></div>
 <p>Based on this result the maximum (14.03) was flagged as a
 potential outlier, because it was larger than than Q3 <span class="math inline">\(+1.5*\)</span>IQR, which was
 13.505.</p>
@@ -1207,11 +1196,11 @@ function to add labels to the plot. When we add text to plots, it must be
 contained within quotes and be assigned into the options <code>y</code> (for y-axis),
 <code>x</code> (for x-axis), or <code>title</code> (for the title) here to put it into those
 locations.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="chapter1.html#cb37-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> treadmill, <span class="kw">aes</span>(<span class="dt">y =</span> RunTime)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb37-2"><a href="chapter1.html#cb37-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb37-3"><a href="chapter1.html#cb37-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;1.5 Mile Run Time (minutes)&quot;</span>,</span>
-<span id="cb37-4"><a href="chapter1.html#cb37-4"></a>       <span class="dt">title =</span> <span class="st">&quot;Boxplot of the Run Times of 31 participants&quot;</span>)</span></code></pre></div>
-<p><img src="01-preface_files/figure-html/unnamed-chunk-29-1.png" width="480" /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="chapter1.html#cb24-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> treadmill, <span class="kw">aes</span>(<span class="dt">y =</span> RunTime)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb24-2"><a href="chapter1.html#cb24-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb24-3"><a href="chapter1.html#cb24-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;1.5 Mile Run Time (minutes)&quot;</span>,</span>
+<span id="cb24-4"><a href="chapter1.html#cb24-4"></a>       <span class="dt">title =</span> <span class="st">&quot;Boxplot of the Run Times of 31 participants&quot;</span>)</span></code></pre></div>
+<p><img src="01-preface_files/figure-html/unnamed-chunk-42-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Unfortunately, boxplots can be misleading. They are not affected by data’s
 distribution, which allows for the data to “morph” but maintain their stat
 summaries (medians and ranges), their box plots stay the same. One of the ways
@@ -1234,18 +1223,18 @@ statistics course, the total area under a a density plot adds up to 100%, so
 the values on the side represent the percentage of the data that
 took on values in that data range. For example, it appears that nearly 30% of
 the runners in this study had running times around 11 minutes for the 1.5 miles.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="chapter1.html#cb38-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> treadmill, <span class="kw">aes</span>(<span class="dt">x =</span> RunTime)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb38-2"><a href="chapter1.html#cb38-2"></a><span class="st">  </span><span class="kw">geom_density</span>()</span></code></pre></div>
-<p><img src="01-preface_files/figure-html/unnamed-chunk-30-1.png" width="480" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="chapter1.html#cb25-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> treadmill, <span class="kw">aes</span>(<span class="dt">x =</span> RunTime)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb25-2"><a href="chapter1.html#cb25-2"></a><span class="st">  </span><span class="kw">geom_density</span>()</span></code></pre></div>
+<p><img src="01-preface_files/figure-html/unnamed-chunk-43-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <div class="protip">
 <p>Many people would prefer for their density plot to be filled in (shaded) below
 the density line. To do this you need to add a color to the <code>fill</code> argument,
 inside the <code>geom_density()</code> function. This tells <code>ggplot()</code> that you want for
 your density curvy to be filled with whatever color you tell it. Here, I’ve
 selected blue, although tomato is another favorite of mine.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="chapter1.html#cb39-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> treadmill, <span class="kw">aes</span>(<span class="dt">x =</span> RunTime)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb39-2"><a href="chapter1.html#cb39-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="01-preface_files/figure-html/unnamed-chunk-31-1.png" width="480" /></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="chapter1.html#cb26-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> treadmill, <span class="kw">aes</span>(<span class="dt">x =</span> RunTime)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb26-2"><a href="chapter1.html#cb26-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="01-preface_files/figure-html/unnamed-chunk-44-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="recap" class="section level3">
@@ -1255,7 +1244,7 @@ function. Thankfully, <code>R</code> documents all of its functions extensively.
 what a function does and how to use it (e.g. the function’s arguments), just
 type in a question mark followed by the name of the function that you’re
 interested in into the console. Type the following in your console:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="chapter1.html#cb40-1"></a>?ggplot</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="chapter1.html#cb27-1"></a>?ggplot</span></code></pre></div>
 <p>Notice that the help file comes to the forefront, replacing the plot in the
 lower right panel. You can toggle between the tabs by clicking on their names.</p>
 <p>Throughout the book, we will often use extra options to make figures that
@@ -1432,8 +1421,130 @@ organize and read.</p></li>
 </ul>
 <div style="page-break-after: always;"></div>
 </div>
+<div id="terms" class="section level2">
+<h2><span class="header-section-number">1.7</span> Terms</h2>
+<p>We introduced the following terms in the chapter.
+If you’re not sure what some of these terms mean, we recommend you go back in the text and review their definitions.
+We are purposefully presenting them in alphabetical order, instead of in order of appearance, so they will be a little more challenging to locate.
+However you should be able to easily spot them as <strong>bolded text</strong>.</p>
+<table>
+<tbody>
+<tr>
+<td style="text-align:left;">
+additive model
+</td>
+<td style="text-align:left;">
+confidence interval
+</td>
+<td style="text-align:left;">
+IQR (inter-quartile range)
+</td>
+<td style="text-align:left;">
+replication
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+assumptions
+</td>
+<td style="text-align:left;">
+data
+</td>
+<td style="text-align:left;">
+linear model
+</td>
+<td style="text-align:left;">
+reproducible
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+boxplot
+</td>
+<td style="text-align:left;">
+explanatory
+</td>
+<td style="text-align:left;">
+Logistic Regression
+</td>
+<td style="text-align:left;">
+response
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+categorical
+</td>
+<td style="text-align:left;">
+five number summary
+</td>
+<td style="text-align:left;">
+multiple linear regression
+</td>
+<td style="text-align:left;">
+scope of inference
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+causal inference
+</td>
+<td style="text-align:left;">
+histogram
+</td>
+<td style="text-align:left;">
+outlier
+</td>
+<td style="text-align:left;">
+skewed distribution
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chi-Square Homogeneity Test
+</td>
+<td style="text-align:left;">
+hypothesis testing
+</td>
+<td style="text-align:left;">
+quantitative
+</td>
+<td style="text-align:left;">
+symmetric distribution
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chi-Square Independence Test
+</td>
+<td style="text-align:left;">
+interaction
+</td>
+<td style="text-align:left;">
+random assignment
+</td>
+<td style="text-align:left;">
+transformation
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chi-Square Test
+</td>
+<td style="text-align:left;">
+interaction model
+</td>
+<td style="text-align:left;">
+random sampling
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="section1-7" class="section level2">
-<h2><span class="header-section-number">1.7</span> Practice Problems</h2>
+<h2><span class="header-section-number">1.8</span> Practice Problems</h2>
 <p>In each chapter, the last section contains some questions for you to complete
 to make sure you understood the material. You can download the code to answer
 questions 1.1 to 1.5 below at <a href="https://raw.githubusercontent.com/atheobold/stat-313/master/Week%202/Reading/Chapter%20One%20Practice%20Problem%20Solutions/Chapter%20One%3A%20Introduction%20to%20R%20and%20RStudio.Rmd">Course GitHub Page</a>.
@@ -1465,8 +1576,8 @@ new variable to the dataset, that is the difference between runner’s running
 pulse and resting pulse. We add the variable to the original dataframe, by
 assigning the new dataframe into the name of the old dataframe
 (<code>treadmill &lt;-</code>).</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="chapter1.html#cb41-1"></a>treadmill &lt;-<span class="st"> </span>treadmill <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb41-2"><a href="chapter1.html#cb41-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">diff_pulse =</span> RunPulse <span class="op">-</span><span class="st"> </span>RestPulse)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="chapter1.html#cb28-1"></a>treadmill &lt;-<span class="st"> </span>treadmill <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-2"><a href="chapter1.html#cb28-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">diff_pulse =</span> RunPulse <span class="op">-</span><span class="st"> </span>RestPulse)</span></code></pre></div>
 <p>Use the above code example to create a new column named <code>BodyWeight_lb</code> in the
 treadmill dataframe. The conversion from kg to lb is <span class="math inline">\(\text{lbs} = 2.205 \times \text{kgs}\)</span>.</p>
 <p>After you create the new variable, use <code>summarize()</code> to find the mean and

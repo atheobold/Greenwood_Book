@@ -9,6 +9,16 @@ colorize <- function(x, color="red") {
   } else x
 }
 
+colFmt = function(x, color){
+  outputFormat = opts_knit$get("rmarkdown.pandoc.to")
+  if(outputFormat == 'latex')
+    paste("\\textcolor{",color,"}{",x,"}",sep="")
+  else if(outputFormat == 'html')
+    paste("<font color='",color,"'>",x,"</font>",sep="")
+  else
+    x
+}
+
 # extra packages ---------------------------------------------------------------------
 suppressMessages(library(gridExtra))
 suppressMessages(library(ggraph))
@@ -38,8 +48,9 @@ suppressMessages(library(patchwork))
 suppressMessages(library(tidyverse))
 suppressMessages(library(scales))
 suppressMessages(library(skimr))
-#suppressMessages(library(threed))
-#suppressMessages(library(ggthreed))
+suppressMessages(library(mosaic))
+suppressMessages(library(DT))
+suppressMessages(library(emo))
 
 # knitr chunk options ----------------------------------------------------------
 
@@ -52,9 +63,12 @@ knitr::opts_chunk$set(
   echo = FALSE, # hide code unless otherwise noted in chunk options
   out.width = "70%",
   fig.align = 'center',
-  fig.width = 6,
+  fig.width = 5,
+  fig.height = 3.5,
+  fig.pos = "ht!",
   fig.asp = 0.618,  # 1 / phi
-  fig.show = "hold"
+  fig.show = "hold", 
+  tidy = TRUE
 )
 
 # kableExtra options -----------------------------------------------------------

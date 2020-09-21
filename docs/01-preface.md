@@ -41,6 +41,8 @@ and that you have seen all of these concepts in a couple of basic situations. We
 start with a review of these ideas in one and two group situations with a
 quantitative response, something that you likely have seen before. 
 
+
+
 \indent This text covers a wide array of statistical tools that are connected
 through situation, methods used, or both. As we explore various techniques, look
 for the identifying characteristics of each method -- what type of research
@@ -60,6 +62,8 @@ course, we will start to handle more complex situations (many explanatory
 variables), while also providing tools for data wrangling and data visualization, 
 complementing the more sophisticated statistical models required to handle these
 situations. 
+
+
 
 ## Overview of Methods {#section1-1}
 
@@ -98,6 +102,8 @@ the necessary technical steps to get results for a
 given data set, the final step involves assessing the scope of inference 
 \index{scope of inference} and
 types of conclusions that are appropriate based on the design of the study. 
+
+
 
 (ref:fig1-1) Flow chart of data analysis procedures.
 
@@ -152,6 +158,9 @@ interaction may or may not actually be present, we will consider two versions
 of the model in Two-Way ANOVAs, \index{model!Two-Way ANOVA} what are called the
 ***additive*** \index{model!additive} (no interaction) and the ***interaction*** \index{model!interaction} models. 
 
+
+
+
 \indent Following the methods for two categorical variables and a quantitative 
 response, we explore a method for analyzing data where the response is
 categorical, called the ***Chi-square test***
@@ -190,6 +199,8 @@ quantitative explanatory variable, we would use a **Logistic Regression**.
 This type of data model will be covered in additional statistics classes, but 
 has connections to the linear models discussed in this textbook.
 
+
+
 \indent If the predictor and response variables are both quantitative, we start
 with scatterplots, correlation, 
 and ***simple linear regression*** models (Chapters \@ref(chapter6) and
@@ -215,6 +226,8 @@ responses are discussed, showing that they all have the same foundation,
 because they are all linear models \index{model!linear}. We also show how the
 methods discussed can be applied to a suite of new problems using a set of case
 studies and how that relates to further extensions of the methods.
+
+
 
 \indent By the end of Chapter \@ref(chapter9) you should be able to identify,
 perform using the statistical software `R` [@R-base], and interpret the results 
@@ -263,6 +276,8 @@ tutoring/not but the non-random sample would only lead to conclusions about
 those students that volunteered. The most powerful scope of inference is when
 random assignment is used in a random sample from a population -- conclusions
 would be about causal impacts that we would expect to happen in the population. 
+
+
 
 \indent By the end of this material, you should have some `R` skills to wrangle 
 data in preparation for analysis, create professional quality data
@@ -406,10 +421,7 @@ calculator. To do this, click near the command prompt (`>`) in the lower left
 
 ```r
 3 + 4
-```
-
-```
-## [1] 7
+#> [1] 7
 ```
 
 You can do more interesting calculations, like finding the mean of a set of 
@@ -419,10 +431,7 @@ dividing by 4:
 
 ```r
 (-3 + 5 + 7 + 8) / 4
-```
-
-```
-## [1] 4.25
+#> [1] 4.25
 ```
 
 Note that the parentheses help `R` to figure out your desired order of
@@ -432,10 +441,7 @@ result:
 
 ```r
 -3 + 5 + 7 + 8 / 4
-```
-
-```
-## [1] 11
+#> [1] 11
 ```
 
 We could the use a formula from introductory statistics to estimate the standard
@@ -478,10 +484,7 @@ output a vector of four numbers, 1, 2, 3, and 4.
 
 ```r
 c(-3, 5, 7, 8)
-```
-
-```
-## [1] -3  5  7  8
+#> [1] -3  5  7  8
 ```
 
 If we would like store this vector into a variable, so we can refer back to it,
@@ -506,10 +509,7 @@ text for the variable name representing that vector.
 
 ```r
 variable1
-```
-
-```
-## [1] -3  5  7  8
+#> [1] -3  5  7  8
 ```
 
 ::: {.important}
@@ -569,10 +569,7 @@ we did before, we will no longer obtain a numeric output if our vector contains
 ```r
 a <- c(-3, 5, 7, 8, NA)
 mean(a)
-```
-
-```
-## [1] NA
+#> [1] NA
 ```
 
 When doing operations on numbers, most functions will return `NA` if the data
@@ -592,10 +589,7 @@ you need to tell `R` that you wish for `na.rm` to be `TRUE`.
 
 ```r
 mean(a, na.rm = TRUE)
-```
-
-```
-## [1] 4.25
+#> [1] 4.25
 ```
 
 ### Packages in `R` 
@@ -666,6 +660,8 @@ way and may someday require it. The term ***reproducible*** can also be related
 to whether repeated studies get the same result (also called ***replication***)
 -- further discussion of these terms and the implications for scientific
 research are discussed in Chapter \@ref(chapter2).
+
+
 
 In this course, will be using R Markdown to create reproducible lab reports.
 See the following videos describing why and how:
@@ -893,16 +889,16 @@ This command should output the following:
 
 
 ```
-## Rows: 31
-## Columns: 8
-## $ Subject           <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, …
-## $ TreadMillOx       <dbl> 60.05, 59.57, 54.62, 54.30, 51.85, 50.55, 50.54, 50…
-## $ TreadMillMaxPulse <dbl> 186, 172, 155, 168, 170, 155, 168, 168, 180, 185, 1…
-## $ RunTime           <dbl> 8.63, 8.17, 8.92, 8.65, 10.33, 9.93, 10.13, 10.08, …
-## $ RunPulse          <dbl> 170, 166, 146, 156, 166, 148, 168, 168, 178, 180, 1…
-## $ RestPulse         <dbl> 48, 40, 48, 45, 50, 49, 45, 67, 55, 44, 64, 56, 52,…
-## $ BodyWeight        <dbl> 81.87, 68.15, 70.87, 85.84, 83.12, 59.08, 73.03, 73…
-## $ Age               <dbl> 38, 42, 50, 44, 54, 57, 44, 49, 38, 49, 43, 49, 48,…
+#> Rows: 31
+#> Columns: 8
+#> $ Subject           <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, …
+#> $ TreadMillOx       <dbl> 60.0, 59.6, 54.6, 54.3, 51.9, 50.5, 50.5, 50.4, 49.…
+#> $ TreadMillMaxPulse <dbl> 186, 172, 155, 168, 170, 155, 168, 168, 180, 185, 1…
+#> $ RunTime           <dbl> 8.63, 8.17, 8.92, 8.65, 10.33, 9.93, 10.13, 10.08, …
+#> $ RunPulse          <dbl> 170, 166, 146, 156, 166, 148, 168, 168, 178, 180, 1…
+#> $ RestPulse         <dbl> 48, 40, 48, 45, 50, 49, 45, 67, 55, 44, 64, 56, 52,…
+#> $ BodyWeight        <dbl> 81.9, 68.2, 70.9, 85.8, 83.1, 59.1, 73.0, 73.4, 89.…
+#> $ Age               <dbl> 38, 42, 50, 44, 54, 57, 44, 49, 38, 49, 43, 49, 48,…
 ```
 
 \index{\texttt{glimpse()}}
@@ -935,12 +931,9 @@ To access the ``RunTime`` variable here it would be ``treadmill$RunTime``.
 
 ```r
 treadmill$RunTime
-```
-
-```
-##  [1]  8.63  8.17  8.92  8.65 10.33  9.93 10.13 10.08  9.22  8.95 10.85  9.40
-## [13] 11.50 10.50 10.60 10.25 10.00 11.17 10.47 11.95  9.63 10.07 11.08 11.63
-## [25] 11.12 11.37 10.95 13.08 12.63 12.88 14.03
+#>  [1]  8.63  8.17  8.92  8.65 10.33  9.93 10.13 10.08  9.22  8.95 10.85  9.40
+#> [13] 11.50 10.50 10.60 10.25 10.00 11.17 10.47 11.95  9.63 10.07 11.08 11.63
+#> [25] 11.12 11.37 10.95 13.08 12.63 12.88 14.03
 ```
 
 When we looked at the complete data frame, we saw 31 rows, one on each line of
@@ -963,26 +956,19 @@ a particular variable using functions like ``mean()`` and ``sd()``:
 
 ```r
 mean(treadmill$RunTime)
-```
-
-```
-## [1] 10.58613
-```
-
-```r
+#> [1] 10.6
 sd(treadmill$RunTime)
-```
-
-```
-## [1] 1.387414
+#> [1] 1.39
 ```
 
 And now we know that the average running time for 1.5 miles for the subjects
-in the study was 10.586129 minutes with a standard
-deviation of 1.3874141 minutes. But you should remember that
+in the study was 10.586 minutes with a standard
+deviation of 1.387 minutes. But you should remember that
 the mean and SD are only appropriate summaries if the distribution is roughly
 ***symmetric*** (both sides of the distribution are approximately the same shape
 and length). 
+
+
 
 <!-- (Note: answers to all Guided Practice exercises are provided in footnotes!) -->
 
@@ -1003,6 +989,9 @@ the `median` (50^th^ percentile), the third quartile (``Q3``, the 75^th^
 percentile), and the maximum (``max``). 
 \index{summarize}
 
+
+
+
 Let's use the `summarize()` function to calculate a five number summary of the 
 running times, including the mean:
 
@@ -1016,13 +1005,10 @@ summarize(treadmill,
           Q3 = quantile(RunTime, probs = 0.75), 
           max = max(RunTime), 
 )
-```
-
-```
-## # A tibble: 1 x 6
-##     min    Q1  mean median    Q3   max
-##   <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl>
-## 1  8.17  9.78  10.6   10.5  11.3  14.0
+#> # A tibble: 1 x 6
+#>     min    Q1  mean median    Q3   max
+#>   <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl>
+#> 1  8.17  9.78  10.6   10.5  11.3  14.0
 ```
 
 This code may look overwhelming, so let's break it down! The first argument 
@@ -1116,6 +1102,8 @@ good place to start. Histograms display connected bars with counts of
 observations defining the height of bars based on a set of bins of values of the
 quantitative variable. 
 
+
+
 `R` has some powerful functions for making graphics. We chose ggplot2 because
 this package makes modern looking hassle-free plots that take care of fiddly
 details like drawing legends. Additionally, once you learn how to make simple
@@ -1134,7 +1122,7 @@ ggplot(data = treadmill, aes(x = RunTime)) +
   geom_histogram(bins = 10)
 ```
 
-<img src="01-preface_files/figure-html/unnamed-chunk-25-1.png" width="480" />
+<img src="01-preface_files/figure-html/unnamed-chunk-36-1.png" width="70%" style="display: block; margin: auto;" />
 
 In this code, we use the `ggplot()` function to build a plot. If you run this
 code chunk, a plot will appear below the code chunk. The R Markdown document
@@ -1160,7 +1148,7 @@ and y axes, as seen below.
 ggplot(data = treadmill, aes(x = RunTime))
 ```
 
-<img src="01-preface_files/figure-html/unnamed-chunk-26-1.png" width="480" />
+<img src="01-preface_files/figure-html/unnamed-chunk-37-1.png" width="70%" style="display: block; margin: auto;" />
 
 Next, you need to tell `ggplot()` what type of visualization you
 would like to add to the blank template. You add another layer to the `ggplot()`
@@ -1193,6 +1181,8 @@ shape of the distribution as it displays the 5-number summary and will also
 indicate observations that are "far" above the middle of the observations. 
 \index{boxplot}
 
+
+
 As you may have expected, to create a boxplot in ggplot you change the 
 geometric representation of your data, in the `geom` function. Here, we will 
 use the `geom_boxplot()` to create a boxplot of the running times. The 
@@ -1200,6 +1190,8 @@ use the `geom_boxplot()` to create a boxplot of the running times. The
 ***potential outlier*** if it falls more than 1.5 times the ***IQR*** 
 (Inter-Quartile Range, calculated as Q3 -- Q1) below Q1 or above Q3. 
 \index{outlier}
+
+
 
 The potential outliers are plotted with circles and the *Whiskers* (lines that
 extend from Q1 and Q3 typically to the minimum and maximum) are shortened to
@@ -1216,7 +1208,7 @@ ggplot(data = treadmill, aes(y = RunTime)) +
   geom_boxplot()
 ```
 
-<img src="01-preface_files/figure-html/unnamed-chunk-27-1.png" width="480" />
+<img src="01-preface_files/figure-html/unnamed-chunk-40-1.png" width="70%" style="display: block; margin: auto;" />
 
 You'll notice there is one additional change in the code above -- the 
 running times are now the y variable instead of the x variable. This is because 
@@ -1240,13 +1232,10 @@ treadmill %>%
   summarize(IQR = quantile(RunTime, probs = 0.75) - 
               quantile(RunTime, probs = 0.25)
             )
-```
-
-```
-## # A tibble: 1 x 1
-##     IQR
-##   <dbl>
-## 1  1.49
+#> # A tibble: 1 x 1
+#>     IQR
+#>   <dbl>
+#> 1  1.49
 ```
 
 Based on this result the maximum (14.03) was flagged as a
@@ -1275,7 +1264,7 @@ ggplot(data = treadmill, aes(y = RunTime)) +
        title = "Boxplot of the Run Times of 31 participants")
 ```
 
-<img src="01-preface_files/figure-html/unnamed-chunk-29-1.png" width="480" />
+<img src="01-preface_files/figure-html/unnamed-chunk-42-1.png" width="70%" style="display: block; margin: auto;" />
 
 Unfortunately, boxplots can be misleading. They are not affected by data’s
 distribution, which allows for the data to "morph" but maintain their stat
@@ -1306,7 +1295,7 @@ ggplot(data = treadmill, aes(x = RunTime)) +
   geom_density()
 ```
 
-<img src="01-preface_files/figure-html/unnamed-chunk-30-1.png" width="480" />
+<img src="01-preface_files/figure-html/unnamed-chunk-43-1.png" width="70%" style="display: block; margin: auto;" />
 
 ::: {.protip}
 Many people would prefer for their density plot to be filled in (shaded) below
@@ -1321,7 +1310,7 @@ ggplot(data = treadmill, aes(x = RunTime)) +
   geom_density(fill = "blue")
 ```
 
-<img src="01-preface_files/figure-html/unnamed-chunk-31-1.png" width="480" />
+<img src="01-preface_files/figure-html/unnamed-chunk-44-1.png" width="70%" style="display: block; margin: auto;" />
 :::
 
 ### Recap 
@@ -1523,6 +1512,66 @@ to work. You can also revisit the worked examples using each of the functions.
     organize and read. 
 
 \newpage
+
+## Terms
+
+We introduced the following terms in the chapter.
+If you're not sure what some of these terms mean, we recommend you go back in the text and review their definitions.
+We are purposefully presenting them in alphabetical order, instead of in order of appearance, so they will be a little more challenging to locate.
+However you should be able to easily spot them as **bolded text**.
+
+<table>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> additive model </td>
+   <td style="text-align:left;"> confidence interval </td>
+   <td style="text-align:left;"> IQR (inter-quartile range) </td>
+   <td style="text-align:left;"> replication </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> assumptions </td>
+   <td style="text-align:left;"> data </td>
+   <td style="text-align:left;"> linear model </td>
+   <td style="text-align:left;"> reproducible </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> boxplot </td>
+   <td style="text-align:left;"> explanatory </td>
+   <td style="text-align:left;"> Logistic Regression </td>
+   <td style="text-align:left;"> response </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> categorical </td>
+   <td style="text-align:left;"> five number summary </td>
+   <td style="text-align:left;"> multiple linear regression </td>
+   <td style="text-align:left;"> scope of inference </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> causal inference </td>
+   <td style="text-align:left;"> histogram </td>
+   <td style="text-align:left;"> outlier </td>
+   <td style="text-align:left;"> skewed distribution </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chi-Square Homogeneity Test </td>
+   <td style="text-align:left;"> hypothesis testing </td>
+   <td style="text-align:left;"> quantitative </td>
+   <td style="text-align:left;"> symmetric distribution </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chi-Square Independence Test </td>
+   <td style="text-align:left;"> interaction </td>
+   <td style="text-align:left;"> random assignment </td>
+   <td style="text-align:left;"> transformation </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chi-Square Test </td>
+   <td style="text-align:left;"> interaction model </td>
+   <td style="text-align:left;"> random sampling </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
 
 ## Practice Problems {#section1-7}
 

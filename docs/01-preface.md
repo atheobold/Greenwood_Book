@@ -16,8 +16,7 @@ Scientists seek to answer questions using rigorous methods and careful
 observations. These observations – collected from the likes of field notes,
 surveys, and experiments – form the backbone of a statistical investigation and
 are called data. Statistics is the study of how best to collect, analyze, and
-draw conclusions from data, and in this first chapter, we focus on both the
-properties of data and on the collection of data. 
+draw conclusions from data. 
 - _Introduction to Modern Statistics_, Mine Çetinkaya-Rundel & Jo Hardin
 :::
 
@@ -1513,7 +1512,7 @@ to work. You can also revisit the worked examples using each of the functions.
 
 \newpage
 
-## Terms
+## Important Chapter Terms
 
 We introduced the following terms in the chapter.
 If you're not sure what some of these terms mean, we recommend you go back in the text and review their definitions.
